@@ -1,0 +1,12 @@
+# シェルとして zsh を使用
+shell zsh
+
+# スタートアップメッセージを非表示
+startup_message off
+
+# 別画面でのスクリーンプログラムの実行を許可
+altscreen on
+
+# ウィンドウの移動
+bindkey ^n next
+bindkey ^p prev
