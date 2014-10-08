@@ -1,0 +1,7 @@
+[user]
+	name = MIZUNE Pine
+	email = pinemz@gmail.com
+[push]
+	default = current
+[core]
+	autocrlf = false
