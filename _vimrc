@@ -22,15 +22,16 @@ set modelines=5
 " Vundle の前に必ず行う
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle' " 必須
+Plugin 'gmarik/Vundle.vim' " 必須
 
 " GitHub のレポジトリ
-Bundle 'leafgarland/typescript-vim'
+Plugin 'leafgarland/typescript-vim'
 
 " Vundle の後に必ず行う
+call vundle#end()
 " filetype plugin indent on
 
 " ---------------------------------------------------------
