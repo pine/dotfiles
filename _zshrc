@@ -84,10 +84,22 @@ SAVEHIST=10000          # ファイルへ保存するヒストリの最大数
 # *** コマンドエイリアス ***
 # ---------------------------------------------------------
 
+# ls
 alias ls='ls --color=tty'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
+
+# dir
+if ! type -p dir > /dev/null 2>&1; then
+	alias dir=ls # 誤発動防止
+fi
+
+# cls
+alias cls="clear" # タイプミス防止
+
+# diff
+alias diff="diff --strip-trailing-cr" # 改行コード無視
 
 alias soz='source ~/.zshrc'
 
@@ -108,7 +120,10 @@ path=(
 	${path}
 )
 
-eval "$(anyenv init -)"
+# anyenv
+if type -p anyenv > /dev/null; then
+	eval "$(anyenv init -)"
+fi
 
 # ---------------------------------------------------------
 # *** 実行 ***
