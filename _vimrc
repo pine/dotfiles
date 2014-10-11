@@ -143,7 +143,8 @@ function! GetFileType()
 				\'tex'       : 'TeX',
 				\'php'       : 'PHP',
 				\'python'    : 'Python',
-				\'text'      : 'Text'
+				\'text'      : 'Text',
+                \'sql'       : 'SQL'
 				\}
 	
 	retu get(l:name, &ft, &ft)

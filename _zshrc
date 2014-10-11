@@ -115,13 +115,13 @@ alias sudo='sudo -i'
 # 重複パスを登録しない
 typeset -U path cdpath fpath manpath
 
-path=(
-	$HOME/.anyenv/bin
-	${path}
-)
-
 # anyenv
-if type -p anyenv > /dev/null; then
+if [[ -d "$HOME/.anyenv/bin" ]] then
+	path=(
+		$HOME/.anyenv/bin
+		${path}
+	)
+
 	eval "$(anyenv init -)"
 fi
 
