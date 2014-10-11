@@ -5,3 +5,8 @@
 	default = current
 [core]
 	autocrlf = false
+	editor = vim
+[color]
+	diff = auto
+	status = auto
+	branch = auto
