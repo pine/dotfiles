@@ -37,6 +37,7 @@ if s:vundle == 1
     " GitHub のレポジトリ
     Plugin 'leafgarland/typescript-vim'
     Plugin 'vim-scripts/perl-support.vim'
+    Plugin 'motemen/xslate-vim'
 
     " Vundle の後に必ず行う
     call vundle#end()
@@ -161,6 +162,7 @@ function! GetFileType()
 				\'text'      : 'Text',
                 \'sql'       : 'SQL',
                 \'perl'      : 'Perl',
+                \'xslate'    : 'Xslate'
 				\}
 	
 	retu get(l:name, &ft, &ft)
