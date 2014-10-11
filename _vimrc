@@ -23,16 +23,24 @@ set modelines=5
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+let s:vundle=0
 
-Plugin 'gmarik/Vundle.vim' " 必須
+try
+    call vundle#begin()
+    let s:vundle=1 " Vundle 読み込み成功
+catch
+endtry
 
-" GitHub のレポジトリ
-Plugin 'leafgarland/typescript-vim'
+if s:vundle == 1
+    Plugin 'gmarik/Vundle.vim' " 必須
 
-" Vundle の後に必ず行う
-call vundle#end()
-" filetype plugin indent on
+    " GitHub のレポジトリ
+    Plugin 'leafgarland/typescript-vim'
+
+    " Vundle の後に必ず行う
+    call vundle#end()
+    " filetype plugin indent on
+endif
 
 " ---------------------------------------------------------
 " *** ファイル関係 ***
