@@ -6,6 +6,8 @@
 [core]
 	autocrlf = false
 	editor = vim
+	quotepath = false
+	precomposeunicode = true
 [color]
 	diff = auto
 	status = auto
