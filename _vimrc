@@ -36,6 +36,9 @@ if s:vundle == 1
 
     " GitHub のレポジトリ
     Plugin 'leafgarland/typescript-vim'
+    Plugin 'vim-scripts/perl-support.vim'
+    Plugin 'motemen/xslate-vim'
+    Plugin 'tyru/caw.vim'
 
     " Vundle の後に必ず行う
     call vundle#end()
@@ -158,7 +161,9 @@ function! GetFileType()
 				\'php'       : 'PHP',
 				\'python'    : 'Python',
 				\'text'      : 'Text',
-                \'sql'       : 'SQL'
+                \'sql'       : 'SQL',
+                \'perl'      : 'Perl',
+                \'xslate'    : 'Xslate'
 				\}
 	
 	retu get(l:name, &ft, &ft)

@@ -107,6 +107,7 @@ alias tsc='tsc -target ES5 --module "commonjs"'
 
 alias sudo='sudo -i'
 
+alias ns="screen -c \`pwd\`" # 新規スクリーン
 
 # ---------------------------------------------------------
 # *** PATH ***
@@ -116,13 +117,21 @@ alias sudo='sudo -i'
 typeset -U path cdpath fpath manpath
 
 # anyenv
-if [[ -d "$HOME/.anyenv/bin" ]] then
+if [[ -d "$HOME/.anyenv" ]] then
 	path=(
 		$HOME/.anyenv/bin
 		${path}
 	)
 
 	eval "$(anyenv init -)"
+fi
+
+# nodebrew
+if [[ -d "$HOME/.nodebrew" ]] then
+	path=(
+		$HOME/.nodebrew/current/bin
+		${path}
+	)
 fi
 
 # ---------------------------------------------------------
