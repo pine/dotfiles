@@ -12,3 +12,5 @@
 	diff = auto
 	status = auto
 	branch = auto
+[merge]
+	ff = false
