@@ -1,5 +1,5 @@
 [user]
-	name = MIZUNE Pine
+	name = Pine Mizune
 	email = pinemz@gmail.com
 [push]
 	default = current
@@ -9,8 +9,8 @@
 	quotepath = false
 	precomposeunicode = true
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+	ui = auto
 [merge]
 	ff = false
+[pull]
+	rebase = true
