@@ -14,5 +14,3 @@
 	ff = false
 [pull]
 	rebase = true
-[alias]
-	add = add --all
