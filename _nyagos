@@ -1,0 +1,4 @@
+alias{
+    ll='ls -oF -l $*',
+    clear='cls',
+}
