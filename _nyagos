@@ -3,3 +3,18 @@ alias{
     clear='cls',
     clj='java -Dfile.encoding=utf-8 -cp ~/.clojure/clojure-1.6.0.jar clojure.main $*',
 }
+
+nyagos.alias('touch', function(args)
+    if #args <= 0 then
+        print 'Usage: touch FILENAME'
+        return
+    end
+    
+    local fd = io.open(args[1])
+    
+    if fd then
+        fd:close()
+    else
+        io.open(args[1], 'w'):close()
+    end
+end)
