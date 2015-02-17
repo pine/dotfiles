@@ -2,6 +2,7 @@ alias{
     ll='ls -oF -l $*',
     clear='cls',
     clj='java -Dfile.encoding=utf-8 -cp ~/.clojure/clojure-1.6.0.jar clojure.main $*',
+    lein2='lein',
 }
 
 nyagos.alias('touch', function(args)
