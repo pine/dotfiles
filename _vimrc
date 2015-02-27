@@ -2,6 +2,9 @@
 " .vimrc
 " =========================================================
 
+set encoding=utf-8
+scriptencoding utf-8
+
 " ---------------------------------------------------------
 " *** 全般設定 ***
 " ---------------------------------------------------------
@@ -54,7 +57,6 @@ syntax enable
 filetype plugin indent on
 
 " 文字コード関係の設定
-set encoding=utf-8           " 内部エンコード
 set fileformats=unix,dos,mac " ファイルフォーマット
 set termencoding=utf-8       " 端末のエンコード
 set ambiwidth=double         " 全角文字を2文字として扱う

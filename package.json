@@ -1,0 +1,22 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://pine613@bitbucket.org/pine613/dotfiles.git"
+  },
+  "author": "Pine Mizune",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-cli": "0.1.13",
+    "grunt-vimlint": "*",
+    "load-grunt-tasks": "3.1.0"
+  }
+}
