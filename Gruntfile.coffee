@@ -6,7 +6,7 @@ module.exports = (grunt) ->
     lualint:
       files: ['_nyagos']
   
-  testTasks = ['lualint']
+  testTasks = []
   
   unless /^win/.test(process.platform)
     testTasks.push('vimlint')
