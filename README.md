@@ -1,4 +1,4 @@
 dotfiles
 --------
 
-[![wercker status](https://app.wercker.com/status/7cbd21f2b61d1069fab9e4cbd2f5d76b/s "wercker status")](https://app.wercker.com/project/bykey/7cbd21f2b61d1069fab9e4cbd2f5d76b)
+[![wercker status](https://app.wercker.com/status/0f3a3fac65929edc8fd6e53818d5aba6/m "wercker status")](https://app.wercker.com/project/bykey/0f3a3fac65929edc8fd6e53818d5aba6)
