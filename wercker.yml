@@ -25,3 +25,7 @@ build:
     # A step that executes `npm test` command
     - npm-test
     
+    - script:
+        name: test install.bash script
+        code: |
+          bash ./install.bash
