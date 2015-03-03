@@ -19,34 +19,40 @@ set modelines=5
 
 
 " ---------------------------------------------------------
-" *** Vundle ***
+" *** NeoBundle ***
 " ---------------------------------------------------------
 
-" Vundle の前に必ず行う
-filetype off
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
 
-set rtp+=~/.vim/bundle/Vundle.vim
-let s:vundle=0
-
-try
-    call vundle#begin()
-    let s:vundle=1 " Vundle 読み込み成功
-catch
-endtry
-
-if s:vundle == 1
-    Plugin 'gmarik/Vundle.vim' " 必須
-
-    " GitHub のレポジトリ
-    Plugin 'leafgarland/typescript-vim'
-    Plugin 'vim-scripts/perl-support.vim'
-    Plugin 'motemen/xslate-vim'
-    Plugin 'tyru/caw.vim'
-
-    " Vundle の後に必ず行う
-    call vundle#end()
-    " filetype plugin indent on
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here:
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'vim-scripts/perl-support.vim'
+NeoBundle 'motemen/xslate-vim'
+NeoBundle 'tyru/caw.vim'
+
+
+" Required:
+call neobundle#end()
+
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
 
 " ---------------------------------------------------------
 " *** ファイル関係 ***
