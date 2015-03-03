@@ -47,8 +47,10 @@ function install() {
               process.exit(1);
             }
             
+            console.log('Created .' + file);
+            
             if (++created === length) {
-              console.log('Create ' + length + ' symbolic link' + (length > 1 ? 's' : ''));
+              console.log('Created ' + length + ' symbolic link' + (length > 1 ? 's' : ''));
             }
           });
       });
