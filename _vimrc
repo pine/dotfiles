@@ -23,12 +23,12 @@ set modelines=5
 " ---------------------------------------------------------
 
 if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
+    if &compatible
+        set nocompatible               " Be iMproved
+    endif
 
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+    " Required:
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
@@ -159,79 +159,79 @@ nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " ファイルタイプを返す
 function! GetFileType()
-	let l:name = {
-				\'vim'       : 'Vim',
-				\'c'         : 'C',
-				\'cpp'       : 'C++',
-				\'java'      : 'Java',
-				\'css'       : 'CSS',
-				\'javascript': 'JavaScript',
-				\'tex'       : 'TeX',
-				\'php'       : 'PHP',
-				\'python'    : 'Python',
-				\'text'      : 'Text',
+    let l:name = {
+                \'vim'       : 'Vim',
+                \'c'         : 'C',
+                \'cpp'       : 'C++',
+                \'java'      : 'Java',
+                \'css'       : 'CSS',
+                \'javascript': 'JavaScript',
+                \'tex'       : 'TeX',
+                \'php'       : 'PHP',
+                \'python'    : 'Python',
+                \'text'      : 'Text',
                 \'sql'       : 'SQL',
                 \'perl'      : 'Perl',
                 \'xslate'    : 'Xslate'
-				\}
-	
-	retu get(l:name, &ft, &ft)
+                \}
+    
+    retu get(l:name, &ft, &ft)
 endfunction
 
 " 文字コードを返す
 function! GetFileEncoding()
-	let l:fenc = &fenc
-	
-	" fenc が設定されていない場合 enc を使用する
-	if l:fenc == ''
-		let l:fenc = &enc
-	endif
-	
-	if l:fenc == 'cp932'
-		return 'S'
-	elseif l:fenc == 'iso-2022-jp'
-		return 'J'
-	elseif l:fenc == 'euc-jp'
-		return 'E'
-	elseif l:fenc == 'utf-8'
-		return 'U'
-	else
-		return l:fenc
-	endif
+    let l:fenc = &fenc
+    
+    " fenc が設定されていない場合 enc を使用する
+    if l:fenc == ''
+        let l:fenc = &enc
+    endif
+    
+    if l:fenc == 'cp932'
+        return 'S'
+    elseif l:fenc == 'iso-2022-jp'
+        return 'J'
+    elseif l:fenc == 'euc-jp'
+        return 'E'
+    elseif l:fenc == 'utf-8'
+        return 'U'
+    else
+        return l:fenc
+    endif
 endfunction
 
 " 改行コードを返す
 function! GetFileFormat()
-	if &ff == 'unix'
-		return 'U'
-	elseif &ff == 'dos'
-		return 'D'
-	else
-		return 'M'
-	endif
+    if &ff == 'unix'
+        return 'U'
+    elseif &ff == 'dos'
+        return 'D'
+    else
+        return 'M'
+    endif
 endfunction
 
 " ステータスラインを生成する
 function! GetStatusLine()
-	let l:line = 'vim: se'
-	
-	if &et 
-		let l:line .= ' et'
-	else
-		let l:line .= ' noet'
-	endif
-	
-	let l:line .= ' ts='.&ts
-	let l:line .= ' sw='.&sw
-	let l:line .= ' sts='.&sts
-	
-	if &ft != ''
-		let l:line .= ' ft='.&ft
-	endif
-	
-	let l:line .= ' :'
-	
-	return l:line
+    let l:line = 'vim: se'
+    
+    if &et 
+        let l:line .= ' et'
+    else
+        let l:line .= ' noet'
+    endif
+    
+    let l:line .= ' ts='.&ts
+    let l:line .= ' sw='.&sw
+    let l:line .= ' sts='.&sts
+    
+    if &ft != ''
+        let l:line .= ' ft='.&ft
+    endif
+    
+    let l:line .= ' :'
+    
+    return l:line
 endfunction
 
 " ステータスラインを自動挿入
