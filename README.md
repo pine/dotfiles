@@ -7,7 +7,14 @@ dotfiles
 ### Linux
 
 ```sh
-git clone https://github.com/pine613/dotfiles.git
-./dotfiles/bin/install.bash
+$ git clone https://github.com/pine613/dotfiles.git
+$ ./dotfiles/bin/install.bash
 ```
 
+## Test
+### Linux
+
+```sh
+$ npm install
+$ npm test
+```
