@@ -43,6 +43,7 @@ NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'vim-scripts/perl-support.vim'
 NeoBundle 'motemen/xslate-vim'
 NeoBundle 'tyru/caw.vim'
+NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 
 
 " Required:
