@@ -1,60 +1,11 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
+var env = require('../lib/env');
 
-var files = {
-  linux: [
-    'gitconfig',
-    'screenrc',
-    'vimrc',
-    'zshrc'
-  ],
-  windows: [
-    'nyagos'
-  ]
-};
+var cwd = env.getWorkingDirectory();
+var home = env.getUserHome();
+var options = env.getOptions();
 
-function getUserHome() {
-  return process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
-}
+require('../lib/symlink')(cwd, home, options);
 
-function getOS() {
-  if (/^win/.test(process.platform)) {
-    return 'windows';
-  }
-  
-  return 'linux';
-}
-
-function install() {
-  var os = getOS();
-  var home = getUserHome();
-  
-  var length = files[os].length;
-  var created = 0;
-  
-  files[os].forEach(function (file) {
-    fs.unlink(
-      path.join(home, '.' + file),
-      function (err) {
-        fs.symlink(
-          path.join(__dirname, '_' + file),
-          path.join(home, '.' + file),
-          function (err) {
-            if (err) {
-              console.error(err);
-              process.exit(1);
-            }
-            
-            console.log('Created .' + file);
-            
-            if (++created === length) {
-              console.log('Created ' + length + ' symbolic link' + (length > 1 ? 's' : ''));
-            }
-          });
-      });
-  });
-}
-
-install();
+// vim: se et ts=2 sw=2 sts=2 ft=javascript :
