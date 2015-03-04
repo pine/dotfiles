@@ -28,4 +28,4 @@ build:
     - script:
         name: test install.bash script
         code: |
-          bash ./install.bash
+          bash ./bin/install.bash
