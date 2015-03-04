@@ -28,8 +28,10 @@ var neobundle = require('../lib/neobundle');
   
   symlink(cwd, home, options, function () {
     neobundle(cwd, home, options, function () {
-      console.log('\nPress any key wait ...');
-      runas.pressAnyKeyWait();
+      if (runas.isRunas()) {
+        console.log('\nPress any key wait ...');
+        runas.pressAnyKeyWait();
+      }
     });
   });
 }();
