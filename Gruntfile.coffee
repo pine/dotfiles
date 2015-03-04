@@ -1,15 +1,18 @@
 module.exports = (grunt) ->
   grunt.initConfig
     vimlint:
-      files: ['_vimrc']
+        files: ['_vimrc']
+    
+    bashlint:
+        files: ['**/*.bash']
     
     lualint:
-      files: ['_nyagos']
+        files: ['_nyagos']
   
   testTasks = []
   
   unless /^win/.test(process.platform)
-    testTasks.push('vimlint')
+    Array.prototype.push.apply(testTasks, ['vimlint', 'bashlint'])
     
   grunt.registerTask 'test', testTasks
   
