@@ -19,9 +19,6 @@ build:
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
     
-    # A step that executes `npm install` command
-    - npm-install
-    
     - script:
         name: add coveralls environment variables
         code : |
@@ -29,6 +26,9 @@ build:
           export COVERALLS_GIT_COMMIT=$WERCKER_GIT_BRANCH
           export COVERALLS_GIT_BRANCH=$WERCKER_GIT_COMMIT
           export COVERALLS_SERVICE_JOB_ID=$WERCKER_BUILD_ID
+    
+    # A step that executes `npm install` command
+    - npm-install
     
     # A step that executes `npm test` command
     - npm-test
