@@ -14,10 +14,20 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "chai": "^2.1.1",
+    "codeclimate-test-reporter": "0.0.4",
     "grunt": "0.4.5",
     "grunt-cli": "0.1.13",
     "grunt-lint-bash": "^0.1.0",
+    "grunt-mocha-cov": "^0.3.0",
     "grunt-vimlint": "*",
     "load-grunt-tasks": "3.1.0"
+  },
+  "config": {
+    "blanket": {
+      "pattern": [
+        "lib"
+      ]
+    }
   }
 }
