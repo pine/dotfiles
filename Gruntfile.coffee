@@ -1,13 +1,11 @@
 module.exports = (grunt) ->
-  testTasks = []
+  testTasks = ['mochacov:test']
   
   unless /^win/.test(process.platform)
     Array.prototype.push.apply(testTasks, ['vimlint', 'bashlint'])
   
   if process.env.CI
     testTasks.push('mochacov:coverage')
-  else
-    testTasks.push('mochacov:test')
   
   # -----------------------------------------------------------------
   
