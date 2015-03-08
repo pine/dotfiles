@@ -1,5 +1,20 @@
 module.exports = (grunt) ->
+  testTasks = []
+  
+  unless /^win/.test(process.platform)
+    Array.prototype.push.apply(testTasks, ['vimlint', 'bashlint'])
+  
+  if process.env.CI
+    testTasks.push('mochacov:coverage')
+  else
+    testTasks.push('mochacov:test')
+  
+  # -----------------------------------------------------------------
+  
   grunt.initConfig
+    concurrent:
+      test: testTasks
+    
     mochacov:
       options:
         files: ['test/**/*.js']
@@ -21,16 +36,9 @@ module.exports = (grunt) ->
     lualint:
         files: ['_nyagos']
   
-  testTasks = []
+  # -----------------------------------------------------------------
   
-  unless /^win/.test(process.platform)
-    Array.prototype.push.apply(testTasks, ['vimlint', 'bashlint'])
-  
-  infraTestTasks = ['mochacov:test']
-  if process.env.CI
-    infraTestTasks.push('mochacov:coverage')
-  
-  grunt.registerTask 'test', testTasks.concat(infraTestTasks)
+  grunt.registerTask 'test', 'concurrent:test'
   
   require('load-grunt-tasks')(grunt)
   
