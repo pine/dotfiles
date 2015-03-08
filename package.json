@@ -21,6 +21,7 @@
     "chai": "^2.1.1",
     "grunt": "0.4.5",
     "grunt-cli": "0.1.13",
+    "grunt-concurrent": "^1.0.0",
     "grunt-lint-bash": "^0.1.0",
     "grunt-mocha-cov": "^0.3.0",
     "grunt-vimlint": "*",
