@@ -16,13 +16,13 @@ $ git clone https://github.com/pine613/dotfiles.git
 ### Linux
 
 ```sh
-$ ./dotfiles/bin/install.bash
+$ ./bin/install.bash
 ```
 
 ### Windows
 
 ```sh
-$ ./dotfiles/bin/install.bat
+$ .\bin\install.bat
 ```
 
 ## Test
