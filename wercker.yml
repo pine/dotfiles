@@ -27,6 +27,12 @@ build:
           export COVERALLS_GIT_BRANCH=$WERCKER_GIT_BRANCH
           export COVERALLS_SERVICE_JOB_ID=$WERCKER_BUILD_ID
     
+    - script:
+        name: cache npm directory
+        code: |
+          mkdir -p $WERCKER_CACHE_DIR/node_modules
+          ln -sf $WERCKER_CACHE_DIR/node_modules ./node_modules
+    
     # A step that executes `npm install` command
     - npm-install
     
