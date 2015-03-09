@@ -172,7 +172,8 @@ function! GetFileType()
                 \'text'      : 'Text',
                 \'sql'       : 'SQL',
                 \'perl'      : 'Perl',
-                \'xslate'    : 'Xslate'
+                \'xslate'    : 'Xslate',
+                \'coffee'    : 'CoffeeScript'
                 \}
     
     retu get(l:name, &ft, &ft)
