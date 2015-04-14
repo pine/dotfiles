@@ -1,4 +1,4 @@
-box: wercker/nodejs
+box: wercker/ubuntu12.04-nodejs0.10
 build:
   # The steps that will be executed on build
   steps:
