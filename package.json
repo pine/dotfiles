@@ -23,7 +23,7 @@
     "grunt-cli": "0.1.13",
     "grunt-concurrent": "^1.0.0",
     "grunt-lint-bash": "^0.1.0",
-    "grunt-mocha-cov": "^0.3.0",
+    "grunt-mocha-cov": "^0.4.0",
     "grunt-vimlint": "*",
     "load-grunt-tasks": "3.1.0",
     "lodash": "^3.4.0",
