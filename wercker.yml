@@ -14,6 +14,11 @@ build:
     # A custom script step, name value is used in the UI
     # and the code value contains the command that get executed
     - script:
+        name: update npm version
+        code: |
+            npm update -g npm
+    
+    - script:
         name: echo nodejs information
         code: |
           echo "node version $(node -v) running"
