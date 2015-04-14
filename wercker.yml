@@ -16,7 +16,7 @@ build:
     - script:
         name: update npm version
         code: |
-            npm update -g npm
+            sudo npm update -g npm
     
     - script:
         name: echo nodejs information
