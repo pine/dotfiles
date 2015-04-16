@@ -25,6 +25,7 @@
     "grunt-lint-bash": "^0.1.0",
     "grunt-mocha-cov": "^0.4.0",
     "grunt-vimlint": "*",
+    "grunt-zshlint": "*",
     "load-grunt-tasks": "3.1.0",
     "lodash": "^3.4.0",
     "sinon": "^1.13.0"

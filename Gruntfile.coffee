@@ -2,7 +2,7 @@ module.exports = (grunt) ->
   testTasks = ['mochacov:test']
   
   unless /^win/.test(process.platform)
-    Array.prototype.push.apply(testTasks, ['vimlint', 'bashlint'])
+    Array.prototype.push.apply(testTasks, ['vimlint', 'bashlint', 'zshlint'])
   
   if process.env.CI
     testTasks.push('mochacov:coverage')
@@ -30,6 +30,9 @@ module.exports = (grunt) ->
     
     bashlint:
         files: ['**/*.bash']
+    
+    zshlint:
+        files: ['_zshrc']
     
     lualint:
         files: ['_nyagos']
