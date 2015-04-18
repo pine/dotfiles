@@ -26,7 +26,7 @@ $ .\bin\install.bat
 ```
 
 ## Test
-### Linux
+You must install vim, bash, and zsh when you execute tests in *nix.
 
 ```sh
 $ npm install
