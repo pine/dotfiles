@@ -22,7 +22,7 @@ $ ./bin/install.bash
 ### Windows
 
 ```sh
-$ .\bin\install.bat
+$ bin\install.bat
 ```
 
 ## Test
