@@ -19,3 +19,36 @@ nyagos.alias('touch', function(args)
         io.open(args[1], 'w'):close()
     end
 end)
+
+nyagos.alias('uru', function(args)
+    local uruargs = { 'uru_rt' }
+    for index, value in ipairs(args) do
+        table.insert(uruargs, '"'..value..'"')
+    end
+    
+    nyagos.setenv('URU_INVOKER', 'batch')
+    
+    local ok, err = nyagos.exec(table.concat(uruargs, ' '))
+    if not ok then
+        print(err)
+        return
+    end
+    
+    local uruhome = os.getenv('URU_HOME')
+    if not uruhome then
+        uruhome = os.getenv('USERPROFILE')..'\\.uru'
+    end
+    
+    local urulackee = uruhome..'\\uru_lackee.bat'
+    local fd = io.open(urulackee, 'r')
+    if not fd then return end
+    
+    for line in fd:lines() do
+        local name, value = string.match(line, '^SET%s+([%w_]+)=(.*)$')
+        if name then
+            nyagos.setenv(name, value)
+        end
+    end
+    
+    io.close(fd)
+end)
