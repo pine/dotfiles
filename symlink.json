@@ -1,0 +1,14 @@
+{
+  "linux": [
+    "gitconfig",
+    "screenrc",
+    "vimrc",
+    "zshrc",
+    "my.conf",
+    "npmrc"
+  ],
+  "windows": [
+    "nyagos",
+    "npmrc"
+  ]
+}
