@@ -32,3 +32,8 @@ You must install vim, bash, and zsh when you execute tests in *nix.
 $ npm install
 $ npm test
 ```
+
+
+## License
+MIT License<br />
+Copyright (c) 2014-2015 Pine Mizune
