@@ -10,3 +10,6 @@ altscreen on
 # ウィンドウの移動
 bindkey ^n next
 bindkey ^p prev
+
+# エスケープキーを変更
+escape ^Qq
