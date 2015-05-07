@@ -12,4 +12,4 @@ bindkey ^n next
 bindkey ^p prev
 
 # エスケープキーを変更
-escape ^Qq
+escape ^q

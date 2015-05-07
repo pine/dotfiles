@@ -5,10 +5,12 @@
     "vimrc",
     "zshrc",
     "my.conf",
-    "npmrc"
+    "npmrc",
+    "editorconfig"
   ],
   "windows": [
     "nyagos",
-    "npmrc"
+    "npmrc",
+    "editorconfig"
   ]
 }
