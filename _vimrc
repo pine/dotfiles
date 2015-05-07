@@ -45,6 +45,7 @@ NeoBundle 'motemen/xslate-vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 NeoBundle 'vim-scripts/sudo.vim' " :w sudo:%
+NeoBundle 'editorconfig/editorconfig-vim' " .editorconfig
 
 
 " Required:
