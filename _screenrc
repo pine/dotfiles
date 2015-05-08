@@ -1,3 +1,6 @@
+# エスケープキーを変更
+escape ^Zz
+
 # シェルとして zsh を使用
 shell zsh
 
@@ -9,7 +12,4 @@ altscreen on
 
 # ウィンドウの移動
 bindkey ^n next
-bindkey ^p prev
 
-# エスケープキーを変更
-escape ^q
