@@ -46,6 +46,7 @@ NeoBundle 'tyru/caw.vim'
 NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 NeoBundle 'vim-scripts/sudo.vim' " :w sudo:%
 NeoBundle 'editorconfig/editorconfig-vim' " .editorconfig
+NeoBundle 'ctrlpvim/ctrlp.vim'
 
 
 " Required:
@@ -177,19 +178,19 @@ function! GetFileType()
                 \'xslate'    : 'Xslate',
                 \'coffee'    : 'CoffeeScript'
                 \}
-    
+
     retu get(l:name, &ft, &ft)
 endfunction
 
 " 文字コードを返す
 function! GetFileEncoding()
     let l:fenc = &fenc
-    
+
     " fenc が設定されていない場合 enc を使用する
     if l:fenc == ''
         let l:fenc = &enc
     endif
-    
+
     if l:fenc == 'cp932'
         return 'S'
     elseif l:fenc == 'iso-2022-jp'
@@ -217,23 +218,23 @@ endfunction
 " ステータスラインを生成する
 function! GetStatusLine()
     let l:line = 'vim: se'
-    
-    if &et 
+
+    if &et
         let l:line .= ' et'
     else
         let l:line .= ' noet'
     endif
-    
+
     let l:line .= ' ts='.&ts
     let l:line .= ' sw='.&sw
     let l:line .= ' sts='.&sts
-    
+
     if &ft != ''
         let l:line .= ' ft='.&ft
     endif
-    
+
     let l:line .= ' :'
-    
+
     return l:line
 endfunction
 
