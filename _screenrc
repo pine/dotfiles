@@ -1,3 +1,11 @@
+# 文字コードの設定
+defutf8 on
+defencoding utf8
+encoding utf-8 utf-8
+
+# ステータスラインを表示
+hardstatus alwayslastline "[%m/%d %0c] %0`%-w%{= bW}%n %t%{-}%+w"
+
 # エスケープキーを変更
 escape ^Zz
 
