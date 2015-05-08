@@ -31,7 +31,7 @@ setopt nonomatch
 
 # VCSの情報を取得するzshの便利関数 vcs_infoを使う
 autoload -Uz vcs_info
-# 
+#
 # # 表示フォーマットの指定
 # # %b ブランチ情報
 # # %a アクション名(mergeなど)
@@ -43,7 +43,7 @@ precmd () {
 	LANG=en_US.UTF-8 vcs_info
 	[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
-             
+
 # バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
 RPROMPT="%1(v|%F{green}%1v%f|)"
 
@@ -64,7 +64,7 @@ cdpath=(.. ~/repositories)
 if [[ -d "$HOME/project" ]] then
 	cdpath=(.. ~/project)
 fi
-	
+
 
 # ---------------------------------------------------------
 # *** ヒストリ ***
@@ -137,6 +137,10 @@ if [[ -d "$HOME/.nodebrew" ]] then
 		$HOME/.nodebrew/current/bin
 		${path}
 	)
+fi
+
+if [[ -d "/usr/local/redis" ]] then
+	path=(/usr/local/redis/bin;${path})
 fi
 
 # ---------------------------------------------------------
