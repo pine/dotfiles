@@ -141,10 +141,16 @@ if [[ ! -d "$HOME/.anyenv/envs/ndenv" ]] then
 	fi
 fi
 
+# direnv
+if type -p dir > /dev/null 2>&1; then
+	eval "$(direnv hook zsh)"
+fi
 
 if [[ -d "/usr/local/redis" ]] then
 	path=(/usr/local/redis/bin;${path})
 fi
+
+
 
 # ---------------------------------------------------------
 # *** その他 ***
