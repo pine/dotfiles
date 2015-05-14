@@ -48,6 +48,7 @@ NeoBundle 'vim-scripts/sudo.vim' " :w sudo:%
 NeoBundle 'editorconfig/editorconfig-vim' " .editorconfig
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'scrooloose/nerdtree'
 
 
 " Required:
@@ -112,6 +113,9 @@ vnoremap j gj
 vnoremap k gk
 vnoremap gj j
 vnoremap gk k
+
+" カレントウィンドウを移動
+nnoremap ww <C-w>w
 
 
 " ---------------------------------------------------------
@@ -251,6 +255,26 @@ let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+
+" ---------------------------------------------------------
+" *** NERDTree ***
+" ---------------------------------------------------------
+
+nmap <silent> <C-e>      :NERDTreeToggle<CR>
+vmap <silent> <C-e> <Esc>:NERDTreeToggle<CR>
+omap <silent> <C-e>      :NERDTreeToggle<CR>
+imap <silent> <C-e> <Esc>:NERDTreeToggle<CR>
+cmap <silent> <C-e> <C-u>:NERDTreeToggle<CR>
+
+autocmd vimenter * if !argc() | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+let g:NERDTreeIgnore=['\.clean$', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowHidden=1
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeDirArrows=0
+let g:NERDTreeQuitOnOpen=0
 
 
 " ---------------------------------------------------------
