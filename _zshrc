@@ -99,9 +99,6 @@ if ! type -p dir > /dev/null 2>&1; then
 	alias dir=ls # 誤発動防止
 fi
 
-# cls
-alias cls="clear" # タイプミス防止
-
 # diff
 alias diff="diff --strip-trailing-cr" # 改行コード無視
 
@@ -113,6 +110,9 @@ alias sudo='sudo -i'
 
 alias ns="screen -c \`pwd\`" # 新規スクリーン
 
+# タイプミス防止
+alias cls="clear"
+alias apitude="aptitude"
 
 # ---------------------------------------------------------
 # *** PATH ***
