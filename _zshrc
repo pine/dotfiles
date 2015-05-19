@@ -84,6 +84,16 @@ HISTSIZE=10000          # メモリに記憶しておくヒストリの最大数
 SAVEHIST=10000          # ファイルへ保存するヒストリの最大数
 
 
+show_buffer_stack() {
+  POSTDISPLAY="
+stack: $LBUFFER"
+  zle push-line-or-edit
+}
+zle -N show_buffer_stack
+setopt noflowcontrol
+bindkey '^Q' show_buffer_stack
+
+
 # ---------------------------------------------------------
 # *** コマンドエイリアス ***
 # ---------------------------------------------------------
@@ -123,21 +133,14 @@ typeset -U path cdpath fpath manpath
 
 # anyenv
 if [[ -d "$HOME/.anyenv" ]] then
-	path=(
-		$HOME/.anyenv/bin
-		${path}
-	)
-
+	path=($HOME/.anyenv/bin $path)
 	eval "$(anyenv init -)"
 fi
 
 # nodebrew
 if [[ ! -d "$HOME/.anyenv/envs/ndenv" ]] then
 	if [[ -d "$HOME/.nodebrew" ]] then
-		path=(
-			$HOME/.nodebrew/current/bin
-			${path}
-		)
+		path=($HOME/.nodebrew/current/bin $path)
 	fi
 fi
 
@@ -146,10 +149,12 @@ if type -p dir > /dev/null 2>&1; then
 	eval "$(direnv hook zsh)"
 fi
 
-if [[ -d "/usr/local/redis" ]] then
-	path=(/usr/local/redis/bin;${path})
-fi
-
+# その他コマンド
+path=(
+	/usr/local/redis/bin(N-/)
+	/usr/local/app/vim/bin(N-/)
+	$path
+	)
 
 
 # ---------------------------------------------------------
