@@ -51,6 +51,8 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/wombat256.vim'
+NeoBundle 'stephpy/vim-yaml'
+NeoBundle 'tyru/caw.vim'
 
 " Perl
 NeoBundle 'c9s/perlomni.vim'
@@ -292,10 +294,13 @@ let g:NERDTreeDirArrows=0
 let g:NERDTreeQuitOnOpen=0
 
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=gray
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=238
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=249
 let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_guide_size=1
+"let g:indent_guides_guide_size=1
+
+nmap <C-K> <Plug>(caw:i:toggle)
+vmap <C-K> <Plug>(caw:i:toggle)
 
 
 " ---------------------------------------------------------
