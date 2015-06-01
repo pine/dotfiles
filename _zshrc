@@ -120,6 +120,8 @@ alias sudo='sudo -i'
 
 alias ns="screen -c \`pwd\`" # 新規スクリーン
 
+alias screen='screen -xRU'
+
 # タイプミス防止
 alias cls="clear"
 alias apitude="aptitude"
@@ -175,7 +177,7 @@ fi
 
 # screen を起動
 if [[ $TERM != 'screen' ]] then
-	screen -xRU
+#	screen -xRU
 fi
 
 # vim: se noet ts=4 sw=4 sts=0 ft=zsh :
