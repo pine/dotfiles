@@ -99,7 +99,15 @@ SAVEHIST=10000          # ファイルへ保存するヒストリの最大数
 # ---------------------------------------------------------
 
 # ls
-alias ls='ls --color=tty'
+case ${OSTYPE} in
+	darwin*)
+		alias ls='ls -G'
+		;;
+	linux*)
+		alias ls='ls --color=tty'
+		;;
+esac
+
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
@@ -147,7 +155,7 @@ if [[ ! -d "$HOME/.anyenv/envs/ndenv" ]] then
 fi
 
 # direnv
-if type -p dir > /dev/null 2>&1; then
+if type -p direnv > /dev/null 2>&1; then
 	eval "$(direnv hook zsh)"
 fi
 
