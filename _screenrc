@@ -7,7 +7,7 @@ encoding utf-8 utf-8
 hardstatus alwayslastline "[%m/%d %0c] %0`%-w%{= bW}%n %t%{-}%+w"
 
 # エスケープキーを変更
-escape ^Zz
+escape ^Qq
 
 # シェルとして zsh を使用
 shell zsh
