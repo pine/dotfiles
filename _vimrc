@@ -132,7 +132,7 @@ vnoremap gj j
 vnoremap gk k
 
 " カレントウィンドウを移動
-nnoremap ww <C-w>w
+nnoremap tt <C-w>w
 
 " 矢印キーで入力されないように変更
 inoremap ^[OA <up>
