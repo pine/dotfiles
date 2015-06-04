@@ -7,7 +7,7 @@ encoding utf-8 utf-8
 hardstatus alwayslastline "[%m/%d %0c] %0`%-w%{= bW}%n %t%{-}%+w"
 
 # エスケープキーを変更
-escape ^Qq
+escape ^Zz
 
 # シェルとして zsh を使用
 shell zsh
@@ -25,3 +25,6 @@ bindkey ^n next
 attrcolor b ".I"
 defbce on
 termcapinfo xterm* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+# バッファサイズを変更
+defscrollback 10000
