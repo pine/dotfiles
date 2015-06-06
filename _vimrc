@@ -53,6 +53,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/wombat256.vim'
 NeoBundle 'stephpy/vim-yaml'
 NeoBundle 'tyru/caw.vim'
+NeoBundle 'gkz/vim-ls'
 
 " Perl
 NeoBundle 'c9s/perlomni.vim'
