@@ -54,6 +54,7 @@ NeoBundle 'vim-scripts/wombat256.vim'
 NeoBundle 'stephpy/vim-yaml'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'gkz/vim-ls'
+NeoBundle 'digitaltoad/vim-jade'
 
 " Perl
 NeoBundle 'c9s/perlomni.vim'

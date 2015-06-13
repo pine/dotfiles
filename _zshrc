@@ -163,6 +163,7 @@ fi
 path=(
 	/usr/local/redis/bin(N-/)
 	/usr/local/app/vim/bin(N-/)
+	$HOME/bin(N-/)
 	$path
 	)
 
