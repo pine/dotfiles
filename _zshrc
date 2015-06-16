@@ -159,6 +159,11 @@ if type -p direnv > /dev/null 2>&1; then
 	eval "$(direnv hook zsh)"
 fi
 
+# rsvm
+if [[ -s "$HOME/.rsvm/rsvm.sh" ]] then
+	. "$HOME/.rsvm/rsvm.sh"
+fi
+
 # その他コマンド
 path=(
 	/usr/local/redis/bin(N-/)
