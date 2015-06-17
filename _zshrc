@@ -133,6 +133,7 @@ alias screen='screen -xRU'
 # タイプミス防止
 alias cls="clear"
 alias apitude="aptitude"
+alias vi="vim"
 
 # ---------------------------------------------------------
 # *** PATH ***
