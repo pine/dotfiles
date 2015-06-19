@@ -171,7 +171,10 @@ path=(
 	/usr/local/app/vim/bin(N-/)
 	$HOME/bin(N-/)
 	$HOME/bin/*/bin(N-/)
+
 	$path
+
+	/usr/local/*/bin(N-/)
 	)
 
 
