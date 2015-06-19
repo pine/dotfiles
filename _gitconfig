@@ -17,5 +17,10 @@
 [alias]
   # http://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
   graph = log --graph --oneline --decorate
+
+[merge "mergepbx"]
+    name = XCode project files merger
+    driver = ~/local/bin/mergepbx %O %A %B
+
 [include]
   path = .gitconfig.local
