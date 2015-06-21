@@ -40,26 +40,39 @@ call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Add or remove your Bundles here:
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'motemen/xslate-vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 NeoBundle 'vim-scripts/sudo.vim' " :w sudo:%
 NeoBundle 'editorconfig/editorconfig-vim' " .editorconfig
 NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/wombat256.vim'
-NeoBundle 'stephpy/vim-yaml'
-NeoBundle 'tyru/caw.vim'
-NeoBundle 'gkz/vim-ls'
-NeoBundle 'digitaltoad/vim-jade'
+
+" neocomplete
+function! s:meet_neocomplete_requirements()
+    return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
+endfunction
+
+if s:meet_neocomplete_requirements()
+    NeoBundle 'Shougo/neocomplete.vim'
+    NeoBundleFetch 'Shougo/neocomplcache.vim'
+else
+    NeoBundleFetch 'Shougo/neocomplete.vim'
+    NeoBundle 'Shougo/neocomplcache.vim'
+endif
 
 " Perl
 NeoBundle 'c9s/perlomni.vim'
 NeoBundle 'y-uuki/perl-local-lib-path.vim'
 
+" Other languages
+NeoBundle 'stephpy/vim-yaml'
+NeoBundle 'gkz/vim-ls'
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'rhysd/vim-crystal'
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'motemen/xslate-vim'
 
 " Required:
 call neobundle#end()
@@ -231,10 +244,10 @@ endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
