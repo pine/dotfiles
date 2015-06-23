@@ -62,9 +62,10 @@ else
     NeoBundle 'Shougo/neocomplcache.vim'
 endif
 
-" Perl
+" Perl 関係
 NeoBundle 'c9s/perlomni.vim'
 NeoBundle 'y-uuki/perl-local-lib-path.vim'
+NeoBundle 'motemen/xslate-vim' " Xslate
 
 " Other languages
 NeoBundle 'stephpy/vim-yaml'
@@ -72,7 +73,7 @@ NeoBundle 'gkz/vim-ls'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'rhysd/vim-crystal'
 NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'motemen/xslate-vim'
+NeoBundle 'toyamarinyon/vim-swift' " Swift
 
 " Required:
 call neobundle#end()
@@ -110,6 +111,10 @@ set hidden    " 保存していないバッファの切り替えを有効
 
 " 行番号を有効にする
 set number
+
+" カーソル位置の強調
+set cursorline
+set cursorcolumn
 
 " モードライン
 set laststatus=2 " ステータスラインを表示
