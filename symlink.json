@@ -1,6 +1,7 @@
 {
   "linux": [
     "gitconfig",
+    "gitignore",
     "screenrc",
     "vimrc",
     "zshrc",
