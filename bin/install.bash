@@ -5,10 +5,7 @@ node_version=v0.10.38
 
 cwd=`dirname "${0}"`
 
-if type node > /dev/null 2>&1; then
-  node_bin=`which node`
-fi
-
+# nodebrew
 if [ "$node_bin" = "" ]; then
   if [ ! -e "$HOME/.nodebrew" ]; then
     if [ -e "$HOME/nodebrew" ]; then
@@ -38,6 +35,13 @@ if [ "$node_bin" = "" ]; then
   fi
 fi
 
+# system
+if [ "$node_bin" = "" ]; then
+  if type node > /dev/null 2>&1; then
+    node_bin=`which node`
+  fi
+fi
+
 if [ "$node_bin" != "" ]; then
   echo "> $node_bin -v"
   "$node_bin" -v
@@ -45,7 +49,7 @@ if [ "$node_bin" != "" ]; then
   echo "> $node_bin $cwd/install.js"
   "$node_bin" "${cwd}/install.js"
 else
-  echo "Can't find Node.js (in PATH, nodebrew)" 1>&2
+  echo "Can't find Node.js (in sytem and nodebrew)" 1>&2
 fi
 
 # vim: se ts=2 sw=2 sts=2 et ft=sh :
