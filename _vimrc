@@ -74,6 +74,7 @@ NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'rhysd/vim-crystal'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'toyamarinyon/vim-swift' " Swift
+NeoBundle 'PProvost/vim-ps1' " PowerShell
 
 " Required:
 call neobundle#end()
