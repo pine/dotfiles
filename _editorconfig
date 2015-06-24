@@ -49,3 +49,11 @@ indent_size = 2
 [*.rb]
 indent_style = space
 indent_size = 2
+
+[*.cr]
+indent_style = space
+indent_size = 2
+
+[Projectfile]
+indent_style = space
+indent_size = 2
