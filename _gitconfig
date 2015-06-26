@@ -16,12 +16,18 @@
 [pull]
 	rebase = true
 [alias]
-  # http://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
-  graph = log --graph --oneline --decorate
+	# for typo
+	statsus = status
+	stutas = status
+
+	# http://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
+	graph = log --graph --oneline --decorate
 
 [merge "mergepbx"]
     name = XCode project files merger
     driver = ~/local/bin/mergepbx %O %A %B
 
 [include]
-  path = .gitconfig.local
+	path = .gitconfig.local
+
+# vim: se noet ts=4 sw=4 sts=4 ft=gitconfig :
