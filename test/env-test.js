@@ -13,33 +13,38 @@ var expect = chai.expect;
 
 describe('Infra Unit test for env', function () {
   var sandbox;
-  
+
   beforeEach(function () {
     sandbox = sinon.sandbox.create();
   });
-  
+
   afterEach(function () {
     sandbox.restore();
   });
-  
+
   describe('getWorkingDirectory()', function () {
     it('should return working directory', function () {
       expect(env.getWorkingDirectory()).to.equal(process.cwd());
     });
   });
-  
+
   describe('getOS()', function () {
     it('should return windows', function () {
       sandbox.stub(process, 'platform', 'win32');
       expect(env.getOS()).to.equal('windows');
     });
-    
+
+    it('should return mac', function () {
+      sandbox.stub(process, 'platform', 'darwin');
+      expect(env.getOS()).to.equal('mac');
+    });
+
     it('should return linux', function () {
       sandbox.stub(process, 'platform', 'linux');
       expect(env.getOS()).to.equal('linux');
     });
   });
-  
+
   describe('getUserHome()', function () {
     it('should return windows home path', function () {
       sandbox.stub(process, 'platform', 'win32');
@@ -48,7 +53,7 @@ describe('Infra Unit test for env', function () {
       }));
       expect(env.getUserHome()).to.equal('home_directory');
     });
-    
+
     it('should return linux home path', function () {
       sandbox.stub(process, 'platform', 'linux');
       sandbox.stub(process, 'env', _.extend(process.env, {
@@ -57,7 +62,7 @@ describe('Infra Unit test for env', function () {
       expect(env.getUserHome()).to.equal('home_directory');
     });
   });
-  
+
   describe('getOptions()', function () {
     it('should return an os option', function () {
       expect(env.getOptions()).to.have.property('os').that.equal(env.getOS())
