@@ -158,6 +158,15 @@ if [[ ! -d "$HOME/.anyenv/envs/ndenv" ]] then
 	fi
 fi
 
+# crystalbrew
+# if [[ -d "$HOME/.crystalbrew" ]] then
+# 	path=($HOME/.crystalbrew/current/bin $path)
+# fi
+
+# crenv
+export PATH="$HOME/.crenv/bin:$PATH"
+eval "$(crenv init -)"
+
 # direnv
 if type -p direnv > /dev/null 2>&1; then
 	eval "$(direnv hook zsh)"
@@ -167,6 +176,9 @@ fi
 if [[ -s "$HOME/.rsvm/rsvm.sh" ]] then
 	. "$HOME/.rsvm/rsvm.sh"
 fi
+
+# travis
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
 # その他コマンド
 path=(
@@ -215,3 +227,4 @@ if [[ $TERM != 'screen' ]] then
 fi
 
 # vim: se noet ts=4 sw=4 sts=0 ft=zsh :
+
