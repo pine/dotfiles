@@ -112,6 +112,10 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 
+# screen
+alias screen='screen -xRU'
+alias s='if [[ ! $TERM == screen* ]]; then; screen; fi'
+
 # dir
 if ! type -p dir > /dev/null 2>&1; then
 	alias dir=ls # 誤発動防止
@@ -128,7 +132,6 @@ alias sudo='sudo -i'
 
 alias ns="screen -c \`pwd\`" # 新規スクリーン
 
-alias screen='screen -xRU'
 
 # タイプミス防止
 alias cls="clear"
