@@ -177,9 +177,6 @@ if [[ -s "$HOME/.rsvm/rsvm.sh" ]] then
 	. "$HOME/.rsvm/rsvm.sh"
 fi
 
-# travis
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
-
 # その他コマンド
 path=(
 	/usr/local/redis/bin(N-/)
@@ -221,10 +218,15 @@ if [[ -d "$HOME/project/Dev" ]] then
 	source ~/project/Dev/share/etc/mf-dev.zshrc
 fi
 
+# travis
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
+
+# ~/.zshrc.local
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
 # screen を起動
 if [[ $TERM != 'screen' ]] then
 #	screen -xRU
 fi
 
 # vim: se noet ts=4 sw=4 sts=0 ft=zsh :
-
