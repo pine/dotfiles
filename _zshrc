@@ -164,8 +164,10 @@ fi
 # fi
 
 # crenv
-export PATH="$HOME/.crenv/bin:$PATH"
-eval "$(crenv init -)"
+if [[ -d "$HOME/.crenv" ]] then
+	export PATH="$HOME/.crenv/bin:$PATH"
+	eval "$(crenv init -)"
+fi
 
 # direnv
 if type -p direnv > /dev/null 2>&1; then
