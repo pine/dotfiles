@@ -20,7 +20,7 @@ altscreen on
 
 # ウィンドウの移動
 bindkey ^n next
-bindkey ^b prev
+bindkey ^p prev
 
 # 256 色
 attrcolor b ".I"
