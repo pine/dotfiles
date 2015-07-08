@@ -22,6 +22,11 @@
 	# http://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
 	graph = log --graph --oneline --decorate
 
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+
 [merge "mergepbx"]
     name = XCode project files merger
     driver = ~/local/bin/mergepbx %O %A %B
