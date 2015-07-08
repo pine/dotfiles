@@ -18,6 +18,9 @@
 [alias]
 	# shortcut
 	s = status
+	d = diff
+	dc = diff --cached
+
 
 	# http://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
 	graph = log --graph --oneline --decorate
