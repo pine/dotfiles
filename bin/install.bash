@@ -47,7 +47,7 @@ if [ "$node_bin" != "" ]; then
   "$node_bin" -v
 
   echo "> $node_bin $cwd/install.js"
-  "$node_bin" "${cwd}/install.js"
+  "$node_bin" "${cwd}/install.js" $*
 else
   echo "Can't find Node.js (in sytem and nodebrew)" 1>&2
 fi
