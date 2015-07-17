@@ -145,6 +145,9 @@ alias vi="vim"
 # 重複パスを登録しない
 typeset -U path cdpath fpath manpath
 
+typeset -xT PKG_CONFIG_PATH pkg_config_path
+typeset -U pkg_config_path
+
 # anyenv
 if [[ -d "$HOME/.anyenv" ]] then
 	path=($HOME/.anyenv/bin $path)
@@ -181,7 +184,7 @@ fi
 
 # その他コマンド
 path=(
-	/usr/local/redis/bin(N-/)
+	usr/local/redis/bin(N-/)
 	/usr/local/app/vim/bin(N-/)
 	$HOME/bin(N-/)
 	$HOME/bin/*/bin(N-/)
@@ -191,6 +194,10 @@ path=(
 	/usr/local/*/bin(N-/)
 	)
 
+pkg_config_path=(
+	/opt/X11/lib/pkgconfig(N-/)
+	$pkg_config_path
+)
 
 # ---------------------------------------------------------
 # *** その他 ***
@@ -231,3 +238,6 @@ if [[ $TERM != 'screen' ]] then
 fi
 
 # vim: se noet ts=4 sw=4 sts=0 ft=zsh :
+
+# added by travis gem
+[ -f /Users/matsushita/.travis/travis.sh ] && source /Users/matsushita/.travis/travis.sh
