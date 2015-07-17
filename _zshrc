@@ -128,8 +128,6 @@ alias soz='source ~/.zshrc'
 
 alias tsc='tsc -target ES5 --module "commonjs"'
 
-alias sudo='sudo -i'
-
 alias ns="screen -c \`pwd\`" # 新規スクリーン
 
 
