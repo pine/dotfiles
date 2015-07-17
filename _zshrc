@@ -198,11 +198,10 @@ path=(
 
 # merge 時にエディタを自動的に立ち上げない
 export GIT_MERGE_AUTOEDIT=no
-case ${OSTYPE} in
-	darwin*)
-		export GIT_PAGER="lv -c"
-		;;
-esac
+
+if type -p lv >/dev/null 2>&1; then
+	export GIT_PAGER="lv -c"
+fi
 
 # 言語設定
 case ${OSTYPE} in
