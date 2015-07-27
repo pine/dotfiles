@@ -75,6 +75,7 @@ NeoBundle 'rhysd/vim-crystal'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'toyamarinyon/vim-swift' " Swift
 NeoBundle 'PProvost/vim-ps1' " PowerShell
+NeoBundle 'ekalinin/Dockerfile.vim' " Dockerfile
 
 " Required:
 call neobundle#end()
