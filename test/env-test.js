@@ -36,7 +36,7 @@ describe('Infra Unit test for env', function () {
 
     it('should return mac', function () {
       sandbox.stub(process, 'platform', 'darwin');
-      expect(env.getOS()).to.equal('mac');
+      expect(env.getOS()).to.equal('darwin');
     });
 
     it('should return linux', function () {
