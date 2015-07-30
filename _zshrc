@@ -113,8 +113,8 @@ alias la='ls -a'
 alias lla='ls -la'
 
 # screen
-alias screen='screen -xRU'
-alias s='if [[ ! $TERM == screen* ]]; then; screen; fi'
+alias s='if [[ ! $TERM == screen* ]]; then; screen -xRU; fi'
+alias ns="screen -c \"cd \`pwd\`\"" # 新規スクリーン
 
 # dir
 if ! type -p dir > /dev/null 2>&1; then
@@ -128,7 +128,6 @@ alias soz='source ~/.zshrc'
 
 alias tsc='tsc -target ES5 --module "commonjs"'
 
-alias ns="screen -c \`pwd\`" # 新規スクリーン
 
 
 # タイプミス防止
