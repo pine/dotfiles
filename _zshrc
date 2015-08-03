@@ -179,6 +179,17 @@ if [[ -s "$HOME/.rsvm/rsvm.sh" ]] then
 	. "$HOME/.rsvm/rsvm.sh"
 fi
 
+# Android Studio
+if [[ -d "$HOME/Library/Android/sdk" ]] then
+	export ANDROID_HOME="$HOME/Library/Android/sdk"
+fi
+
+path=(
+	$ANDROID_HOME/tools(N-/)
+	$ANDROID_HOME/platform-tools(N-/)
+	$path
+)
+
 # その他コマンド
 path=(
 	usr/local/redis/bin(N-/)
