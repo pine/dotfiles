@@ -5,8 +5,8 @@ var runas = require('../lib/runas');
 var execArgs = require('../lib/exec_args');
 
 var symlink = require('../lib/symlink');
-var neobundle = require('../lib/neobundle');
 var anyenv = require('../lib/anyenv');
+var git = require('../lib/git');
 
 !function() {
   var cwd = env.getWorkingDirectory();
@@ -34,17 +34,18 @@ var anyenv = require('../lib/anyenv');
       anyenv(cwd, home, options, function (err) {
         if (err) { console.error(err); }
       });
+      git(cwd, home, options, function (err) {
+        if (err) { console.error(err); }
+      });
       return;
     }
   }
 
   symlink(cwd, home, options, function () {
-    neobundle(cwd, home, options, function () {
-      if (runas.isRunas()) {
-        console.log('\nPress any key wait ...');
-        runas.pressAnyKeyWait();
-      }
-    });
+    if (runas.isRunas()) {
+      console.log('\nPress any key wait ...');
+      runas.pressAnyKeyWait();
+    }
   });
 }();
 
