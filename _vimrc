@@ -41,7 +41,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Add or remove your Bundles here:
 NeoBundle 'tyru/caw.vim'
-NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 NeoBundle 'vim-scripts/sudo.vim' " :w sudo:%
 NeoBundle 'editorconfig/editorconfig-vim' " .editorconfig
 NeoBundle 'ctrlpvim/ctrlp.vim'
@@ -67,12 +66,16 @@ NeoBundle 'c9s/perlomni.vim'
 NeoBundle 'y-uuki/perl-local-lib-path.vim'
 NeoBundle 'motemen/xslate-vim' " Xslate
 
+" JavaScript 関係
+NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
+NeoBundle 'leafgarland/typescript-vim' " TypeScript
+NeoBundle 'gkz/vim-ls' " LiveScript
+NeoBundle 'elzr/vim-json' " JSON
+NeoBundle 'digitaltoad/vim-jade' " Jade
+
 " Other languages
 NeoBundle 'stephpy/vim-yaml'
-NeoBundle 'gkz/vim-ls'
-NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'rhysd/vim-crystal'
-NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'toyamarinyon/vim-swift' " Swift
 NeoBundle 'PProvost/vim-ps1' " PowerShell
 NeoBundle 'ekalinin/Dockerfile.vim' " Dockerfile
