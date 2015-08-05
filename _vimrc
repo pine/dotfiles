@@ -70,14 +70,19 @@ NeoBundle 'motemen/xslate-vim' " Xslate
 NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 NeoBundle 'leafgarland/typescript-vim' " TypeScript
 NeoBundle 'gkz/vim-ls' " LiveScript
-NeoBundle 'elzr/vim-json' " JSON
 NeoBundle 'digitaltoad/vim-jade' " Jade
 
-" Other languages
+" データフォーマット
+NeoBundle 'elzr/vim-json' " JSON
 NeoBundle 'stephpy/vim-yaml'
-NeoBundle 'rhysd/vim-crystal'
+
+" Other languages
+NeoBundle 'rhysd/vim-crystal' " Crystal
 NeoBundle 'toyamarinyon/vim-swift' " Swift
 NeoBundle 'PProvost/vim-ps1' " PowerShell
+
+" 設定ファイル
+NeoBundle 'keith/tmux.vim'
 NeoBundle 'ekalinin/Dockerfile.vim' " Dockerfile
 
 " Required:
