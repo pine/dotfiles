@@ -71,6 +71,7 @@ NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 NeoBundle 'leafgarland/typescript-vim' " TypeScript
 NeoBundle 'gkz/vim-ls' " LiveScript
 NeoBundle 'digitaltoad/vim-jade' " Jade
+NeoBundle 'groenewege/vim-less' " LESS
 
 " データフォーマット
 NeoBundle 'elzr/vim-json' " JSON

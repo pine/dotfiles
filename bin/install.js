@@ -1,5 +1,6 @@
 'use strict';
 
+var async = require('../lib/simple/async');
 var env = require('../lib/env');
 var runas = require('../lib/runas');
 var execArgs = require('../lib/exec_args');
@@ -31,10 +32,11 @@ var git = require('../lib/git');
 
   if (os !== 'windows') {
     if (args.deps) {
-      anyenv(cwd, home, options, function (err) {
-        if (err) { console.error(err); }
-      });
-      git(cwd, home, options, function (err) {
+      var tasks = [ anyenv, git ];
+
+      async.each(tasks, function (task, done) {
+        task(cwd, home, options, done);
+      }, function (err) {
         if (err) { console.error(err); }
       });
       return;

@@ -1,4 +1,4 @@
 {
-  ".vim/bundle/neobundle.vim": "https://github.com/Shougo/neobundle.vim.git",
+  "x_vim/bundle/neobundle.vim": "https://github.com/Shougo/neobundle.vim.git",
   "bin/bats": "https://github.com/sstephenson/bats.git"
 }
