@@ -16,7 +16,8 @@ $ git clone https://github.com/pine613/dotfiles.git
 ### Linux
 
 ```sh
-$ ./bin/install.bash
+$ ./bin/install.bash # install .files
+$ ./bin/install.bash --deps # install anyenv, NeoBundle, etc ...
 ```
 
 ### Windows
