@@ -53,6 +53,11 @@ build:
         code: |
           bash ./bin/install.bash
 
+    - script:
+        name: test install.bash script with deps
+        code: |
+          bash ./bin/install.bash --deps
+
   after-steps:
     - wantedly/pretty-slack-notify:
         webhook_url: $SLACK_WEBHOOK_URL
