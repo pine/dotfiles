@@ -48,7 +48,7 @@ precmd () {
 function _hostname () {
 	local hostname=`hostname -f`
 	if [[ "$hostname" =~ "$USER\.dev\.[a-z]+\.local" ]] then
-		echo "ruri"
+		echo "dev"
 	elif [[ "$hostname" =~ "[a-z]+pc222\.local" ]] then
 		echo "miuna"
 	else
