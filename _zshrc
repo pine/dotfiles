@@ -41,24 +41,13 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () {
 	psvar=()
 	LANG=en_US.UTF-8 vcs_info
-	psvar[1]=`_hostname`
-	[[ -n "$vcs_info_msg_0_" ]] && psvar[2]="$vcs_info_msg_0_"
-}
-
-function _hostname () {
-	local hostname=`hostname -f`
-	if [[ "$hostname" =~ "$USER\.dev\.\w{2}\.local" ]] then
-		echo "dev"
-	elif [[ "$hostname" =~ "\w{2}pc222" ]] then
-		echo "miuna"
-	else
-		hostname
-	fi
+	[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 
 # バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
-PROMPT="[%n@%1v %1~] %(!.#.$) "
-RPROMPT="%1(v|%F{green}%2v%f|)"
+RPROMPT="%1(v|%F{green}%1v%f|)"
+
+PROMPT="[%n@%m %1~] %(!.#.$) "
 
 # ---------------------------------------------------------
 # *** ディレクトリ ***
