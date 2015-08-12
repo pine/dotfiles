@@ -47,9 +47,9 @@ precmd () {
 
 function _hostname () {
 	local hostname=`hostname -f`
-	if [[ "$hostname" =~ "$USER\.dev\.[a-z]+\.local" ]] then
+	if [[ "$hostname" =~ "$USER\.dev\.\w{2}\.local" ]] then
 		echo "dev"
-	elif [[ "$hostname" =~ "[a-z]+pc222\.local" ]] then
+	elif [[ "$hostname" =~ "\w{2}pc222" ]] then
 		echo "miuna"
 	else
 		hostname
