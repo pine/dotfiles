@@ -129,7 +129,6 @@ alias soz='source ~/.zshrc'
 alias tsc='tsc -target ES5 --module "commonjs"'
 
 
-
 # タイプミス防止
 alias cls="clear"
 alias apitude="aptitude"
@@ -216,6 +215,10 @@ export GIT_MERGE_AUTOEDIT=no
 
 if type -p lv >/dev/null 2>&1; then
 	export GIT_PAGER="lv -c"
+fi
+
+if type -p vim > /dev/null 2>&1; then
+	export EDITOR=vim
 fi
 
 # 言語設定
