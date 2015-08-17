@@ -243,12 +243,14 @@ fi
 # ~/.zshrc.local
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
+# ~/.zsh/*.zsh
+if [[ -d "$HOME/.zsh" ]] then
+	for f in ~/.zsh/*; do source "$f"; done
+fi
+
 # screen を起動
 if [[ $TERM != 'screen' ]] then
 #	screen -xRU
 fi
 
 # vim: se noet ts=4 sw=4 sts=0 ft=zsh :
-
-# added by travis gem
-[ -f /Users/matsushita/.travis/travis.sh ] && source /Users/matsushita/.travis/travis.sh
