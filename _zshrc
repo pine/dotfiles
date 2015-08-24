@@ -59,11 +59,9 @@ setopt pushd_ignore_dups # 同じディレクトリは追加しない
 setopt pushd_silent      # ディレクトリスタックの内容を表示しない
 
 # cd 可能なディレクトリ
-cdpath=(.. ~/repositories)
-
-if [[ -d "$HOME/project" ]] then
-	cdpath=(.. ~/project)
-fi
+cdpath=(
+	~/project(N-/)
+)
 
 
 # ---------------------------------------------------------
