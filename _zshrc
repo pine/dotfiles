@@ -38,16 +38,29 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '[%b]'
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
+char_hostname () {
+	hostname=`hostname -f | cut -f 1 -d .`
+	hostname_f=`hostname -f`
+
+	if [[ "$hostname_f" =~ "$USER\.dev\.[a-z]+\.local" ]] then
+		echo "ruri"
+	elif [[ "$hostname" =~ "\w{2}pc222" ]] then
+		echo "miuna"
+	else
+		echo $hostname
+	fi
+}
+
 precmd () {
 	psvar=()
 	LANG=en_US.UTF-8 vcs_info
 	[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+	psvar[2]=`char_hostname`
 }
 
 # バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
+PROMPT="[%n@%2v %1~] %(!.#.$) "
 RPROMPT="%1(v|%F{green}%1v%f|)"
-
-PROMPT="[%n@%m %1~] %(!.#.$) "
 
 # ---------------------------------------------------------
 # *** ディレクトリ ***
@@ -229,11 +242,6 @@ esac
 # ---------------------------------------------------------
 # *** 実行 ***
 # ---------------------------------------------------------
-
-# mf-dev
-if [[ -d "$HOME/project/Dev" ]] then
-	source ~/project/Dev/share/etc/mf-dev.zshrc
-fi
 
 # travis
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
