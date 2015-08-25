@@ -249,9 +249,9 @@ esac
 # ~/.zshrc.local
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
-# ~/.zsh/*.zsh
-if [[ -d "$HOME/.zsh" ]] then
-	for f in ~/.zsh/*; do source "$f"; done
+# ~/.zsh.d/*.zsh
+if [[ -d "$HOME/.zsh.d" ]] then
+	for f in ~/.zsh.d/*; do source "$f"; done
 fi
 
 # screen を起動
