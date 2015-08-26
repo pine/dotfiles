@@ -139,6 +139,7 @@ alias soz='source ~/.zshrc'
 
 alias tsc='tsc -target ES5 --module "commonjs"'
 
+alias httpd='python -m SimpleHTTPServer'
 
 # タイプミス防止
 alias cls="clear"
