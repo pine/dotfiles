@@ -43,7 +43,9 @@ var git = require('../lib/git');
     }
   }
 
-  symlink(cwd, home, options, function () {
+  symlink(cwd, home, options, function (err) {
+    if (err) { console.error(err); }
+
     if (runas.isRunas()) {
       console.log('\nPress any key wait ...');
       runas.pressAnyKeyWait();
