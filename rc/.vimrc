@@ -72,6 +72,7 @@ NeoBundle 'leafgarland/typescript-vim' " TypeScript
 NeoBundle 'gkz/vim-ls' " LiveScript
 NeoBundle 'digitaltoad/vim-jade' " Jade
 NeoBundle 'groenewege/vim-less' " LESS
+NeoBundle 'briancollins/vim-jst' " JST/EJS
 
 " データフォーマット
 NeoBundle 'elzr/vim-json' " JSON
@@ -357,7 +358,8 @@ function! GetFileType()
                 \'perl'      : 'Perl',
                 \'xslate'    : 'Xslate',
                 \'coffee'    : 'CoffeeScript',
-                \'markdown'  : 'Markdown'
+                \'markdown'  : 'Markdown',
+                \'crystal'   : 'Crystal'
                 \}
 
     retu get(l:name, &ft, &ft)
