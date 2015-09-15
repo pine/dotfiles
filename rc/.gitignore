@@ -2,3 +2,6 @@
 *~
 *.swp
 *.swo
+
+# Mac OS X
+.DS_Store
