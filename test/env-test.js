@@ -6,6 +6,7 @@
 var _ = require('lodash');
 var chai = require('chai');
 var sinon = require('sinon');
+var wrap = require('wrapple');
 
 var env = require('../lib/env');
 
@@ -30,35 +31,43 @@ describe('Infra Unit test for env', function () {
 
   describe('getOS()', function () {
     it('should return windows', function () {
-      sandbox.stub(process, 'platform', 'win32');
+      sandbox.stub(wrap, 'process', function () { return { platform: 'win32' }; });
       expect(env.getOS()).to.equal('windows');
     });
 
     it('should return mac', function () {
-      sandbox.stub(process, 'platform', 'darwin');
+      sandbox.stub(wrap, 'process', function () { return { platform: 'darwin' }; });
       expect(env.getOS()).to.equal('darwin');
     });
 
     it('should return linux', function () {
-      sandbox.stub(process, 'platform', 'linux');
+      sandbox.stub(wrap, 'process', function () { return { platform: 'linux' }; });
       expect(env.getOS()).to.equal('linux');
     });
   });
 
   describe('getUserHome()', function () {
     it('should return windows home path', function () {
-      sandbox.stub(process, 'platform', 'win32');
-      sandbox.stub(process, 'env', _.extend(process.env, {
-        USERPROFILE: 'home_directory'
-      }));
+      sandbox.stub(wrap, 'process', function () {
+        return {
+          platform: 'win32',
+          env: _.extend(process.env, {
+            USERPROFILE: 'home_directory'
+          })
+        };
+      });
       expect(env.getUserHome()).to.equal('home_directory');
     });
 
     it('should return linux home path', function () {
-      sandbox.stub(process, 'platform', 'linux');
-      sandbox.stub(process, 'env', _.extend(process.env, {
-        HOME: 'home_directory'
-      }));
+      sandbox.stub(wrap, 'process', function () {
+        return {
+          platform: 'linux',
+          env: _.extend(process.env, {
+            HOME: 'home_directory'
+          })
+        };
+      });
       expect(env.getUserHome()).to.equal('home_directory');
     });
   });

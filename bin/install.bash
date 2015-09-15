@@ -1,7 +1,7 @@
 #!/bin/bash
 
 node_bin=
-node_version=v0.10.38
+node_version=v4.0.0
 
 cwd=`dirname "${0}"`
 
