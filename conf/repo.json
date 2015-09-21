@@ -1,4 +1,12 @@
 {
-  ".vim/bundle/neobundle.vim": "https://github.com/Shougo/neobundle.vim.git",
-  "bin/bats": "https://github.com/sstephenson/bats.git"
+  "darwin": {
+    ".vim/bundle/neobundle.vim": "https://github.com/Shougo/neobundle.vim.git",
+    "bin/bats": "https://github.com/sstephenson/bats.git",
+    "bin/git": "https://github.com/git/git.git"
+  },
+  "linux": {
+    ".vim/bundle/neobundle.vim": "https://github.com/Shougo/neobundle.vim.git",
+    "bin/bats": "https://github.com/sstephenson/bats.git",
+    "bin/git": "https://github.com/git/git.git"
+  }
 }

@@ -8,6 +8,7 @@ var execArgs = require('../lib/exec_args');
 var symlink = require('../lib/symlink');
 var anyenv = require('../lib/anyenv');
 var git = require('../lib/git');
+var script = require('../lib/script');
 
 !function() {
   var cwd = env.getWorkingDirectory();
@@ -32,7 +33,7 @@ var git = require('../lib/git');
 
   if (os !== 'windows') {
     if (args.deps) {
-      var tasks = [ anyenv, git ];
+      var tasks = [ anyenv, git, script ];
 
       async.each(tasks, function (task, done) {
         task(cwd, home, options, done);

@@ -1,0 +1,7 @@
+{
+  "linux": [],
+  "darwin": [
+    "the_silver_searcher"
+  ],
+  "windows": []
+}
