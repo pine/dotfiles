@@ -6,9 +6,9 @@
 var _ = require('lodash');
 var chai = require('chai');
 var sinon = require('sinon');
-var wrap = require('wrapple');
 
 var env = require('../lib/env');
+var wrap = require('../lib/simple/wrapple');
 
 var expect = chai.expect;
 

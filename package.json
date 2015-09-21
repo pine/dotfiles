@@ -24,8 +24,7 @@
     "grunt-zshlint": "*",
     "load-grunt-tasks": "3.1.0",
     "lodash": "^3.4.0",
-    "sinon": "^1.13.0",
-    "wrapple": "git+https://github.com/pine613/wrapple.git#feature/node"
+    "sinon": "^1.13.0"
   },
   "config": {
     "blanket": {
