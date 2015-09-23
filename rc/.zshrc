@@ -203,8 +203,9 @@ path=(
 
 # その他コマンド
 path=(
-	usr/local/redis/bin(N-/)
+	/usr/local/redis/bin(N-/)
 	/usr/local/app/vim/bin(N-/)
+	/usr/local/bin(N-/)
 	$HOME/bin(N-/)
 	$HOME/bin/*/bin(N-/)
 
