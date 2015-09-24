@@ -353,6 +353,7 @@ function! GetFileType()
                 \'tex'       : 'TeX',
                 \'php'       : 'PHP',
                 \'python'    : 'Python',
+                \'ruby'      : 'Ruby',
                 \'text'      : 'Text',
                 \'sql'       : 'SQL',
                 \'perl'      : 'Perl',
