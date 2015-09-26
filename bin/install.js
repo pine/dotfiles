@@ -33,12 +33,14 @@ var script = require('../lib/script');
 
   if (os !== 'windows') {
     if (args.deps) {
-      var tasks = [ anyenv, git, script ];
-
-      async.each(tasks, function (task, done) {
-        task(cwd, home, options, done);
-      }, function (err) {
-        if (err) { console.error(err); }
+      anyenv(cwd, home, options, function (err) {
+        if (err) { return console.error(err); }
+        var tasks = [ git, script ];
+        async.each(tasks, function (task, done) {
+          task(cwd, home, options, done);
+        }, function (err) {
+          if (err) { console.error(err); }
+        });
       });
       return;
     }

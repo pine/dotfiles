@@ -2,7 +2,8 @@
   "linux": [],
   "darwin": [
     "the_silver_searcher",
-    "screen_for_osx"
+    "screen_for_osx",
+    "direnv"
   ],
   "windows": []
 }
