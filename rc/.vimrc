@@ -47,7 +47,6 @@ NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/wombat256.vim'
-NeoBundle 'udalov/kotlin-vim'
 
 " neocomplete
 function! s:meet_neocomplete_requirements()
@@ -77,11 +76,12 @@ NeoBundle 'briancollins/vim-jst' " JST/EJS
 
 " データフォーマット
 NeoBundle 'elzr/vim-json' " JSON
-NeoBundle 'stephpy/vim-yaml'
+NeoBundle 'stephpy/vim-yaml' " YAML
 
 " Other languages
 NeoBundle 'rhysd/vim-crystal' " Crystal
 NeoBundle 'toyamarinyon/vim-swift' " Swift
+NeoBundle 'udalov/kotlin-vim' " Kotlin
 NeoBundle 'PProvost/vim-ps1' " PowerShell
 
 " 設定ファイル
