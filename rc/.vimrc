@@ -349,7 +349,7 @@ function! GetFileType()
                 \'c'         : 'C',
                 \'coffee'    : 'CoffeeScript',
                 \'cpp'       : 'C++',
-                \'crystal'   : 'Crystal'
+                \'crystal'   : 'Crystal',
                 \'css'       : 'CSS',
                 \'java'      : 'Java',
                 \'javascript': 'JavaScript',
