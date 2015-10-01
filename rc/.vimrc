@@ -344,24 +344,25 @@ vmap <C-K> <Plug>(caw:i:toggle)
 
 " ファイルタイプを返す
 function! GetFileType()
+    " Alphabet order
     let l:name = {
-                \'vim'       : 'Vim',
                 \'c'         : 'C',
+                \'coffee'    : 'CoffeeScript',
                 \'cpp'       : 'C++',
-                \'java'      : 'Java',
+                \'crystal'   : 'Crystal'
                 \'css'       : 'CSS',
+                \'java'      : 'Java',
                 \'javascript': 'JavaScript',
-                \'tex'       : 'TeX',
+                \'markdown'  : 'Markdown',
+                \'perl'      : 'Perl',
                 \'php'       : 'PHP',
                 \'python'    : 'Python',
                 \'ruby'      : 'Ruby',
-                \'text'      : 'Text',
                 \'sql'       : 'SQL',
-                \'perl'      : 'Perl',
+                \'tex'       : 'TeX',
+                \'text'      : 'Text',
+                \'vim'       : 'Vim',
                 \'xslate'    : 'Xslate',
-                \'coffee'    : 'CoffeeScript',
-                \'markdown'  : 'Markdown',
-                \'crystal'   : 'Crystal'
                 \}
 
     retu get(l:name, &ft, &ft)
