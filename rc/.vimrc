@@ -47,6 +47,7 @@ NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/wombat256.vim'
+NeoBundle 'udalov/kotlin-vim'
 
 " neocomplete
 function! s:meet_neocomplete_requirements()
