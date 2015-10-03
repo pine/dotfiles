@@ -146,6 +146,13 @@ alias cls="clear"
 alias apitude="aptitude"
 alias vi="vim"
 
+# Visual Studio Code
+case ${OSTYPE} in
+	darwin*)
+		code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+		;;
+esac
+
 # ---------------------------------------------------------
 # *** PATH ***
 # ---------------------------------------------------------
