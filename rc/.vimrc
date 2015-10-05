@@ -48,6 +48,14 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/wombat256.vim'
 
+NeoBundle 'Shougo/vimproc'
+
+NeoBundle 'dannyob/quickfixstatus' " エラー箇所のエラー内容を表示する
+NeoBundle 'jceb/vim-hier'          " quickfix の行をハイライトする
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'osyo-manga/shabadou.vim'
+NeoBundle 'osyo-manga/vim-watchdogs'
+
 " neocomplete
 function! s:meet_neocomplete_requirements()
     return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
@@ -429,5 +437,12 @@ endfunction
 " ステータスラインを自動挿入
 nnoremap <Leader>s :execute 'normal a'.GetStatusLine()<CR>
 
+" ---------------------------------------------------------
+" *** 外部定義 ***
+" ---------------------------------------------------------
+
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
 
 " vim: se et ts=4 sw=4 sts=0 ft=vim :
