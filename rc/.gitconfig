@@ -20,6 +20,8 @@
 	s = status
 	d = diff
 	dc = diff --cached
+	master = checkout master
+	dev = checkout develop
 
 
 	# http://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
