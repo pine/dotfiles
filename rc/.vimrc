@@ -363,6 +363,7 @@ function! GetFileType()
                 \'java'      : 'Java',
                 \'javascript': 'JavaScript',
                 \'kotlin'    : 'Kotlin',
+                \'less'      : 'LESS',
                 \'markdown'  : 'Markdown',
                 \'perl'      : 'Perl',
                 \'php'       : 'PHP',
