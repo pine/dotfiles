@@ -181,10 +181,10 @@ fi
 # 	path=($HOME/.crystalbrew/current/bin $path)
 # fi
 
-# crenv
-if [[ -d "$HOME/.crenv" ]] then
-	export PATH="$HOME/.crenv/bin:$PATH"
-	eval "$(crenv init -)"
+# phpenv
+if [[ -d "$HOME/.phpenv" ]] then
+	export PATH="$HOME/.phpenv/bin:$PATH"
+	eval "$(phpenv init -)"
 fi
 
 # direnv
@@ -255,6 +255,10 @@ esac
 # travis
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
+# sdkman
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 # ~/.zshrc.local
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
@@ -269,3 +273,4 @@ if [[ $TERM != 'screen' ]] then
 fi
 
 # vim: se noet ts=4 sw=4 sts=0 ft=zsh :
+
