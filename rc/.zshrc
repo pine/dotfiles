@@ -43,7 +43,7 @@ char_hostname () {
 	hostname_f=`hostname -f`
 
 	if [[ "$hostname_f" =~ "$USER\.dev\.[a-z]+\.local" ]] then
-		echo "ruri"
+		echo "tomori"
 	elif [[ "$hostname" =~ "[a-z]{2}pc222" ]] then
 		echo "miuna"
 	else
