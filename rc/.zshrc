@@ -213,6 +213,7 @@ path=(
 	/usr/local/redis/bin(N-/)
 	/usr/local/app/vim/bin(N-/)
 	/usr/local/bin(N-/)
+	/usr/local/sbin(N-/)
 	$HOME/bin(N-/)
 	$HOME/bin/*/bin(N-/)
 
