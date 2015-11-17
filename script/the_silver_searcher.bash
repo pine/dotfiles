@@ -8,6 +8,11 @@ if [ `uname` == "Darwin" ]; then
     brew install pkg-config
     brew install xz
     brew install pcre
+else
+  if type -P apt-get > /dev/null 2>&1; then
+    sudo apt-get update -y
+    sudo apt-get install automake libpcre3-dev liblzma-dev -y
+  fi
 fi
 
 mkdir -p /tmp/the_silver_searcher

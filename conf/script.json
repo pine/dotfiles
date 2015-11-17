@@ -1,5 +1,7 @@
 {
-  "linux": [],
+  "linux": [
+    "the_silver_searcher"
+  ],
   "darwin": [
     "the_silver_searcher",
     "screen_for_osx",
