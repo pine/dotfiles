@@ -62,12 +62,12 @@ else
     NeoBundle 'Shougo/neocomplcache.vim'
 endif
 
-" Perl 関係
+" Perl 系
 NeoBundle 'c9s/perlomni.vim'
 NeoBundle 'y-uuki/perl-local-lib-path.vim'
 NeoBundle 'motemen/xslate-vim' " Xslate
 
-" JavaScript 関係
+" JavaScript 系
 NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 NeoBundle 'leafgarland/typescript-vim' " TypeScript
 NeoBundle 'gkz/vim-ls' " LiveScript
@@ -75,18 +75,21 @@ NeoBundle 'digitaltoad/vim-jade' " Jade
 NeoBundle 'groenewege/vim-less' " LESS
 NeoBundle 'briancollins/vim-jst' " JST/EJS
 
+" Java 系
+NeoBundle 'udalov/kotlin-vim' " Kotlin
+NeoBundle 'groovy.vim' " Groovy
+NeoBundle 'tfnico/vim-gradle' " Gradle
+
 " データフォーマット
 NeoBundle 'elzr/vim-json' " JSON
 NeoBundle 'stephpy/vim-yaml' " YAML
 
-" Other languages
+" 他の言語
 NeoBundle 'rhysd/vim-crystal' " Crystal
 NeoBundle 'toyamarinyon/vim-swift' " Swift
-NeoBundle 'udalov/kotlin-vim' " Kotlin
 NeoBundle 'PProvost/vim-ps1' " PowerShell
 
 " 設定ファイル
-NeoBundle 'keith/tmux.vim'
 NeoBundle 'ekalinin/Dockerfile.vim' " Dockerfile
 
 " Required:
