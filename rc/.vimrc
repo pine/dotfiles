@@ -68,6 +68,7 @@ NeoBundle 'y-uuki/perl-local-lib-path.vim'
 NeoBundle 'motemen/xslate-vim' " Xslate
 
 " JavaScript 系
+NeoBundle 'isRuslan/vim-es6' " JavaScript
 NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 NeoBundle 'leafgarland/typescript-vim' " TypeScript
 NeoBundle 'gkz/vim-ls' " LiveScript
