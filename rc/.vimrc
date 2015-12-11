@@ -66,6 +66,7 @@ endif
 NeoBundle 'c9s/perlomni.vim'
 NeoBundle 'y-uuki/perl-local-lib-path.vim'
 NeoBundle 'motemen/xslate-vim' " Xslate
+NeoBundle 'moznion/vim-cpanfile' " cpanfile
 
 " JavaScript 系
 NeoBundle 'isRuslan/vim-es6' " JavaScript
