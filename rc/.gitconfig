@@ -1,20 +1,29 @@
-[user]
-	name = Pine Mizune
-	email = pinemz@gmail.com
-[push]
-	default = current
 [core]
 	autocrlf = false
 	editor = vim
 	quotepath = false
 	precomposeunicode = true
     excludesfile = ~/.gitignore
-[color]
-	ui = auto
-[merge]
-	ff = false
+
+[user]
+	name = Pine Mizune
+	email = pinemz@gmail.com
+
+[push]
+	default = current
+
 [pull]
 	rebase = true
+
+[merge]
+	ff = false
+
+[branch]
+	autosetupmerge = always
+
+[color]
+	ui = auto
+
 [alias]
 	# shortcut
 	s = status
@@ -22,7 +31,6 @@
 	dc = diff --cached
 	master = checkout master
 	dev = checkout develop
-
 
 	# http://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
 	graph = log --graph --oneline --decorate
