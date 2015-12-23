@@ -208,6 +208,12 @@ path=(
 	$path
 )
 
+# Go
+if [[ -d "$HOME/.go" ]] then
+	export GOPATH=$HOME/.go
+	path=("$HOME/.go/bin" $path)
+fi
+
 # その他コマンド
 path=(
 	/usr/local/redis/bin(N-/)
