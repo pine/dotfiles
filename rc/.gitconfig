@@ -29,6 +29,7 @@
 	s = status
 	d = diff
 	dc = diff --cached
+	sync = !git pull && git push
 	master = checkout master
 	dev = checkout develop
 
