@@ -90,6 +90,7 @@ NeoBundle 'stephpy/vim-yaml' " YAML
 NeoBundle 'rhysd/vim-crystal' " Crystal
 NeoBundle 'toyamarinyon/vim-swift' " Swift
 NeoBundle 'PProvost/vim-ps1' " PowerShell
+NeoBundle 'jwalton512/vim-blade' " Blade templates
 
 " 設定ファイル
 NeoBundle 'ekalinin/Dockerfile.vim' " Dockerfile

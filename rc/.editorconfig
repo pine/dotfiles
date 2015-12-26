@@ -22,7 +22,7 @@ indent_size = 2
 indent_style = space
 indent_size = 2
 
-[*.{css,less,styl}]
+[*.{css,less,scss,styl}]
 indent_style = space
 indent_size = 2
 
@@ -57,3 +57,7 @@ indent_size = 2
 [*.{sh,bash}]
 indent_style = space
 indent_size = 2
+
+[*.php]
+indent_style = space
+indent_size = 4
