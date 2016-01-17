@@ -74,7 +74,9 @@ NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 NeoBundle 'leafgarland/typescript-vim' " TypeScript
 NeoBundle 'gkz/vim-ls' " LiveScript
 NeoBundle 'digitaltoad/vim-jade' " Jade
+NeoBundle 'JulesWang/css.vim' " CSS
 NeoBundle 'groenewege/vim-less' " LESS
+NeoBundle 'cakebaker/scss-syntax.vim' " SCSS
 NeoBundle 'briancollins/vim-jst' " JST/EJS
 
 " Java 系
