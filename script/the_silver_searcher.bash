@@ -11,7 +11,7 @@ if [ `uname` == "Darwin" ]; then
 else
   if type -P apt-get > /dev/null 2>&1; then
     sudo apt-get update -y
-    sudo apt-get install automake libpcre3-dev liblzma-dev -y
+    sudo apt-get install automake libpcre3-dev liblzma-dev gcc pkg-config -y
   fi
 fi
 
