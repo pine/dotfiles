@@ -19,7 +19,7 @@
 	ff = false
 
 [branch]
-	autosetupmerge = always
+	autosetupmerge = false
 
 [color]
 	ui = auto
