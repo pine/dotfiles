@@ -202,6 +202,8 @@ if [[ -d "$HOME/Library/Android/sdk" ]] then
 	export ANDROID_HOME="$HOME/Library/Android/sdk"
 fi
 
+export NDK_CCACHE=`which ccache`
+
 path=(
 	$ANDROID_HOME/tools(N-/)
 	$ANDROID_HOME/platform-tools(N-/)

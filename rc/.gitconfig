@@ -31,6 +31,7 @@
 	dc = diff --cached
 	sync = !git pull && git push
 	master = checkout master
+	develop = checkout develop
 	dev = checkout develop
 
 	# http://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
