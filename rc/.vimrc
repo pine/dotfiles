@@ -93,6 +93,7 @@ NeoBundle 'rhysd/vim-crystal' " Crystal
 NeoBundle 'toyamarinyon/vim-swift' " Swift
 NeoBundle 'PProvost/vim-ps1' " PowerShell
 NeoBundle 'jwalton512/vim-blade' " Blade templates
+NeoBundle 'elixir-lang/vim-elixir' " Elixir
 
 " 設定ファイル
 NeoBundle 'ekalinin/Dockerfile.vim' " Dockerfile
@@ -360,6 +361,7 @@ function! GetFileType()
                 \'cpp'       : 'C++',
                 \'crystal'   : 'Crystal',
                 \'css'       : 'CSS',
+                \'elixir'    : 'Elixir',
                 \'java'      : 'Java',
                 \'javascript': 'JavaScript',
                 \'kotlin'    : 'Kotlin',
