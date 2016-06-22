@@ -4,6 +4,7 @@
 	quotepath = false
 	precomposeunicode = true
     excludesfile = ~/.gitignore
+	ignorecase = true
 
 [user]
 	name = Pine Mizune
