@@ -1,57 +1,83 @@
 #!/bin/bash
 
-node_bin=
-node_version=v4.0.0
+set -eu
+
+node_version=v4.4.7
+
+#####################################################################
+
+# perl
+echo "Installing Perl"
+
+if uname -a | fgrep -i Darwin > /dev/null 2>&1; then
+  echo "> Darwin detected"
+else
+  echo "> Linux detected"
+
+  if ! type -p perl > /dev/null 2>&1; then
+    set -x
+    sudo apt-get update -y
+    sudo apt-get install perl
+    set +x
+  fi
+fi
+
+# nodebrew
+echo "Installing Node.js"
+
+if [ ! -e ~/.nodebrew ]; then
+  set -x
+
+  if [ -e ~/nodebrew ]; then
+    rm -rf ~/nodebrew
+  fi
+
+
+  if type -p wget > /dev/null 2>&1; then
+    wget git.io/nodebrew -O ~/nodebrew
+  else
+    curl -L http://git.io/nodebrew > ~/nodebrew
+  fi
+
+  perl ~/nodebrew setup
+  rm -rf ~/nodebrew
+
+  set +x
+fi
+
+nodebrew_bin=~/.nodebrew/current/bin/nodebrew
+
+if [ -x "$nodebrew_bin" ]; then
+  set -x
+
+  "$nodebrew_bin" install-binary $node_version || true
+  "$nodebrew_bin" use $node_version
+
+  set +x
+
+  if [ -e ~/.nodebrew/current/bin/node ]; then
+    PATH=$HOME/.nodebrew/current/bin:$PATH
+  fi
+fi
+
+
+#####################################################################
 
 cwd=`dirname "${0}"`
 
-# nodebrew
-if [ "$node_bin" = "" ]; then
-  if [ ! -e "$HOME/.nodebrew" ]; then
-    if [ -e "$HOME/nodebrew" ]; then
-      rm -rf "$HOME/nodebrew"
-    fi
+if type -p node > /dev/null 2>&1; then
+  set -x
 
-    if type wget > /dev/null 2>&1; then
-      wget git.io/nodebrew -O ~/nodebrew
-    else
-      curl -L http://git.io/nodebrew > ~/nodebrew
-    fi
+  node -v
+  npm -v
 
-    perl ~/nodebrew setup
+  cd $cwd/..
+  npm install
+  node bin/install.js $*
 
-    rm -rf "$HOME/nodebrew"
-  fi
-
-  nodebrew_bin="$HOME/.nodebrew/current/bin/nodebrew"
-
-  if [ -e "$nodebrew_bin" ]; then
-    "$nodebrew_bin" install-binary $node_version
-    "$nodebrew_bin" use $node_version
-
-    if [ -e "$HOME/.nodebrew/current/bin/node" ]; then
-      node_bin="$HOME/.nodebrew/current/bin/node"
-    fi
-  fi
-fi
-
-# system
-if [ "$node_bin" = "" ]; then
-  if type node > /dev/null 2>&1; then
-    node_bin=`which node`
-  fi
-fi
-
-if [ "$node_bin" != "" ]; then
-  echo "> $node_bin -v"
-  "$node_bin" -v
-
-  echo "> $node_bin $cwd/install.js"
-  "$node_bin" "${cwd}/install.js" $*
+  set +x
 else
-  echo "Can't find Node.js (in sytem and nodebrew)" 1>&2
+  echo "Can't install Node.js by nodebrew" 1>&2
 fi
 
 # vim: se ts=2 sw=2 sts=2 et ft=sh :
-
-
