@@ -21,7 +21,7 @@ else
 
     git fetch
     git checkout v2
-    bash ,/bin/install.bash
+    bash ./bin/install.bash
 
     set +x
 fi
