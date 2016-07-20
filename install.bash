@@ -14,9 +14,12 @@ else
     mkdir -p ~/project
     cd ~/project
 
-    git clone https://github.com/pine/dotfiles.git
+    if [ ! -d dotfiles ]; then
+      git clone https://github.com/pine/dotfiles.git
+    fi
     cd dotfiles
 
+    git fetch
     git checkout v2
     bash ,/bin/install.bash
 
