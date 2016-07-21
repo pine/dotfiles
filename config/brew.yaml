@@ -1,0 +1,11 @@
+packages:
+  - automake
+  - autoconf
+  - binutils
+  - cmake
+  - curl
+  - openssl
+  - pkg-config
+  - readline
+  - unrar
+  - wget

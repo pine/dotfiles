@@ -1,35 +1,26 @@
 {
   "name": "dotfiles",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "grunt test"
+    "gulp": "bin/gulp.sh",
+    "test": "bin/gulp.sh test"
   },
   "repository": {
     "type": "git",
-    "url": "https://pine613@bitbucket.org/pine613/dotfiles.git"
+    "url": "https://github.com/pine/dotfiles"
   },
-  "author": "Pine Mizune",
-  "license": "MIT",
+  "dependencies": {
+    "async": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7",
+    "livescript": "^1.5.0",
+    "prelude-ls": "^1.1.2",
+    "run-sequence": "^1.2.2",
+    "yamljs": "^0.2.8"
+  },
   "private": true,
-  "devDependencies": {
-    "chai": "^2.1.1",
-    "grunt": "0.4.5",
-    "grunt-cli": "0.1.13",
-    "grunt-concurrent": "^1.0.0",
-    "grunt-lint-bash": "^0.1.0",
-    "grunt-mocha-cov": "^0.4.0",
-    "grunt-vimlint": "*",
-    "grunt-zshlint": "*",
-    "load-grunt-tasks": "3.1.0",
-    "lodash": "^3.4.0",
-    "sinon": "^1.13.0"
-  },
-  "config": {
-    "blanket": {
-      "pattern": "lib",
-      "data-cover-never": "node_modules"
-    }
-  }
+  "author": "Pine Mizune",
+  "license": "MIT"
 }

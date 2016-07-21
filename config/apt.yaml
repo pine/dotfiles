@@ -1,0 +1,11 @@
+packages:
+  - cmake
+  - gcc
+  - g++
+  - curl
+  - make
+  - screen
+  - silversearcher-ag
+  - sl
+  - unrar
+  - wget
