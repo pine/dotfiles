@@ -164,12 +164,6 @@ typeset -U path cdpath fpath manpath
 typeset -xT PKG_CONFIG_PATH pkg_config_path
 typeset -U pkg_config_path
 
-# anyenv
-if [[ -d "$HOME/.anyenv" ]] then
-	path=($HOME/.anyenv/bin $path)
-	eval "$(anyenv init -)"
-fi
-
 # nodebrew
 if [[ ! -d "$HOME/.anyenv/envs/ndenv" ]] then
 	if [[ -d "$HOME/.nodebrew" ]] then
@@ -226,6 +220,7 @@ path=(
 	/usr/local/sbin(N-/)
 	$HOME/bin(N-/)
 	$HOME/bin/*/bin(N-/)
+	$HOME/project/sexpr-wasm-prototype/out(N-/)
 
 	$path
 
@@ -236,6 +231,16 @@ pkg_config_path=(
 	/opt/X11/lib/pkgconfig(N-/)
 	$pkg_config_path
 )
+
+# anyenv
+if [[ -d "$HOME/.anyenv" ]] then
+	path=($HOME/.anyenv/bin $path)
+	eval "$(anyenv init -)"
+
+	if [[ -d "$HOME/.anyenv/envs/pyenv/plugins/pyenv-virtualenv" ]] then
+		eval "$(pyenv virtualenv-init -)"
+	fi
+fi
 
 # ---------------------------------------------------------
 # *** その他 ***
@@ -285,3 +290,5 @@ fi
 
 # vim: se noet ts=4 sw=4 sts=0 ft=zsh :
 
+### Added by the Bluemix CLI
+source /usr/local/Bluemix/bx/zsh_autocomplete
