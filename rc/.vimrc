@@ -86,6 +86,7 @@ NeoBundle 'tfnico/vim-gradle' " Gradle
 
 " データフォーマット
 NeoBundle 'elzr/vim-json' " JSON
+NeoBundle 'GutenYe/json5.vim' " JSON5
 NeoBundle 'stephpy/vim-yaml' " YAML
 
 " 他の言語

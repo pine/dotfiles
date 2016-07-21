@@ -140,6 +140,7 @@ alias soz='source ~/.zshrc'
 alias tsc='tsc -target ES5 --module "commonjs"'
 
 alias httpd='python -m SimpleHTTPServer'
+alias nvim='vim -u NONE --noplugin'
 
 # タイプミス防止
 alias cls="clear"
@@ -197,7 +198,7 @@ if [[ -s "$HOME/.rsvm/rsvm.sh" ]] then
 	. "$HOME/.rsvm/rsvm.sh"
 fi
 
-# Android Studio
+# Android
 if [[ -d "$HOME/Library/Android/sdk" ]] then
 	export ANDROID_HOME="$HOME/Library/Android/sdk"
 fi
@@ -207,6 +208,7 @@ export NDK_CCACHE=`which ccache`
 path=(
 	$ANDROID_HOME/tools(N-/)
 	$ANDROID_HOME/platform-tools(N-/)
+	$HOME/Library/Android/ndk/android-ndk-r10e
 	$path
 )
 
