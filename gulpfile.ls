@@ -6,7 +6,7 @@ require! {
 }
 
 is-darwin = /darwin/i.test process.platform
-is-ubuntu = !!process.env.IS_UBUNTU
+is-ubuntu = process.env.IS_UBUNTU == '1'
 
 
 # ---------------------------------------------------------

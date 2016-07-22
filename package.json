@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gulp": "bin/gulp.sh",
-    "test": "bin/gulp.sh test"
+    "start": "bin/env.sh gulp",
+    "test": "bin/env.sh gulp test"
   },
   "repository": {
     "type": "git",
