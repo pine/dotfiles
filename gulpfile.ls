@@ -35,11 +35,18 @@ do ->
   tasks.push \brew if is-darwin
   gulp.task \package tasks
 
+
 # ---------------------------------------------------------
-# rc
+# home
 # ---------------------------------------------------------
 
-gulp.task \rc []
+gulp.task \pre-home, (cb) ->
+  YAML.load './config/pre-home.yaml' (config) ->
+    require('./tasks/pre-home')(config, cb)
+
+gulp.task \home, [\pre-home], (cb) ->
+  YAML.load './config/home.yaml' (config) ->
+    require('./tasks/home')(config, cb)
 
 
 # ---------------------------------------------------------
@@ -51,6 +58,6 @@ gulp.task \test []
 gulp.task \default (cb)->
   run-sequence(
     \package
-    \rc
+    \home
     cb
   )
