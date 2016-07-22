@@ -1,2 +1,7 @@
 files:
+  - .editorconfig
+  - .gitconfig
   - .gitignore
+  - .screenrc
+  - .vimrc
+  - .zshrc

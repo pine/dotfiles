@@ -53,7 +53,7 @@ gulp.task \home, [\pre-home], (cb) ->
 # entry point
 # ---------------------------------------------------------
 
-gulp.task \test []
+gulp.task \test, []
 
 gulp.task \default (cb)->
   run-sequence(
