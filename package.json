@@ -17,6 +17,7 @@
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.7",
     "livescript": "^1.5.0",
+    "mkdirp": "^0.5.1",
     "prelude-ls": "^1.1.2",
     "run-sequence": "^1.2.2",
     "user-home": "^2.0.0",

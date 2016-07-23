@@ -24,7 +24,6 @@ install-pkg = (pkg, cb) ->
 module.exports = (config, cb) ->
   pkg-list (err, pkgs) ->
     return cb(err) if err
-
     async.each-series config.packages, (pkg, cb) ->
       if find (== pkg), pkgs then cb() else install-pkg(pkg, cb)
     , cb

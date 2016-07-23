@@ -22,6 +22,5 @@ link-files = (src, dest, files, cb) ->
 
 
 module.exports = (config, cb) ->
-  src  = path.join(__dirname, '../resources/home')
-  dest = user-home
-  link-files src, dest, config.files, cb
+  src = path.join(__dirname, '../resources/home')
+  link-files src, user-home, config.files, cb

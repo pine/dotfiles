@@ -21,13 +21,24 @@ gulp.task \apt, [\pre-apt], (cb) ->
   YAML.load './config/apt.yaml' (config) ->
     require('./tasks/apt')(config, cb)
 
+# ---------------------------------------------------------
+
+gulp.task \brew (cb)->
+  run-sequence(\pre-brew, \brew-impl, \post-brew, cb)
+
 gulp.task \pre-brew, (cb) ->
   YAML.load './config/pre-brew.yaml' (config) ->
     require('./tasks/pre-brew')(config, cb)
 
-gulp.task \brew, [\pre-brew], (cb) ->
+gulp.task \brew-impl, (cb) ->
   YAML.load './config/brew.yaml' (config) ->
     require('./tasks/brew')(config, cb)
+
+gulp.task \post-brew, (cb) ->
+  YAML.load './config/post-brew.yaml' (config) ->
+    require('./tasks/post-brew')(config, cb)
+
+# ---------------------------------------------------------
 
 do ->
   tasks = []
