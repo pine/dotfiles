@@ -2,7 +2,8 @@
 
 set -eu
 
-node_version=v4.4.7
+cwd=`dirname "${0}"`
+node_version=`cat $cwd/../.node-version`
 
 #####################################################################
 
@@ -70,8 +71,6 @@ fi
 export IS_UBUNTU
 
 #####################################################################
-
-cwd=`dirname "${0}"`
 
 if type -p node > /dev/null 2>&1; then
   echo "> Node $(node -v)"

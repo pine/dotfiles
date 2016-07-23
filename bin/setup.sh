@@ -3,25 +3,27 @@
 set -eu
 
 if uname | fgrep -i Darwin > /dev/null 2>&1; then
-    echo "Darwin detected"
+  echo "Darwin detected"
 else
-    echo "Linux detected"
-    set -x
+  echo "Linux detected"
+  set -x
 
-    sudo apt-get update -y
-    sudo apt-get install git -y
+  sudo apt-get update -y
+  sudo apt-get install git -y
 
-    mkdir -p ~/project
-    cd ~/project
+  mkdir -p ~/project
+  cd ~/project
 
-    if [ ! -d dotfiles ]; then
-      git clone https://github.com/pine/dotfiles.git
-    fi
-    cd dotfiles
+  if [ ! -d dotfiles ]; then
+    git clone https://github.com/pine/dotfiles.git
+  fi
+  cd dotfiles
 
-    git fetch
-    git checkout v2
-    bash ./bin/install.bash
+  git fetch
+  git checkout v2
+  bash ./bin/install.bash
 
-    set +x
+  set +x
 fi
+
+# vim: se ts=2 sw=2 sts=2 et ft=sh :
