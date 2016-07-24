@@ -5,7 +5,8 @@ require! {
 
 
 private-path =
-  path.join(__dirname, '../../dotfiles.private')
+  name = process.env.PRIVATE_REPOSITORY
+  path.join(__dirname, "../../#{name}")
 
 
 private-require = (file) ->

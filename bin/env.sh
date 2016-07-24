@@ -90,12 +90,14 @@ fi
 #####################################################################
 
 IS_UBUNTU=0
+PRIVATE_REPOSITORY=dotfiles.private
 
 if type -p apt-get > /dev/null 2>&1; then
   IS_UBUNTU=1
 fi
 
 export IS_UBUNTU
+export PRIVATE_REPOSITORY
 
 #####################################################################
 
