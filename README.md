@@ -11,8 +11,7 @@ $ curl -L https://raw.github.com/pine/dotfiles/v2/bin/setup.sh | bash
 ### Linux
 
 ```sh
-$ ./bin/install.bash # install .files
-$ ./bin/install.bash --deps # install anyenv, NeoBundle, etc ...
+$ ./bin/install.sh
 ```
 
 ## Test
@@ -22,5 +21,4 @@ $ npm test
 ```
 
 ## License
-MIT License<br />
-Copyright (c) 2014-2016 Pine Mizune
+MIT License
