@@ -5,7 +5,7 @@ dotfiles
 First, you must clone the repository in your development computer.
 
 ```sh
-$ git clone https://github.com/pine613/dotfiles.git
+$ curl -L https://raw.github.com/pine/dotfiles/v2/bin/setup.sh | bash
 ```
 
 ### Linux
@@ -18,7 +18,7 @@ $ ./bin/install.bash --deps # install anyenv, NeoBundle, etc ...
 ## Test
 
 ```sh
-
+$ npm test
 ```
 
 ## License
