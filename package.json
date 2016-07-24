@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "async": "^2.0.0",
-    "fs-extra": "^0.30.0",
     "gulp": "^3.9.1",
     "gulp-util": "^3.0.7",
     "livescript": "^1.5.0",

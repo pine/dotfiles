@@ -1,6 +1,6 @@
 require! {
   async
-  'fs-extra': fs
+  fs
   path
   'user-home'
 }

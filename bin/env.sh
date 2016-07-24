@@ -2,7 +2,34 @@
 
 set -eu
 
-cwd=`dirname "${0}"`
+#####################################################################
+
+READLINK=$(type -p greadlink readlink | head -1)
+if [ -z "$READLINK" ]; then
+  echo "cannot find readlink - are you missing GNU coreutils?" >&2
+  exit 1
+fi
+
+resolve_link() {
+  $READLINK "$1"
+}
+
+realpath() {
+  local cwd="$PWD"
+  local path="$1"
+  local name
+
+  while [ -n "$path" ]; do
+    local name="${path##*/}"
+    [ "$name" = "$path" ] || cd "${path%/*}"
+    path="$(resolve_link "$name" || true)"
+  done
+
+  echo "$PWD/$name"
+  cd "$cwd"
+}
+
+cwd=`realpath $(dirname "$0")`
 node_version=`cat $cwd/../.node-version`
 
 #####################################################################
@@ -77,8 +104,17 @@ if type -p node > /dev/null 2>&1; then
   echo "> NPM $(npm -v)"
 
   cd $cwd/..
+  echo "> npm install"
   npm install
 
+  private_path=$cwd/../../dotfiles.private
+  if [ -d "$private_path" ]; then
+    cd "$private_path"
+    echo "> npm install <private>"
+    npm install
+  fi
+
+  cd $cwd/..
   echo "> $*"
   exec $*
 else

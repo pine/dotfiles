@@ -3,6 +3,7 @@ require! {
   'gulp-util': gutil
   'run-sequence'
   'yamljs': YAML
+  './lib/private': {private-require}
 }
 
 is-darwin = /darwin/i.test process.platform
@@ -61,6 +62,13 @@ gulp.task \home, [\pre-home], (cb) ->
 
 
 # ---------------------------------------------------------
+# ssh
+# ---------------------------------------------------------
+
+gulp.task \ssh, private-require('tasks/ssh') ? []
+
+
+# ---------------------------------------------------------
 # entry point
 # ---------------------------------------------------------
 
@@ -68,6 +76,7 @@ gulp.task \test, []
 
 gulp.task \default (cb)->
   run-sequence(
+    \ssh
     \package
     \home
     cb
