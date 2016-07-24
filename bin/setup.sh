@@ -2,29 +2,32 @@
 
 set -eu
 
-echo "========== setup git =========="
 if uname | fgrep -i Darwin > /dev/null 2>&1; then
-  echo "Darwin detected"
+  echo "========== setup brew =========="
   set -x
-
   if ! type -p brew > /dev/null 2>&1; then
     /usr/bin/ruby -e \
       "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
   sudo chown -R $USER /usr/local
+  set +x
 
+  echo "========== setup git =========="
+  set -x
   brew update || brew update
   brew install git
   brew cleanup -s
-
   set +x
+
 else
-  echo "Linux detected"
+  echo "========== setup apt =========="
   set -x
-
   sudo apt-get update -y
-  sudo apt-get install git -y
+  set +x
 
+  echo "========== setup git =========="
+  set -x
+  sudo apt-get install git -y
   set +x
 fi
 
@@ -42,8 +45,13 @@ cd dotfiles
 
 git fetch
 git checkout v2
-bash ./bin/install.sh
 
+set +x
+
+
+echo "========== run =========="
+set -x
+bash ./bin/install.sh
 set +x
 
 # vim: se ts=2 sw=2 sts=2 et ft=sh :
