@@ -84,7 +84,12 @@ gulp.task \home, [\pre-home], (cb) ->
 # ssh
 # ---------------------------------------------------------
 
-gulp.task \ssh, private-require('tasks/ssh') ? []
+gulp.task \ssh, (cb) ->
+  run-sequence(\pre-ssh, \ssh-impl, \post-ssh, cb)
+
+gulp.task \pre-ssh,  private-require('tasks/pre-ssh')  ? []
+gulp.task \ssh-impl, private-require('tasks/ssh-impl') ? []
+gulp.task \post-ssh, private-require('tasks/post-ssh') ? []
 
 
 # ---------------------------------------------------------
