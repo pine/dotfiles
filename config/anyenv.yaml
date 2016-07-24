@@ -1,0 +1,7 @@
+envs:
+  - crenv
+  - goenv
+  - ndenv
+  - plenv
+  - pyenv
+  - rbenv

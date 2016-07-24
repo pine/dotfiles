@@ -11,14 +11,33 @@ is-ubuntu = process.env.IS_UBUNTU == '1'
 
 
 # ---------------------------------------------------------
+# anyenv
+# ---------------------------------------------------------
+
+gulp.task \anyenv, (cb)->
+  run-sequence(\pre-anyenv \anyenv-impl, cb)
+
+gulp.task \pre-anyenv, (cb) ->
+  YAML.load './config/pre-anyenv.yaml' (config) ->
+    require('./tasks/pre-anyenv')(config, cb)
+
+gulp.task \anyenv-impl, (cb) ->
+  YAML.load './config/anyenv.yaml' (config) ->
+    require('./tasks/anyenv')(config, cb)
+
+
+# ---------------------------------------------------------
 # package
 # ---------------------------------------------------------
+
+gulp.task \apt, (cb)->
+  run-sequence(\pre-apt \apt-impl, cb)
 
 gulp.task \pre-apt, (cb) ->
   YAML.load './config/pre-apt.yaml' (config) ->
     require('./tasks/pre-apt')(config, cb)
 
-gulp.task \apt, [\pre-apt], (cb) ->
+gulp.task \apt, (cb) ->
   YAML.load './config/apt.yaml' (config) ->
     require('./tasks/apt')(config, cb)
 
@@ -79,5 +98,6 @@ gulp.task \default (cb)->
     \ssh
     \package
     \home
+    \anyenv
     cb
   )
