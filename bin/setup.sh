@@ -49,7 +49,7 @@ git checkout v2
 set +x
 
 
-echo "========== run =========="
+echo "========== install dotfiles =========="
 set -x
 bash ./bin/install.sh
 set +x
