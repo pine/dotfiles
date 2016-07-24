@@ -12,7 +12,7 @@ private-path =
 private-require = (file) ->
   file-full = try require.resolve(path.join(private-path, file))
   try
-    fs.accessSync file-full
+    fs.access-sync file-full
   catch
     return
   require(file-full)
