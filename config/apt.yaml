@@ -1,12 +1,16 @@
 packages:
+  - automake
+  - autoconf
   - cmake
   - gcc
   - g++
   - curl
   - make
+  - pkg-config
   - python-software-properties
   - screen
   - silversearcher-ag
   - sl
   - unrar
+  #- vim-gnome
   - wget
