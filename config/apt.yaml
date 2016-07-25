@@ -4,6 +4,7 @@ packages:
   - g++
   - curl
   - make
+  - python-software-properties
   - screen
   - silversearcher-ag
   - sl
