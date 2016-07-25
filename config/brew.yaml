@@ -4,6 +4,7 @@ packages:
   - binutils
   - cmake
   - curl
+  - jad
   - openssl
   - pkg-config
   - readline
