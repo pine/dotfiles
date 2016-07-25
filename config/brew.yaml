@@ -5,6 +5,7 @@ packages:
   - cmake
   - curl
   - jad
+  - neovim
   - openssl
   - pkg-config
   - readline

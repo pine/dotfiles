@@ -1,2 +1,11 @@
 update: true
 upgrade: true
+
+taps:
+  - caskroom/cask
+  - caskroom/versions
+  - cloudfoundry/tap
+  - homebrew/binary
+  - homebrew/core
+  - homebrew/versions
+  - neovim/neovim
