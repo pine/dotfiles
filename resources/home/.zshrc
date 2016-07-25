@@ -46,6 +46,8 @@ char_hostname () {
 		echo "tomori"
 	elif [[ "$hostname" =~ "[a-z]{2}pc222" ]] then
 		echo "miuna"
+	elif [[ ! -z "$HOST_NICKNAME" ]] then
+		echo $HOST_NICKNAME
 	else
 		echo $hostname
 	fi
