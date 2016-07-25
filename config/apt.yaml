@@ -12,5 +12,5 @@ packages:
   - silversearcher-ag
   - sl
   - unrar
-  #- vim-gnome
+  - vim-gnome
   - wget
