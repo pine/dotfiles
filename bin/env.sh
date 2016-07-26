@@ -102,8 +102,10 @@ export PRIVATE_REPOSITORY
 #####################################################################
 
 if type -p node > /dev/null 2>&1; then
-  echo "> Node $(node -v)"
-  echo "> NPM $(npm -v)"
+  echo "> node -v"
+  node -v
+  echo "> npm -v"
+  npm -v
 
   cd $cwd/..
   echo "> npm install"
