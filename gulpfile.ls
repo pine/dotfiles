@@ -37,7 +37,7 @@ gulp.task \pre-apt, (cb) ->
   YAML.load './config/pre-apt.yaml' (config) ->
     require('./tasks/pre-apt')(config, cb)
 
-gulp.task \apt, (cb) ->
+gulp.task \apt-impl, (cb) ->
   YAML.load './config/apt.yaml' (config) ->
     require('./tasks/apt')(config, cb)
 

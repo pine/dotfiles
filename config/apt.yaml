@@ -4,12 +4,13 @@ packages:
   - cmake
   - gcc
   - g++
+  - git
   - curl
-  - libreadline-dev
-  - libbz2-dev
+  - libreadline-dev # for Ruby
+  - libbz2-dev      # for Python
   - make
   - pkg-config
-  - python-software-properties
+  - python-software-properties # for `add-repository` cmd
   - screen
   - silversearcher-ag
   - sl
