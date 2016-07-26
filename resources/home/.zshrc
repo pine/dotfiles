@@ -35,7 +35,7 @@ autoload -Uz vcs_info
 # # 表示フォーマットの指定
 # # %b ブランチ情報
 # # %a アクション名(mergeなど)
-zstyle ':vcs_info:*' formats '[%b]'
+zstyle ':vcs_info:*' formats '%b'
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
 char_hostname () {
@@ -60,9 +60,8 @@ precmd () {
 	psvar[2]=`char_hostname`
 }
 
-# バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
-PROMPT="[%n@%2v %1~] %(!.#.$) "
-RPROMPT="%1(v|%F{green}%1v%f|)"
+PROMPT="[%n@%2v %1~] %1(V|%F{green}(%1v)%f |)%(!.#.$) "
+RPROMPT=""
 
 # ---------------------------------------------------------
 # *** ディレクトリ ***
