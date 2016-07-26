@@ -5,6 +5,7 @@ packages:
   - gcc
   - g++
   - curl
+  - libreadline-dev
   - make
   - pkg-config
   - python-software-properties
