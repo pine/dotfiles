@@ -165,6 +165,18 @@ typeset -U path cdpath fpath manpath
 typeset -xT PKG_CONFIG_PATH pkg_config_path
 typeset -U pkg_config_path
 
+# その他コマンド
+path=(
+	/usr/local/redis/bin(N-/)
+	/usr/local/app/vim/bin(N-/)
+	/usr/local/bin(N-/)
+	/usr/local/sbin(N-/)
+	$HOME/bin(N-/)
+	$HOME/bin/*/bin(N-/)
+	/usr/local/*/bin(N-/)
+	$path
+	)
+
 # anyenv
 if [[ -d "$HOME/.anyenv" ]] then
 	path=($HOME/.anyenv/bin $path)
@@ -205,6 +217,7 @@ if [[ -d "$HOME/Library/Android/sdk" ]] then
 fi
 
 export NDK_CCACHE=`which ccache`
+export XDG_CONFIG_HOME=$HOME/.config
 
 path=(
 	$ANDROID_HOME/tools(N-/)
@@ -217,20 +230,6 @@ if [[ -d "$HOME/.go" ]] then
 	export GOPATH=$HOME/.go
 	path=("$HOME/.go/bin" $path)
 fi
-
-# その他コマンド
-path=(
-	/usr/local/redis/bin(N-/)
-	/usr/local/app/vim/bin(N-/)
-	/usr/local/bin(N-/)
-	/usr/local/sbin(N-/)
-	$HOME/bin(N-/)
-	$HOME/bin/*/bin(N-/)
-
-	$path
-
-	/usr/local/*/bin(N-/)
-	)
 
 pkg_config_path=(
 	/opt/X11/lib/pkgconfig(N-/)
