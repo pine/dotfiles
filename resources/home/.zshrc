@@ -36,7 +36,7 @@ autoload -Uz vcs_info
 # # %b ブランチ情報
 # # %a アクション名(mergeなど)
 zstyle ':vcs_info:*' formats '%b'
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
+zstyle ':vcs_info:*' actionformats '%b<%a>'
 
 char_hostname () {
 	hostname=`hostname -f | cut -f 1 -d .`
