@@ -5,3 +5,6 @@ files:
   - .screenrc
   - .vimrc
   - .zshrc
+
+directories:
+  - .config

@@ -1,0 +1,15 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'vim-scripts/wombat256.vim'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
