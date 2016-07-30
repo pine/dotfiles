@@ -87,7 +87,9 @@ gulp.task \home, [\pre-home], (cb) ->
 gulp.task \ssh, (cb) ->
   run-sequence(\pre-ssh, \ssh-impl, \post-ssh, cb)
 
-gulp.task \pre-ssh,  private-require('tasks/pre-ssh')  ? []
+gulp.task \pre-ssh, (cb) ->
+  YAML.load "#{private-path}/config/pre-ssh.yaml" (config) ->
+    (private-require('tasks/pre-ssh') ? -> cb())(config, cb)
 
 gulp.task \ssh-impl, (cb) ->
   YAML.load "#{private-path}/config/ssh.yaml" (config) ->

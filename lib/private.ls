@@ -4,18 +4,19 @@ require! {
 }
 
 
-private-path =
+private-path = do ->
   name = process.env.PRIVATE_REPOSITORY
   path.join(__dirname, "../../#{name}")
 
 
 private-require = (file) ->
-  file-full = try require.resolve(path.join(private-path, file))
+  file-full     = path.join(private-path, file)
+  resolved-full = try require.resolve(file-full)
   try
-    fs.access-sync file-full
+    fs.access-sync resolved-full
   catch
     return
-  require(file-full)
+  require(resolved-full)
 
 
 module.exports =
