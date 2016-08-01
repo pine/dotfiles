@@ -1,4 +1,6 @@
 files:
+  - .dein.toml
+  - .dein_lazy.toml
   - .editorconfig
   - .gitconfig
   - .gitignore
