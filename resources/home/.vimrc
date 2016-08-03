@@ -48,6 +48,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/wombat256.vim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Glench/Vim-Jinja2-Syntax'
 
 " neocomplete
 function! s:meet_neocomplete_requirements()
@@ -74,7 +75,8 @@ NeoBundle 'kchmck/vim-coffee-script' " CoffeeScript
 NeoBundle 'leafgarland/typescript-vim' " TypeScript
 NeoBundle 'gkz/vim-ls' " LiveScript
 NeoBundle 'digitaltoad/vim-jade' " Jade
-NeoBundle 'JulesWang/css.vim' " CSS
+" NeoBundle 'JulesWang/css.vim' " CSS
+NeoBundle 'stephenway/postcss.vim' " PostCSS
 NeoBundle 'groenewege/vim-less' " LESS
 NeoBundle 'cakebaker/scss-syntax.vim' " SCSS
 NeoBundle 'briancollins/vim-jst' " JST/EJS
