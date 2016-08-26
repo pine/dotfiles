@@ -1,2 +1,9 @@
 update: true
 upgrade: true
+
+packages:
+  - python-software-properties
+  - software-properties-common
+
+repositories:
+  - 'ppa:pi-rho/dev'

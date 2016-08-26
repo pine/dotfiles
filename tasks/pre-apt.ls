@@ -1,6 +1,7 @@
 require! {
   child_process: {exec}
   async
+  '../lib/apt'
 }
 
 
@@ -12,8 +13,17 @@ exec-apt = (sub, cb) ->
   child.stderr.on 'data', (data) -> process.stderr.write(data)
 
 
+update-apt-if-required = (required, cb) -->
+  if required then exec-apt('update', cb) else cb()
+
+
+upgrade-apt-if-required = (required, cb) -->
+  if required then exec-apt('upgrade', cb) else cb()
+
+
 module.exports = (config, cb) ->
   async.series [
-    (cb) -> if config.update  then exec-apt('update', cb)  else cb()
-    (cb) -> if config.upgrade then exec-apt('upgrade', cb) else cb()
+    (cb) -> apt.install-pkgs(config.packages, cb)
+    update-apt-if-required(config.update)
+    upgrade-apt-if-required(config.update)
   ], cb

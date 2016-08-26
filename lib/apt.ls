@@ -20,6 +20,14 @@ install-pkg = (pkg, cb) ->
   child.stderr.on 'data', (data) -> process.stderr.write(data)
 
 
+install-pkgs = (pkgs, cb) ->
+  async.each-series pkgs, (pkg, cb) ->
+    is-installed pkg, (installed) ->
+      if installed then cb() else install-pkg(pkg, cb)
+  , cb
+
+
 module.exports =
   is-installed: is-installed
   install-pkg: install-pkg
+  install-pkgs: install-pkgs
