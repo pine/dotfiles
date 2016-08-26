@@ -5,3 +5,6 @@
 
 # Mac OS X
 .DS_Store
+
+# ctags
+tags
