@@ -35,7 +35,7 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
   call dein#end()
-  call dein#save_state()
+  " call dein#save_state()
 endif
 
 if dein#check_install(['vimproc'])
@@ -94,6 +94,9 @@ colorscheme wombat256mod
 " *** 移動 ***
 " ---------------------------------------------------------
 
+" マウスを封じる
+set mouse=h
+
 " 左右の矢印キーでバッファを移動できるようにする
 nnoremap <Left> <Esc>:bp<CR>
 nnoremap <Right> <Esc>:bn<CR>
@@ -118,8 +121,8 @@ inoremap ^[OB <down>
 inoremap ^[OC <right>
 inoremap ^[OD <left>
 
-" マウス
-set mouse=h
+" ctags
+nnoremap <C-]> g<C-]>
 
 " ---------------------------------------------------------
 " *** インデント ***
