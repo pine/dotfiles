@@ -11,6 +11,14 @@ on_path = '.*'
 repo = 'nathanaelkane/vim-indent-guides'
 on_path = '.*'
 
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+on_path = '.*'
+
+[[plugins]]
+repo = 'othree/eregex.vim'
+on_path = '.*'
+
 # Perl
 [[plugins]]
 repo = 'c9s/perlomni.vim'
