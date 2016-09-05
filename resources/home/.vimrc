@@ -129,6 +129,9 @@ set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1
 set autowrite " 自動保存
 set hidden    " 保存していないバッファの切り替えを有効
 
+" Mac で crontab を動かす関係
+" http://kirin.hatenadiary.jp/entry/2015/01/16/061622
+set backupskip=/tmp/*,/private/tmp/*
 
 " ---------------------------------------------------------
 " *** ビジュアル関係 ***
