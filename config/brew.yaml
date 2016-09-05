@@ -5,6 +5,7 @@ packages:
   - cmake
   - curl
   - jad
+  - mplayer
   - neovim
   - openssl
   - pkg-config
