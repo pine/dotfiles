@@ -40,7 +40,7 @@
 
 [merge "mergepbx"]
     name = XCode project files merger
-    driver = ~/local/bin/mergepbx %O %A %B
+    driver = ~/bin/mergepbx %O %A %B
 
 [include]
 	path = .gitconfig.local
