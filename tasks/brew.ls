@@ -5,26 +5,38 @@ require! {
 }
 
 
-pkg-list = (cb) ->
-  cmd = "brew list"
+cask-cmd = (is-cask) ->
+  if is-cask then 'cask ' else ''
+
+
+pkg-list = (is-cask, cb) ->
+  cmd = "brew #{cask-cmd(is-cask)}list"
   console.log "> #{cmd}"
   exec cmd, (err, stdout, stderr) ->
     pkgs = split /\n/ stdout |> compact
     cb(err, pkgs)
 
 
-install-pkg = (pkg, cb) ->
-  cmd = "brew install #{pkg}"
+install-pkg = (is-cask, pkg, cb) ->
+  cmd = "brew #{cask-cmd(is-cask)}install #{pkg}"
   console.log "> #{cmd}"
   child = exec cmd, cb
   child.stdout.on 'data', (data) -> process.stdout.write(data)
   child.stderr.on 'data', (data) -> process.stderr.write(data)
 
 
-module.exports = (config, cb) ->
-  pkg-list (err, pkgs) ->
+install-pkgs = (is-cask, pkgs, cb) -->
+  pkg-list is-cask, (err, installed-pkgs) ->
     return cb(err) if err
-    async.each-series config.packages, (pkg, cb) ->
-      if find (== pkg), pkgs then cb() else install-pkg(pkg, cb)
+    async.each-series pkgs, (pkg, cb) ->
+      return cb() if find (== pkg), installed-pkgs
+      install-pkg(is-cask, pkg, cb)
     , cb
+
+
+module.exports = (config, cb) ->
+  async.series [
+    install-pkgs no, config.packages
+    install-pkgs yes, config.cask-packages
+  ], cb
 

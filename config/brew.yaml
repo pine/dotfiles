@@ -13,3 +13,14 @@ packages:
   - the_silver_searcher
   - unrar
   - wget
+
+caskPackages:
+  - bartender
+  - dropbox
+  - firefox
+  - google-chrome
+  - google-chrome-canary
+  - iterm2
+  - megasync
+  - nightingale
+  - scroll-reverser
