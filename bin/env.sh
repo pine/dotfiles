@@ -62,7 +62,7 @@ else
 fi
 
 # nodebrew
-echo "Checking Node.js ... "
+echo -n "Checking Node ... "
 
 if [ ! -e ~/.nodebrew ]; then
   if [ -e ~/nodebrew ]; then
@@ -83,8 +83,14 @@ fi
 nodebrew_bin=~/.nodebrew/current/bin/nodebrew
 
 if [ -x "$nodebrew_bin" ]; then
-  "$nodebrew_bin" install-binary $node_version || true
-  "$nodebrew_bin" use $node_version
+  if "$nodebrew_bin" ls | fgrep "v$node_version" > /dev/null; then
+    "$nodebrew_bin" use $node_version > /dev/null
+  else
+    echo "NG"
+    echo "Installing Node ..."
+    "$nodebrew_bin" install-binary $node_version || true
+    "$nodebrew_bin" use $node_version
+  fi
 
   if [ -e ~/.nodebrew/current/bin/node ]; then
     PATH=$HOME/.nodebrew/current/bin:$PATH
