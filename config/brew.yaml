@@ -22,6 +22,7 @@ caskPackages:
   - google-chrome-canary
   - intellij-idea
   - iterm2
+  - karabiner
   - megasync
   - nightingale
   - scroll-reverser
