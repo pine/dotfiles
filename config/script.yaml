@@ -1,0 +1,8 @@
+scripts:
+  -
+    - rsvm
+    - bats
+
+extensions:
+  - sh
+  - bash
