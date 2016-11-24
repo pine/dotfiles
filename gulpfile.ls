@@ -123,5 +123,6 @@ gulp.task \default (cb)->
     \package
     \home
     \anyenv
+    \script
     cb
   )
