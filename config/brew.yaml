@@ -5,11 +5,13 @@ packages:
   - cmake
   - curl
   - jad
+  - memcached
   - mplayer
   - neovim
   - openssl
   - pkg-config
   - readline
+  - redis
   - the_silver_searcher
   - unrar
   - wget
