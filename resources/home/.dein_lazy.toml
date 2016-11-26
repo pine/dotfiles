@@ -46,7 +46,7 @@ repo = 'JulesWang/css.vim' # CSS
 on_path = '.*'
 
 [[plugins]]
-repo = 'isRuslan/vim-es6' # ES6
+repo = 'othree/yajs.vim' # ES2015/2016
 on_path = '.*'
 
 [[plugins]]
