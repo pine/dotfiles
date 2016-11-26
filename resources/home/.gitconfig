@@ -10,11 +10,15 @@
 	name = Pine Mizune
 	email = pinemz@gmail.com
 
+[fetch]
+	prune = true
+
 [push]
 	default = current
 
 [pull]
 	rebase = true
+	prune = true
 
 [merge]
 	ff = false
