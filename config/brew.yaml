@@ -5,6 +5,7 @@ packages:
   - cmake
   - curl
   - jad
+  - libmemcached
   - memcached
   - mplayer
   - mysql@5.6
