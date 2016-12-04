@@ -1,3 +1,4 @@
+# alphabetical order
 packages:
   - automake
   - autoconf
@@ -22,6 +23,7 @@ packages:
   - wget
 
 caskPackages:
+  - atom
   - bartender
   - dropbox
   - firefox
