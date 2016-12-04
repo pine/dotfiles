@@ -3,9 +3,12 @@ packages:
   - autoconf
   - binutils
   - cmake
+  - coreutils
   - curl
   - jad
   - libmemcached
+  - libxml2   # for PHP
+  - libmcrypt # for PHP
   - memcached
   - mplayer
   - mysql@5.6
