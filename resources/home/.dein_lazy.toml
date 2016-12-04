@@ -73,6 +73,10 @@ on_path = '.*'
 repo = 'gkz/vim-ls' # LiveScript
 on_path = '.*'
 
+[[plugins]]
+repo = 'dart-lang/dart-vim-plugin' # Dart
+on_path = '.*'
+
 # Java
 [[plugins]]
 repo = 'udalov/kotlin-vim' # Kotlin
