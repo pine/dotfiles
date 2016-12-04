@@ -200,6 +200,11 @@ if [[ -d "$HOME/.phpenv" ]] then
 	eval "$(phpenv init -)"
 fi
 
+# phpbrew
+if [[ -d "$HOME/.phpbrew" ]] then
+    source $HOME/.phpbrew/bashrc
+fi
+
 # direnv
 if type -p direnv > /dev/null 2>&1; then
 	eval "$(direnv hook zsh)"
