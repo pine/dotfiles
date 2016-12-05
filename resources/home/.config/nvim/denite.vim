@@ -6,6 +6,10 @@ if executable('ag')
 		\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
 
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+	      \ [ '.git/', '.ropeproject/', '__pycache__/',
+	      \   'venv/', '*.min.*', 'node_modules/'])
+
 " ---------------------------------------------------------
 
 " Define alias
