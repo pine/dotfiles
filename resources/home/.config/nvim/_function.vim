@@ -27,6 +27,7 @@ function! GetFileType()
                 \'text'      : 'Text',
                 \'vim'       : 'Vim',
                 \'xslate'    : 'Xslate',
+                \'yaml'      : 'YAML',
                 \}
 
     retu get(l:name, &ft, &ft)
