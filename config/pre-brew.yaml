@@ -4,6 +4,7 @@ upgrade: true
 taps:
   - caskroom/cask
   - caskroom/versions
+  - dart-lang/dart
   - cloudfoundry/tap
   - homebrew/binary
   - homebrew/core

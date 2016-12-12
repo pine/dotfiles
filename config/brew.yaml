@@ -6,6 +6,7 @@ packages:
   - cmake
   - coreutils
   - curl
+  - dart
   - jad
   - libmemcached
   - libxml2   # for PHP
