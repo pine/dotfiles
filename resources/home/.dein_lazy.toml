@@ -19,6 +19,11 @@ on_path = '.*'
 repo = 'othree/eregex.vim'
 on_path = '.*'
 
+# Crystal
+[[plugins]]
+repo = 'rhysd/vim-crystal'
+on_path = '.*'
+
 # Perl
 [[plugins]]
 repo = 'c9s/perlomni.vim'
