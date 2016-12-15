@@ -1,7 +1,7 @@
 # UI
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-on_path = '.*'
+#[[plugins]]
+#repo = 'Shougo/deoplete.nvim'
+#on_path = '.*'
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
@@ -111,4 +111,8 @@ on_path = '.*'
 # Configuration
 [[plugins]]
 repo = 'ekalinin/Dockerfile.vim' # Dockerfile
+on_path = '.*'
+
+[[plugins]]
+repo = 'gisphm/vim-gitignore' # .gitignore
 on_path = '.*'
