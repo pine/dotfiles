@@ -7,6 +7,7 @@ packages:
   - coreutils
   - curl
   - dart
+  - gpg
   - jad
   - libmemcached
   - libxml2   # for PHP
@@ -35,5 +36,6 @@ caskPackages:
   - karabiner
   - megasync
   - nightingale
+  - paintbrush
   - scroll-reverser
   - skype
