@@ -2,10 +2,12 @@ files:
   - .dein.toml
   - .dein_lazy.toml
   - .editorconfig
+  - .gemrc
   - .gitconfig
   - .gitignore
   - .screenrc
   - .vimrc
+  - .yarnrc
   - .zshrc
 
 directories:

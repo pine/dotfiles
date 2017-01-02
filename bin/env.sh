@@ -43,10 +43,14 @@ export DOTFILES_ENV=1
 #####################################################################
 
 # perl
-echo "Installing Perl"
+echo -n "Checking Perl ... "
 
 if uname -a | fgrep -i Darwin > /dev/null 2>&1; then
-  true
+  if ! type -p perl > /dev/null 2>&1; then
+    echo "Error: Not found"
+    exit 1
+  fi
+  echo "OK"
 else
   if ! type -p perl > /dev/null 2>&1; then
     set -x
@@ -54,10 +58,11 @@ else
     sudo apt-get install perl
     set +x
   fi
+  echo "OK"
 fi
 
 # nodebrew
-echo "Installing Node.js"
+echo -n "Checking Node ... "
 
 if [ ! -e ~/.nodebrew ]; then
   if [ -e ~/nodebrew ]; then
@@ -78,14 +83,26 @@ fi
 nodebrew_bin=~/.nodebrew/current/bin/nodebrew
 
 if [ -x "$nodebrew_bin" ]; then
-  "$nodebrew_bin" install-binary $node_version || true
-  "$nodebrew_bin" use $node_version
+  if "$nodebrew_bin" ls | fgrep "v$node_version" > /dev/null; then
+    "$nodebrew_bin" use $node_version > /dev/null
+  else
+    echo "NG"
+    echo "Installing Node ..."
+    "$nodebrew_bin" install-binary $node_version || true
+    "$nodebrew_bin" use $node_version
+  fi
 
   if [ -e ~/.nodebrew/current/bin/node ]; then
     PATH=$HOME/.nodebrew/current/bin:$PATH
   fi
 fi
 
+if type -p node > /dev/null 2>&1; then
+  echo "OK"
+else
+  echo "Error: Node install failed"
+  exit 1
+fi
 
 #####################################################################
 
@@ -101,29 +118,24 @@ export PRIVATE_REPOSITORY
 
 #####################################################################
 
-if type -p node > /dev/null 2>&1; then
-  echo "> node -v"
-  node -v
-  echo "> npm -v"
-  npm -v
+echo "> node -v"
+node -v
+echo "> npm -v"
+npm -v
 
-  cd $cwd/..
-  echo "> npm install"
+cd $cwd/..
+echo "> npm install"
+npm install
+
+private_path=$cwd/../../dotfiles.private
+if [ -d "$private_path" ]; then
+  cd "$private_path"
+  echo "> npm install <private>"
   npm install
-
-  private_path=$cwd/../../dotfiles.private
-  if [ -d "$private_path" ]; then
-    cd "$private_path"
-    echo "> npm install <private>"
-    npm install
-  fi
-
-  cd $cwd/..
-  echo "> $*"
-  exec $*
-else
-  echo "Can't install Node.js by nodebrew" 1>&2
-  exit 1
 fi
+
+cd $cwd/..
+echo "> $*"
+exec $*
 
 # vim: se ts=2 sw=2 sts=2 et ft=sh :

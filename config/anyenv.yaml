@@ -1,5 +1,6 @@
 envs:
   - crenv
+  - denv
   - goenv
   - ndenv
   - plenv

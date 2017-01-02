@@ -4,17 +4,21 @@
 	quotepath = false
 	precomposeunicode = true
     excludesfile = ~/.gitignore
-	ignorecase = true
+	ignorecase = false
 
 [user]
 	name = Pine Mizune
 	email = pinemz@gmail.com
+
+[fetch]
+	prune = true
 
 [push]
 	default = current
 
 [pull]
 	rebase = true
+	prune = true
 
 [merge]
 	ff = false
@@ -30,6 +34,7 @@
 	s = status
 	d = diff
 	dc = diff --cached
+	dw = diff --ignore-space-change
 	sync = !git pull && git push
 	master = checkout master
 	develop = checkout develop
@@ -40,7 +45,7 @@
 
 [merge "mergepbx"]
     name = XCode project files merger
-    driver = ~/local/bin/mergepbx %O %A %B
+    driver = ~/bin/mergepbx %O %A %B
 
 [include]
 	path = .gitconfig.local

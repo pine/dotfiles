@@ -1,14 +1,41 @@
+# alphabetical order
 packages:
   - automake
   - autoconf
   - binutils
   - cmake
+  - coreutils
   - curl
+  - dart
+  - gpg
   - jad
+  - libmemcached
+  - libxml2   # for PHP
+  - libmcrypt # for PHP
+  - memcached
+  - mplayer
+  - mysql@5.6
   - neovim
   - openssl
   - pkg-config
   - readline
+  - redis
   - the_silver_searcher
   - unrar
   - wget
+
+caskPackages:
+  - atom
+  - bartender
+  - dropbox
+  - firefox
+  - google-chrome
+  - google-chrome-canary
+  - intellij-idea
+  - iterm2
+  - karabiner
+  - megasync
+  - nightingale
+  - paintbrush
+  - scroll-reverser
+  - skype

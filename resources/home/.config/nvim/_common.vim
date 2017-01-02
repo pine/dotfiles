@@ -1,27 +1,11 @@
-" =========================================================
-" .vimrc
-" =========================================================
-
-set encoding=utf-8
-scriptencoding utf-8
-
-
-" ---------------------------------------------------------
-" *** 全般設定 ***
-" ---------------------------------------------------------
-
-" vi 互換ではなく vim のデフォルトの挙動にする
-" ファイルの先頭で記述すること
-set nocompatible
-
-" モードラインを有効化し、ファイルの最初と最後 5 行に設定
-set modeline
-set modelines=5
-
+" ~/.config/nvim/_common.vim
 
 " ---------------------------------------------------------
 " *** ファイル関係 ***
 " ---------------------------------------------------------
+
+set modeline    " モードライン有効
+set modelines=5 " 前後 5 行
 
 " ファイルタイプ関係の設定
 syntax enable
@@ -39,12 +23,9 @@ set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1
 set autowrite " 自動保存
 set hidden    " 保存していないバッファの切り替えを有効
 
-" Mac で crontab を動かす関係
-" http://kirin.hatenadiary.jp/entry/2015/01/16/061622
-set backupskip=/tmp/*,/private/tmp/*
 
 " ---------------------------------------------------------
-" *** ビジュアル関係 ***
+" *** UI ***
 " ---------------------------------------------------------
 
 " 行番号を有効にする
@@ -61,15 +42,16 @@ set statusline=%<%f\ %m%r%{&ft==''?'':'['.GetFileType().']'}[%{GetFileEncoding()
 set showcmd   " コマンドを表示
 set showmatch " 対応する括弧を表示
 
+" カラースキーマ設定
+colorscheme wombat256mod
 
-" 256 色対応
-if $TERM == 'screen-bce'
-    set t_Co=256
-endif
 
 " ---------------------------------------------------------
 " *** 移動 ***
 " ---------------------------------------------------------
+
+" マウスを封じる
+set mouse=h
 
 " 左右の矢印キーでバッファを移動できるようにする
 nnoremap <Left> <Esc>:bp<CR>
@@ -90,10 +72,13 @@ vnoremap gk k
 nnoremap tt <C-w>w
 
 " 矢印キーで入力されないように変更
-inoremap ^[OA <up>
+noremap ^[OA <up>
 inoremap ^[OB <down>
 inoremap ^[OC <right>
 inoremap ^[OD <left>
+
+" ctags
+nnoremap <C-]> g<C-]>
 
 " ---------------------------------------------------------
 " *** インデント ***
@@ -130,6 +115,7 @@ nnoremap dk lbdw
 " Backspace キーを効くようにする
 set backspace=indent,eol,start
 
+
 " ---------------------------------------------------------
 " *** 検索関係 ***
 " ---------------------------------------------------------
@@ -141,104 +127,15 @@ nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
 
 " ---------------------------------------------------------
-" *** 関数定義 ***
+" *** commentary ***
 " ---------------------------------------------------------
 
-" ファイルタイプを返す
-function! GetFileType()
-    " Alphabet order
-    let l:name = {
-                \'c'         : 'C',
-                \'coffee'    : 'CoffeeScript',
-                \'cpp'       : 'C++',
-                \'crystal'   : 'Crystal',
-                \'css'       : 'CSS',
-                \'elixir'    : 'Elixir',
-                \'java'      : 'Java',
-                \'javascript': 'JavaScript',
-                \'kotlin'    : 'Kotlin',
-                \'less'      : 'LESS',
-                \'markdown'  : 'Markdown',
-                \'perl'      : 'Perl',
-                \'php'       : 'PHP',
-                \'python'    : 'Python',
-                \'ruby'      : 'Ruby',
-                \'sql'       : 'SQL',
-                \'swift'     : 'Swift',
-                \'tex'       : 'TeX',
-                \'text'      : 'Text',
-                \'vim'       : 'Vim',
-                \'xslate'    : 'Xslate',
-                \}
+nmap <C-k> <Plug>CommentaryLine
+vmap <C-k> <Plug>Commentary
 
-    retu get(l:name, &ft, &ft)
-endfunction
-
-" 文字コードを返す
-function! GetFileEncoding()
-    let l:fenc = &fenc
-
-    " fenc が設定されていない場合 enc を使用する
-    if l:fenc == ''
-        let l:fenc = &enc
-    endif
-
-    if l:fenc == 'cp932'
-        return 'S'
-    elseif l:fenc == 'iso-2022-jp'
-        return 'J'
-    elseif l:fenc == 'euc-jp'
-        return 'E'
-    elseif l:fenc == 'utf-8'
-        return 'U'
-    else
-        return l:fenc
-    endif
-endfunction
-
-" 改行コードを返す
-function! GetFileFormat()
-    if &ff == 'unix'
-        return 'U'
-    elseif &ff == 'dos'
-        return 'D'
-    else
-        return 'M'
-    endif
-endfunction
-
-" ステータスラインを生成する
-function! GetStatusLine()
-    let l:line = 'vim: se'
-
-    if &et
-        let l:line .= ' et'
-    else
-        let l:line .= ' noet'
-    endif
-
-    let l:line .= ' ts='.&ts
-    let l:line .= ' sw='.&sw
-    let l:line .= ' sts='.&sts
-
-    if &ft != ''
-        let l:line .= ' ft='.&ft
-    endif
-
-    let l:line .= ' :'
-
-    return l:line
-endfunction
 
 " ステータスラインを自動挿入
 nnoremap <Leader>s :execute 'normal a'.GetStatusLine()<CR>
 
-" ---------------------------------------------------------
-" *** 外部定義 ***
-" ---------------------------------------------------------
 
-if filereadable(glob("~/.vimrc.local"))
-    source ~/.vimrc.local
-endif
-
-" vim: se et ts=4 sw=4 sts=0 ft=vim :
+" vim: se et ts=4 sw=4 sts=4 ft=vim :

@@ -81,6 +81,19 @@ gulp.task \home, [\pre-home], (cb) ->
 
 
 # ---------------------------------------------------------
+# script
+# ---------------------------------------------------------
+
+gulp.task \pre-script, (cb) ->
+  YAML.load './config/pre-script.yaml' (config) ->
+    require('./tasks/pre-script')(config, cb)
+
+gulp.task \script, [\pre-script], (cb) ->
+  YAML.load './config/script.yaml' (config) ->
+    require('./tasks/script')(config, cb)
+
+
+# ---------------------------------------------------------
 # ssh
 # ---------------------------------------------------------
 
@@ -110,5 +123,6 @@ gulp.task \default (cb)->
     \package
     \home
     \anyenv
+    \script
     cb
   )

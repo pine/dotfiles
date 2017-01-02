@@ -1,7 +1,7 @@
 # UI
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-on_i = 1
+#[[plugins]]
+#repo = 'Shougo/deoplete.nvim'
+#on_path = '.*'
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
@@ -11,7 +11,24 @@ on_path = '.*'
 repo = 'nathanaelkane/vim-indent-guides'
 on_path = '.*'
 
-# Perl
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+on_path = '.*'
+
+[[plugins]]
+repo = 'othree/eregex.vim'
+on_path = '.*'
+
+# Language
+[[plugins]]
+repo = 'd.vim' # D
+on_path = '.*'
+
+[[plugins]]
+repo = 'rhysd/vim-crystal' # Crystal
+on_path = '.*'
+
+## Perl
 [[plugins]]
 repo = 'c9s/perlomni.vim'
 on_path = '.*'
@@ -21,14 +38,14 @@ repo = 'y-uuki/perl-local-lib-path.vim'
 on_path = '.*'
 
 [[plugins]]
-repo = 'moznion/vim-cpanfile'
+repo = 'moznion/vim-cpanfile' # Cpanfile
 on_path = '.*'
 
 [[plugins]]
 repo = 'motemen/xslate-vim'
 on_ft = '.*'
 
-# JavaScript
+## JavaScript
 [[plugins]]
 repo = 'kchmck/vim-coffee-script' # CoffeeScript
 on_path = '.*'
@@ -38,7 +55,7 @@ repo = 'JulesWang/css.vim' # CSS
 on_path = '.*'
 
 [[plugins]]
-repo = 'isRuslan/vim-es6' # ES6
+repo = 'isRuslan/vim-es6' # ES2015/2016
 on_path = '.*'
 
 [[plugins]]
@@ -65,7 +82,11 @@ on_path = '.*'
 repo = 'gkz/vim-ls' # LiveScript
 on_path = '.*'
 
-# Java
+[[plugins]]
+repo = 'dart-lang/dart-vim-plugin' # Dart
+on_path = '.*'
+
+## Java
 [[plugins]]
 repo = 'udalov/kotlin-vim' # Kotlin
 on_path = '.*'
@@ -78,7 +99,7 @@ on_path = '.*'
 repo = 'tfnico/vim-gradle' # Gradle
 on_path = '.*'
 
-# Data Format
+## Data Format
 [[plugins]]
 repo = 'elzr/vim-json' # JSON
 on_path = '.*'
@@ -91,7 +112,11 @@ on_path = '.*'
 repo = 'stephpy/vim-yaml' # YAML
 on_path = '.*'
 
-# Configuration
+## Config
 [[plugins]]
 repo = 'ekalinin/Dockerfile.vim' # Dockerfile
+on_path = '.*'
+
+[[plugins]]
+repo = 'gisphm/vim-gitignore' # .gitignore
 on_path = '.*'

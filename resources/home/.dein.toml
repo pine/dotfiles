@@ -13,3 +13,10 @@ repo = 'vim-scripts/wombat256.vim'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+
+# Denite
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
