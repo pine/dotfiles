@@ -9,6 +9,7 @@ packages:
   - curl
   - libreadline-dev # for Ruby
   - libbz2-dev      # for Python
+  - libssl-dev      # for Python
   - make
   - pkg-config
   - python-software-properties # for `add-repository` cmd
