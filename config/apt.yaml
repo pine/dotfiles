@@ -9,6 +9,7 @@ packages:
   - curl
   - libreadline-dev # for Ruby
   - libbz2-dev      # for Python
+  - libssl-dev      # for Python
   - make
   - neovim
   - pkg-config
@@ -19,3 +20,4 @@ packages:
   - unrar
   - vim-gnome
   - wget
+  - zsh
