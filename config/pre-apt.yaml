@@ -6,4 +6,7 @@ packages:
   - software-properties-common
 
 repositories:
-  - 'ppa:pi-rho/dev'
+  - name: 'ppa:pi-rho/dev'
+    match: '^pi-rho'
+  - name: 'ppa:neovim-ppa/unstable'
+    match: '^neovim'
