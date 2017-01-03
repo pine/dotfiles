@@ -168,6 +168,7 @@ typeset -U pkg_config_path
 path=(
 	/usr/local/redis/bin(N-/)
 	/usr/local/app/vim/bin(N-/)
+	/usr/lib/dart/bin(N-/)
 	/usr/local/bin(N-/)
 	/usr/local/sbin(N-/)
 	$HOME/bin(N-/)
