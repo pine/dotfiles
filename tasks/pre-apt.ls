@@ -6,7 +6,7 @@ require! {
 
 
 exec-apt = (sub, cb) ->
-  cmd = "sudo apt-get #{sub} -y --force-yes"
+  cmd = "sudo apt-get #{sub} -y --force-yes -qq"
   console.log "> #{cmd}"
   child = exec cmd, cb
   child.stdout.on 'data', (data) -> process.stdout.write(data)
