@@ -1,2 +1,12 @@
 update: true
 upgrade: true
+
+packages:
+  - python-software-properties
+  - software-properties-common
+
+repositories:
+  - name: 'ppa:pi-rho/dev'
+    match: '^pi-rho'
+  - name: 'ppa:neovim-ppa/unstable'
+    match: '^neovim'

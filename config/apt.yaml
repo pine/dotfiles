@@ -11,6 +11,7 @@ packages:
   - libbz2-dev      # for Python
   - libssl-dev      # for Python
   - make
+  - neovim
   - pkg-config
   - python-software-properties # for `add-repository` cmd
   - screen
