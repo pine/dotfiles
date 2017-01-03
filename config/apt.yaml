@@ -10,6 +10,7 @@ packages:
   - libreadline-dev # for Ruby
   - libbz2-dev      # for Python
   - make
+  - neovim
   - pkg-config
   - python-software-properties # for `add-repository` cmd
   - screen
