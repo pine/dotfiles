@@ -43,6 +43,10 @@
 	# http://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
 	graph = log --graph --oneline --decorate
 
+	# for typo
+	psuh = push
+	puhs = push
+
 [merge "mergepbx"]
     name = XCode project files merger
     driver = ~/bin/mergepbx %O %A %B
