@@ -9,6 +9,7 @@ packages:
   - curl
   - libreadline-dev # for Ruby
   - libbz2-dev      # for Python
+  - libgmp3-dev     # for Perl
   - libssl-dev      # for Python
   - make
   - memcached
