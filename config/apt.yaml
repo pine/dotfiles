@@ -7,9 +7,10 @@ packages:
   - g++
   - git
   - curl
-  - libreadline-dev # for Ruby
   - libbz2-dev      # for Python
+  - libexpat1-dev   # for Perl (XML::Parser)
   - libgmp3-dev     # for Perl
+  - libreadline-dev # for Ruby
   - libssl-dev      # for Python
   - make
   - memcached
