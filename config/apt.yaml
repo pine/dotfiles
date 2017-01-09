@@ -12,6 +12,7 @@ packages:
   - libgmp3-dev     # for Perl
   - libreadline-dev # for Ruby
   - libssl-dev      # for Python
+  - libxml2-dev     # for Perl (XML::LibXML)
   - make
   - memcached
   - neovim
