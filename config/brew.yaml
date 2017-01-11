@@ -18,6 +18,7 @@ packages:
   - mysql@5.6
   - neovim
   - openssl
+  - pidcat
   - pkg-config
   - readline
   - redis
