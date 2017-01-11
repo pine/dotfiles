@@ -25,6 +25,7 @@ packages:
   - wget
 
 caskPackages:
+  - android-studio
   - atom
   - bartender
   - dropbox
