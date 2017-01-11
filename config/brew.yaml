@@ -1,5 +1,6 @@
 # alphabetical order
 packages:
+  - apktool
   - automake
   - autoconf
   - binutils
