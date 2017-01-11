@@ -34,6 +34,7 @@ caskPackages:
   - google-chrome-canary
   - intellij-idea
   - iterm2
+  - java
   - karabiner
   - megasync
   - nightingale
