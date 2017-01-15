@@ -216,6 +216,11 @@ if [[ -s "$HOME/.rsvm/rsvm.sh" ]] then
 	. "$HOME/.rsvm/rsvm.sh"
 fi
 
+path=(
+	$HOME/.cargo/bin(N-/) # for Cargo
+	$path
+)
+
 # Android Studio
 if [[ -d "$HOME/Library/Android/sdk" ]] then
 	export ANDROID_HOME="$HOME/Library/Android/sdk"
