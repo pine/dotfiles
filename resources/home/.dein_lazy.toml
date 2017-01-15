@@ -28,6 +28,14 @@ on_path = '.*'
 repo = 'rhysd/vim-crystal' # Crystal
 on_path = '.*'
 
+[[plugins]]
+repo = 'keith/swift.vim' # Swift
+on_path = '.*'
+
+[[plugins]]
+repo = 'rust-lang/rust.vim' # Rust
+on_path = '.*'
+
 ## Perl
 [[plugins]]
 repo = 'c9s/perlomni.vim'
