@@ -36,6 +36,10 @@ on_path = '.*'
 repo = 'rust-lang/rust.vim' # Rust
 on_path = '.*'
 
+[[plugins]]
+repo = 'derekwyatt/vim-scala' # Scala
+on_path = '.*'
+
 ## Perl
 [[plugins]]
 repo = 'c9s/perlomni.vim'
