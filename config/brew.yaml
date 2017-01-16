@@ -8,11 +8,11 @@ packages:
   - coreutils
   - curl
   - dart
-  - gpg
+  - gnupg2
   - jad
   - libmemcached
-  - libxml2   # for PHP
-  - libmcrypt # for PHP
+  - libxml2 # for PHP
+  - mcrypt  # for PHP
   - memcached
   - mplayer
   - mysql@5.6
