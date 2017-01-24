@@ -7,7 +7,6 @@ files:
   - .gitignore
   - .screenrc
   - .vimrc
-  - .yarnrc
   - .zshrc
 
 directories:
