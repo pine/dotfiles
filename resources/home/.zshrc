@@ -173,8 +173,12 @@ path=(
 	/usr/local/sbin(N-/)
 	$HOME/bin(N-/)
 	$HOME/bin/*/bin(N-/)
+	/usr/local/Homebrew/bin(N-/)
 	/usr/local/*/bin(N-/)
-	$path
+	/usr/bin(N-/)
+	/bin(N-/)
+	/usr/sbin(N-/)
+	/sbin(N-/)
 	)
 
 # anyenv
@@ -293,4 +297,3 @@ if [[ $TERM != 'screen' ]] then
 fi
 
 # vim: se noet ts=4 sw=4 sts=0 ft=zsh :
-
