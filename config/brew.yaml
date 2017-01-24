@@ -9,7 +9,6 @@ packages:
   - curl
   - dart
   - gnupg2
-  - jad
   - libmemcached
   - libxml2 # for PHP
   - mcrypt  # for PHP
@@ -25,6 +24,7 @@ packages:
   - the_silver_searcher
   - unrar
   - wget
+  - yarn
 
 caskPackages:
   - android-studio
@@ -37,6 +37,7 @@ caskPackages:
   - intellij-idea
   - iterm2
   - java
+  - jad
   - karabiner
   - megasync
   - nightingale
