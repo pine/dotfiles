@@ -24,7 +24,6 @@ packages:
   - the_silver_searcher
   - unrar
   - wget
-  - yarn
 
 caskPackages:
   - android-studio
