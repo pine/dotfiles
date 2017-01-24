@@ -1,5 +1,8 @@
 language: objective-c
-
-
 script:
   - ./bin/install.sh
+  - ./bin/env.sh npm test
+
+notifications:
+  slack:
+    - secure: "Dti8w8ZLcLPSvIWQCNKlBO6lk1KXQgPqLvGDAyrL8/UZkvmZZ4aRdpkvjvRd2dEwkKtHc71HX7cUI0Cy3K2Ioapgx8UlfxgxIXRWe55WitiUAHF9WpEn4Kqe27jo0W3BIAZW3AG2fjGkxUfq0GivuqiVLCWN9ibdbA4925MhbKpiS7O3ECY+fcCDVuQlWr5IXrj+GWP9mNxU4IibZwh1AzytVifBcYC+Vp8cgkKOdpgQHExzjCC7ow50H8sN6pPlHNBSDF3hEScKF+uhSEH5azxR0LswW1QpkSuXm31oSx1grWyp3p+e2oTe0xT+BDalk7OqEdvmPFLCLRrbOHijBi2KGoNU5Mjk67MM3HZbEHaX01BpTPbujPNCbp7W3MJFYs4ihvtGmh2T573G0q/obmDHCWS038x7ZrzSkfflv7/T5kgrCrg87lPEYkWCk5+FUMuKabLr9uTo1KEsXwq8IwqvMsY6LXoiIvRRQQc4n37CtjbSRiBXQwbmVbC4E4UL/VRP9n7Fib96Uzf5ADeG2SkjW/huAppN71zeKzwXQ50/XPhbbyuAP6mpUnNJOxN+ZTmGKdrku82ibArhRicivcrkcXrS/W3P7+ZkpoBZkNuufQicNfTYbYCJV4/Fkkn9Lp0UZmUedc8KBCOPVxccVjNDB3ZmdevXVUuCMNFsyQs="
