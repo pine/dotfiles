@@ -9,6 +9,7 @@ packages:
   - curl
   - dart
   - gnupg2
+  - lha
   - libmemcached
   - libxml2 # for PHP
   - mcrypt  # for PHP
