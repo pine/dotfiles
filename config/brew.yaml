@@ -20,6 +20,7 @@ packages:
   - openssl
   - pidcat
   - pkg-config
+  - pwgen
   - readline
   - redis
   - the_silver_searcher
