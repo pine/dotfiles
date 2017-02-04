@@ -164,7 +164,7 @@ typeset -U path cdpath fpath manpath
 typeset -xT PKG_CONFIG_PATH pkg_config_path
 typeset -U pkg_config_path
 
-# その他コマンド
+# 全般
 path=(
 	/usr/local/redis/bin(N-/)
 	/usr/local/app/vim/bin(N-/)
