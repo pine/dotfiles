@@ -8,6 +8,7 @@ packages:
   - coreutils
   - curl
   - dart
+  - findutils
   - gnupg2
   - lha
   - libmemcached
