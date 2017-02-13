@@ -26,7 +26,7 @@ source $VIM_CONF_PATH/_function.vim
 source $VIM_CONF_PATH/_common.vim
 
 source $VIM_CONF_PATH/denite.vim
-" source $VIM_CONF_PATH/deoplete.vim
+source $VIM_CONF_PATH/deoplete.vim
 source $VIM_CONF_PATH/NERDTree.vim
 
 
