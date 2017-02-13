@@ -1,7 +1,8 @@
 scripts:
   -
-    - rsvm
     - bats
+    - git-fire
+    - rsvm
 
 extensions:
   - sh
