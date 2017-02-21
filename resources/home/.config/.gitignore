@@ -1,6 +1,3 @@
-configstore/bower-github.json
-configstore/update-notifier-ava.json
-configstore/update-notifier-bower.json
-configstore/update-notifier-fly.json
+/configstore
 /composer/.htaccess
 /yarn
