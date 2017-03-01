@@ -3,6 +3,7 @@ scripts:
     - bats
     - git-fire
     - rsvm
+    - screen
 
 extensions:
   - sh
