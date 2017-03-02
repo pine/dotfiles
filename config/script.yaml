@@ -4,6 +4,7 @@ scripts:
     - git-fire
     - rsvm
     - screen
+    - sdkman
 
 extensions:
   - sh
