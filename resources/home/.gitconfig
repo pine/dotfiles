@@ -46,6 +46,7 @@
 	# for typo
 	psuh = push
 	puhs = push
+	pshu = push
 
 [merge "mergepbx"]
     name = XCode project files merger
