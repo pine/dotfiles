@@ -245,6 +245,9 @@ if [[ -d "$HOME/.go" ]] then
 	path=("$HOME/.go/bin" $path)
 fi
 
+# PostgreSQL
+export PGDATA=/usr/local/var/postgres
+
 pkg_config_path=(
 	/opt/X11/lib/pkgconfig(N-/)
 	$pkg_config_path
