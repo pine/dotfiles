@@ -10,6 +10,7 @@ packages:
   - dart
   - findutils
   - gnupg2
+  - imagemagick
   - lha
   - libmemcached
   - libxml2 # for PHP
