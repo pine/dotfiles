@@ -39,7 +39,6 @@ caskPackages:
   - firefox
   - google-chrome
   - google-chrome-canary
-  - intellij-idea
   - iterm2
   - java
   - jad
