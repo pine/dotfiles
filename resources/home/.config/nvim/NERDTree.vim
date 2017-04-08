@@ -15,6 +15,7 @@ let g:NERDTreeIgnore=[
             \'\.bak$',
             \'\.pyc$',
             \'^__pycache__$',
+            \'^\.DS_Store$',
             \'\~$']
 let g:NERDTreeShowHidden=1
 let g:NERDTreeMinimalUI=1
