@@ -269,11 +269,7 @@ if type -p vim > /dev/null 2>&1; then
 fi
 
 # 言語設定
-case ${OSTYPE} in
-	linux*)
-		export LC_ALL='en_US.UTF-8'
-		;;
-esac
+export LC_ALL='en_US.UTF-8'
 
 # ---------------------------------------------------------
 # *** 実行 ***
