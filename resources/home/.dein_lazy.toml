@@ -37,6 +37,10 @@ repo = 'rust-lang/rust.vim' # Rust
 on_path = '.*'
 
 [[plugins]]
+repo = 'fishbullet/deoplete-ruby'
+on_path = '.*'
+
+[[plugins]]
 repo = 'derekwyatt/vim-scala' # Scala
 on_path = '.*'
 
