@@ -29,6 +29,7 @@ packages:
   - redis
   - the_silver_searcher
   - typesafe-activator
+  - unar
   - unrar
   - wget
 
