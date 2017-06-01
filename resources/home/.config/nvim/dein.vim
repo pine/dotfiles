@@ -14,7 +14,7 @@ call dein#begin(s:dein_dir)
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/neomru.vim')
-call dein#add('Shougo/vimproc.vim')
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('editorconfig/editorconfig-vim')
 
 " UI
@@ -53,8 +53,8 @@ call dein#add('gisphm/vim-gitignore')
 
 call dein#end()
 
-if dein#check_install(['vimproc'])
-  call dein#install(['vimproc'])
+if dein#check_install(['vimproc.vim'])
+  call dein#install(['vimproc.vim'])
 endif
 if dein#check_install()
   call dein#install()
