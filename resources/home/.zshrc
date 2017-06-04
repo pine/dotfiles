@@ -181,6 +181,11 @@ path=(
 	/sbin(N-/)
 	)
 
+fpath=(
+	/usr/local/share/zsh/site-functions
+	$fpath
+)
+
 # anyenv
 if [[ -d "$HOME/.anyenv" ]] then
 	path=($HOME/.anyenv/bin $path)
