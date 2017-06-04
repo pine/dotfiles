@@ -37,6 +37,7 @@ caskPackages:
   - android-studio
   - atom
   - bartender
+  - docker
   - dropbox
   - firefox
   - google-chrome
