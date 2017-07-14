@@ -27,6 +27,7 @@ packages:
   - pwgen
   - readline
   - redis
+  - sbt
   - the_silver_searcher
   - typesafe-activator
   - unar
