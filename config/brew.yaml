@@ -38,6 +38,7 @@ caskPackages:
   - atom
   - bartender
   - docker
+  - charles
   - dropbox
   - firefox
   - google-chrome
