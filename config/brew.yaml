@@ -4,6 +4,7 @@ packages:
   - automake
   - autoconf
   - binutils
+  - cf-cli
   - cmake
   - coreutils
   - curl
