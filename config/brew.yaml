@@ -45,6 +45,7 @@ caskPackages:
   - firefox
   - google-chrome
   - google-chrome-canary
+  - google-japanese-ime
   - iterm2
   - java
   - jad
