@@ -10,6 +10,7 @@ packages:
   - curl
   - dart
   - findutils
+  - fontforge
   - gnupg
   - imagemagick
   - lame
