@@ -1,5 +1,6 @@
 /configstore
 /composer/.htaccess
+/composer/keys.*
 /fontforge
 /karabiner
 /wireshark

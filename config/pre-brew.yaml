@@ -8,5 +8,6 @@ taps:
   - cloudfoundry/tap
   - homebrew/binary
   - homebrew/core
+  - homebrew/php
   - homebrew/versions
   - neovim/neovim

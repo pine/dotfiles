@@ -6,6 +6,7 @@ packages:
   - binutils
   - cf-cli
   - cmake
+  - composer
   - coreutils
   - curl
   - dart
