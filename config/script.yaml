@@ -2,6 +2,7 @@ scripts:
   -
     - bats
     - git-fire
+    - phpbrew
     - rsvm
     - screen
     - sdkman
