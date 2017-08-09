@@ -1,8 +1,10 @@
 [core]
 	autocrlf = false
 	editor = vim
+	fscache = true
 	quotepath = false
 	precomposeunicode = true
+	preloadindex = true
     excludesfile = ~/.gitignore
 	ignorecase = false
 
