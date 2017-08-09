@@ -35,6 +35,7 @@ install-tap = (tap, cb) ->
 
 module.exports = (config, cb) ->
   async.series [
+    if config.update  then exec-brew('update')  else ->
     install-taps(config.taps)
     exec-brew('tap --repair')
     if config.update  then exec-brew('update')  else ->
