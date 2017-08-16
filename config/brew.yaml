@@ -55,5 +55,6 @@ caskPackages:
   - megasync
   - nightingale
   - paintbrush
+  - reflector
   - scroll-reverser
   - skype
