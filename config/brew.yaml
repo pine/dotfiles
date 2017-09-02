@@ -4,6 +4,7 @@ packages:
   - automake
   - autoconf
   - binutils
+  - carthage
   - cf-cli
   - cmake
   - composer
