@@ -23,6 +23,8 @@ set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932,latin1
 set autowrite " 自動保存
 set hidden    " 保存していないバッファの切り替えを有効
 
+set shortmess+=A " swap ファイルの存在を無視
+
 
 " ---------------------------------------------------------
 " *** UI ***
