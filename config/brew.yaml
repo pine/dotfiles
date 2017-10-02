@@ -42,6 +42,7 @@ packages:
 
 caskPackages:
   - android-studio
+  - android-file-transfer
   - atom
   - bartender
   - docker
