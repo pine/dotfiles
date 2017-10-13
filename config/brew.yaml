@@ -20,6 +20,7 @@ packages:
   - libmemcached
   - libxml2 # for PHP
   - mcrypt  # for PHP
+  - libxslt # for Python's lxml
   - memcached
   - mongodb
   - mplayer
