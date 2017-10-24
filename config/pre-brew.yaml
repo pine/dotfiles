@@ -6,6 +6,7 @@ taps:
   - caskroom/versions
   - dart-lang/dart
   - cloudfoundry/tap
+  - heroku/brew
   - homebrew/binary
   - homebrew/core
   - homebrew/php

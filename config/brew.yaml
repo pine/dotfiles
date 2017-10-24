@@ -14,6 +14,7 @@ packages:
   - findutils
   - fontforge
   - gnupg
+  - heroku
   - imagemagick
   - lame
   - lha
@@ -64,3 +65,4 @@ caskPackages:
   - scroll-reverser
   - skype
   - skitch
+
