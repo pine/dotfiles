@@ -1,4 +1,4 @@
-" ~/.config/nvim/_function.vim
+" ~/.config/nvim/function.vim
 
 " ファイルタイプを返す
 function! GetFileType()

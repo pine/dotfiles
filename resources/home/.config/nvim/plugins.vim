@@ -1,4 +1,4 @@
-" ~/.config/nvim/dein.vim
+" ~/.config/nvim/plugins.vim
 
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -16,11 +16,13 @@ call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 call dein#add('editorconfig/editorconfig-vim')
+call dein#add('easymotion/vim-easymotion')
+call dein#add('haya14busa/is.vim')
+call dein#add('osyo-manga/vim-anzu')
 
 " UI
 call dein#add('tpope/vim-commentary')
 call dein#add('nathanaelkane/vim-indent-guides')
-call dein#add('othree/eregex.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('vim-scripts/wombat256.vim')
 
@@ -60,4 +62,4 @@ if dein#check_install()
   call dein#install()
 endif
 
-" vim: se et ts=4 sw=4 sts=4 ft=vim :
+" vim: se et ts=2 sw=2 sts=2 ft=vim :

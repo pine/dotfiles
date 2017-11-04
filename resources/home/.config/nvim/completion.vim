@@ -1,5 +1,7 @@
-" ~/.config/nvim/deoplete.vim
+" ~/.config/nvim/completion.vim
 
+" deoplete
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 let g:deoplete#sources = {}
 
 " Use deoplete.
