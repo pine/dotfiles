@@ -42,7 +42,7 @@ set statusline=%<%f\ %m%r%{&ft==''?'':'['.GetFileType().']'}[%{GetFileEncoding()
 set showcmd " コマンドを表示
 set showmatch " 対応する括弧を表示
 
-colorscheme wombat256mod
+colorscheme iceberg
 
 
 " Indent

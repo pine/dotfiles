@@ -24,7 +24,11 @@ call dein#add('osyo-manga/vim-anzu')
 call dein#add('tpope/vim-commentary')
 call dein#add('nathanaelkane/vim-indent-guides')
 call dein#add('scrooloose/nerdtree')
+
+" ColorScheme
 call dein#add('vim-scripts/wombat256.vim')
+call dein#add('cocopon/iceberg.vim')
+
 
 " Syntax
 call dein#add('vim-scripts/d.vim')
