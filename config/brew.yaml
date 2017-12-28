@@ -37,6 +37,7 @@ packages:
   - sbt
   - sl
   - the_silver_searcher
+  - thefuck
   - typesafe-activator
   - unar
   - unrar

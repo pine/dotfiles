@@ -280,6 +280,9 @@ export LC_ALL='en_US.UTF-8'
 # *** 実行 ***
 # ---------------------------------------------------------
 
+# thefuck
+eval $(thefuck --alias)
+
 # travis
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
