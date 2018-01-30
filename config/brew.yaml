@@ -59,6 +59,7 @@ caskPackages:
   - java
   - jad
   - karabiner
+  - realm-browser
   - megasync
   - nightingale
   - paintbrush
@@ -67,4 +68,3 @@ caskPackages:
   - skype
   - skitch
   - visual-studio-code
-
