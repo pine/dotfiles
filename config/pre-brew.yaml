@@ -7,7 +7,6 @@ taps:
   - dart-lang/dart
   - cloudfoundry/tap
   - heroku/brew
-  - homebrew/binary
   - homebrew/core
   - homebrew/php
   - homebrew/versions
