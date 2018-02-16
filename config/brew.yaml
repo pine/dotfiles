@@ -11,6 +11,7 @@ packages:
   - coreutils
   - curl
   - dart
+  - digdag
   - findutils
   - fontforge
   - gnupg
