@@ -1,6 +1,7 @@
 scripts:
   -
     - bats
+    - gh-md-toc
     - git-fire
     - phpbrew
     - rsvm
