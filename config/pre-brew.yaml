@@ -11,3 +11,4 @@ taps:
   - homebrew/php
   - homebrew/versions
   - neovim/neovim
+  - kyoshidajp/ghkw
