@@ -56,6 +56,7 @@ call dein#add('cespare/vim-toml')
 call dein#add('stephpy/vim-yaml')
 call dein#add('ekalinin/Dockerfile.vim')
 call dein#add('gisphm/vim-gitignore')
+call dein#add('pboettch/vim-cmake-syntax')
 
 call dein#end()
 
