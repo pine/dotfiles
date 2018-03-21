@@ -14,8 +14,9 @@ packages:
   - digdag
   - findutils
   - fontforge
-  - gnupg
   - ghkw
+  - git-lfs
+  - gnupg
   - heroku
   - imagemagick
   - lame
