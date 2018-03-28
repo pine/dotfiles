@@ -3,7 +3,6 @@ upgrade: true
 
 taps:
   - caskroom/cask
-  - caskroom/versions
   - dart-lang/dart
   - cloudfoundry/tap
   - heroku/brew
