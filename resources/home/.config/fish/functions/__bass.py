@@ -1,0 +1,1 @@
+/Users/kazuki.matsushita/.config/fisherman/bass/functions/__bass.py

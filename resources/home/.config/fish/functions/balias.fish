@@ -1,0 +1,1 @@
+/Users/kazuki.matsushita/.config/fisherman/balias/functions/balias.fish

@@ -1,0 +1,1 @@
+/Users/kazuki.matsushita/.config/fisherman/bobthefish/functions/bobthefish_display_colors.fish

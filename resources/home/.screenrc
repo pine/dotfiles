@@ -9,9 +9,6 @@ hardstatus alwayslastline "[%m/%d %0c] %0`%-w%{= bW}%n %t%{-}%+w"
 # エスケープキーを変更
 escape ^Aa
 
-# シェルとして zsh を使用
-shell /bin/zsh
-
 # スタートアップメッセージを非表示
 startup_message off
 
