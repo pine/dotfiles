@@ -1,6 +1,7 @@
 # ~/.config/fish/config.fish
 
-test -d ~/project; and set -Ux CDPATH ~/project
+set -g CDPATH .
+test -d ~/project; and set -g CDPATH $CDPATH ~/project
 
 begin
   set -l paths /sbin /usr/sbin /bin /usr/sbin \
