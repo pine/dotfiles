@@ -66,6 +66,12 @@ if test -d ~/.anyenv/envs/ndenv
   end
 end
 
+# scalaenv
+if test -d ~/.anyenv/envs/scalaenv
+  set -x SCALAENV_ROOT "$HOME/.anyenv/envs/scalaenv"
+  set -x PATH "$SCALAENV_ROOT/bin" $PATH
+  status --is-interactive; and . (scalaenv init - | psub)
+end
 
 # vim -------------------------------------------------------------------------
 
