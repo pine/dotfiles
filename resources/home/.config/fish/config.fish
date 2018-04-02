@@ -1,5 +1,7 @@
 # ~/.config/fish/config.fish
 
+# env -------------------------------------------------------------------------
+
 set -g CDPATH .
 test -d ~/project; and set -g CDPATH $CDPATH ~/project
 
@@ -16,7 +18,16 @@ begin
 end
 
 set -x LANG en_US.UTF-8
-set -x LC_ALL en_US.UTF-8
+set -x LC_TIME C
+set -x LC_LC_NUMERIC C
+
+
+# history ---------------------------------------------------------------------
+
+function history-merge --on-event fish_preexec
+	history --save
+	history --merge
+end
 
 
 # anyenv ----------------------------------------------------------------------
