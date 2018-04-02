@@ -6,6 +6,7 @@ files:
   - .screenrc
   - .vimrc
   - .zshrc
+  - .tmux.conf
 
 directories:
   - .config
