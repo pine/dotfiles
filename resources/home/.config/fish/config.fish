@@ -6,8 +6,9 @@ test -d ~/project; and set -g CDPATH $CDPATH ~/project
 begin
   set -l paths /sbin /usr/sbin /bin /usr/sbin \
     /usr/local/sbin /usr/local/bin \
+    ~/Library/Android/sdk/tools/bin ~/Library/Android/sdk/platform-tools \
     /usr/lib/dart/bin /usr/local/Homebrew/bin /usr/local/*/bin \
-    $HOME/bin $HOME/bin/*/bin
+    ~/bin ~/bin/*/bin
 
   for p in $paths
     test -d $p; and set -x PATH $p $PATH
@@ -43,6 +44,13 @@ if test -d ~/.anyenv/envs/plenv
   set -x PLENV_ROOT "$HOME/.anyenv/envs/plenv"
   set -x PATH "$PLENV_ROOT/bin" $PATH
   status --is-interactive; and . (plenv init - | psub)
+end
+
+# swiftenv
+if test -d ~/.anyenv/envs/swiftenv
+  set -x SWIFTENV_ROOT "$HOME/.anyenv/envs/swiftenv"
+  set -x PATH "$SWIFTENV_ROOT/bin" $PATH
+  status --is-interactive; and . (swiftenv init - | psub)
 end
 
 # ndenv
