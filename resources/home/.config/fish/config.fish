@@ -82,6 +82,8 @@ set -Ux GIT_MERGE_AUTOEDIT no
 
 # -----------------------------------------------------------------------------
 
+source ~/.config/fish/postconf.d/*
+
 set -U fish_user_paths (echo $fish_user_paths | tr ' ' '\n' | awk '!a[$0]++' -)
 set -gx PATH (echo $PATH | tr ' ' '\n' | awk '!a[$0]++' -)
 
