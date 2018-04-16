@@ -20,6 +20,7 @@ packages:
   - gnupg
   - heroku
   - imagemagick
+  - jpegoptim
   - lame
   - lha
   - libmemcached
@@ -32,6 +33,7 @@ packages:
   - mysql
   - neovim
   - openssl
+  - optipng
   - pidcat
   - pkg-config
   - pwgen
