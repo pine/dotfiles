@@ -6,6 +6,7 @@ packages:
   - binutils
   - carthage
   - cf-cli
+  - clang-format
   - cmake
   - composer
   - coreutils
