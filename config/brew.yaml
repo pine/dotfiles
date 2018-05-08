@@ -37,6 +37,7 @@ packages:
   - optipng
   - pidcat
   - pkg-config
+  - protobuf
   - pwgen
   - reattach-to-user-namespace
   - readline
