@@ -1,6 +1,7 @@
 # alphabetical order
 packages:
   - apktool
+  - aria2
   - automake
   - autoconf
   - binutils
