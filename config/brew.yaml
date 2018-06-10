@@ -52,6 +52,7 @@ packages:
   - typesafe-activator
   - unar
   - unrar
+  - webp
   - wget
 
 caskPackages:
