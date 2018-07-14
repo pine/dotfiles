@@ -58,6 +58,9 @@ call dein#add('ekalinin/Dockerfile.vim')
 call dein#add('gisphm/vim-gitignore')
 call dein#add('pboettch/vim-cmake-syntax')
 call dein#add('dag/vim-fish')
+call dein#add('uarun/vim-protobuf')
+call dein#add('posva/vim-vue')
+
 
 call dein#end()
 

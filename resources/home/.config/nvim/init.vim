@@ -10,6 +10,7 @@ endif
 
 let $VIM_CONF_PATH = $HOME.'/.config/nvim'
 
+
 source $VIM_CONF_PATH/plugins.vim
 source $VIM_CONF_PATH/functions.vim
 source $VIM_CONF_PATH/common.vim
