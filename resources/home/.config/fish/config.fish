@@ -9,7 +9,7 @@ begin
   set -l paths /sbin /usr/sbin /bin /usr/sbin \
     /usr/local/sbin /usr/local/bin \
     ~/Library/Android/sdk/tools/bin ~/Library/Android/sdk/platform-tools \
-    /usr/lib/dart/bin /usr/local/Homebrew/bin /usr/local/*/bin \
+    /usr/lib/dart/bin /usr/local/Homebrew/bin /usr/local/*/bin /usr/local/opt/mysql@5.7/bin \
     ~/bin ~/bin/*/bin
 
   for p in $paths
