@@ -32,7 +32,7 @@ packages:
   - memcached
   - mongodb
   - mplayer
-  - mysql
+  - mysql@5.7
   - neovim
   - openssl
   - optipng
