@@ -1,1 +1,1 @@
-/Users/kazuki.matsushita/.config/fisherman/bd/completions/bd.fish
+/Users/pine/.config/fisherman/bd/completions/bd.fish

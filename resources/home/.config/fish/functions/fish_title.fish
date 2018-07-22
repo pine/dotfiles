@@ -1,1 +1,1 @@
-/Users/kazuki.matsushita/.config/fisherman/bobthefish/fish_title.fish
+/Users/pine/.config/fisherman/bobthefish/fish_title.fish

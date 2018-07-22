@@ -1,1 +1,1 @@
-/Users/kazuki.matsushita/.config/fisherman/bass/functions/bass.fish
+/Users/pine/.config/fisherman/bass/functions/bass.fish

@@ -1,1 +1,1 @@
-/Users/kazuki.matsushita/.config/fisherman/bobthefish/functions/__bobthefish_glyphs.fish
+/Users/pine/.config/fisherman/bobthefish/functions/__bobthefish_glyphs.fish

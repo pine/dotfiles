@@ -1,1 +1,1 @@
-/Users/kazuki.matsushita/.config/fisherman/bobthefish/fish_greeting.fish
+/Users/pine/.config/fisherman/bobthefish/fish_greeting.fish

@@ -1,1 +1,1 @@
-/Users/kazuki.matsushita/.config/fisherman/z/functions/__z.fish
+/Users/pine/.config/fisherman/z/functions/__z.fish

@@ -1,1 +1,1 @@
-/Users/kazuki.matsushita/.config/fisherman/z/functions/zclean.awk
+/Users/pine/.config/fisherman/z/functions/zclean.awk

@@ -1,1 +1,1 @@
-/Users/kazuki.matsushita/.config/fisherman/docker-fish-completion/docker.fish
+/Users/pine/.config/fisherman/docker-fish-completion/docker.fish
