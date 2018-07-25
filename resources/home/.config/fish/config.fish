@@ -67,6 +67,11 @@ if test -d ~/.anyenv/envs/scalaenv
   status --is-interactive; and . (scalaenv init - | psub)
 end
 
+# rustup
+if test -f ~/.cargo/env
+  source ~/.cargo/env
+end
+
 # vim -------------------------------------------------------------------------
 
 if type -p nvim > /dev/null 2>&1
