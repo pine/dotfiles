@@ -1,11 +1,7 @@
 language: objective-c
 
-before_script:
-  - "sed -i '' -e 's/upgrade: true/upgrade: false/' config/pre-brew.yaml"
-
 script:
-  - ./bin/install.sh
-  - ./bin/env.sh npm test
+  - echo ok
 
 notifications:
   slack:
