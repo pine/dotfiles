@@ -30,7 +30,8 @@ install() {
     done
   done
 
-  echo "Successful"
+  printf "\e[32msuccess\e[39m\n"
+  printf "\xe2\x9c\xa8  Done in XXXs.\n"
 }
 
 install
