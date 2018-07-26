@@ -1,1 +1,0 @@
-/Users/pine/.config/fisherman/bd/functions/bd.fish

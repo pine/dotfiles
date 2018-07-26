@@ -1,1 +1,0 @@
-/Users/pine/.config/fisherman/peco/functions/peco_kill.fish

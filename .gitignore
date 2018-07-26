@@ -1,4 +1,13 @@
-node_modules
-npm-debug.log
+# Vim
+*~
+*.swp
+*.swo
 
-build
+# Mac OS X
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# ctags
+tags
