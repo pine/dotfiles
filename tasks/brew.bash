@@ -9,12 +9,9 @@ brew_install() {
 
 
 _brew_install_pkgs() {
-  local installed_pkgs
-  local pkgs
+  local installed_pkgs="$(brew list | tr ' ' "\n")"
+  local pkgs="$DOTFILES_CONFIG/brew/pkgs.conf"
   local pkg
-
-  installed_pkgs="$(brew list | tr ' ' "\n")"
-  pkgs="$DOTFILES_CONFIG/brew/pkgs.conf"
 
   cat "$pkgs" | while read pkg; do
     if [ "${pkg:0:1}" == '#' ]; then
@@ -22,7 +19,7 @@ _brew_install_pkgs() {
     fi
 
     pkg="${pkg%%\#*}"
-    pkg="${pkg%% *}"
+    pkg="$(echo "$pkg" | tr -d '[:space:]')"
 
     if ! echo "$installed_pkgs" | fgrep "$pkg" > /dev/null; then
       set -x
@@ -34,12 +31,10 @@ _brew_install_pkgs() {
 
 
 _brew_install_cask_pkgs() {
-  local installed_pkgs
-  local pkgs
+  local installed_pkgs="$(brew cask list | tr ' ' "\n")"
+  local pkgs="$DOTFILES_CONFIG/brew/cask_pkgs.conf"
   local pkg
 
-  installed_pkgs="$(brew cask list | tr ' ' "\n")"
-  pkgs="$DOTFILES_CONFIG/brew/cask_pkgs.conf"
 
   cat "$pkgs" | while read pkg; do
     if [ "${pkg:0:1}" == '#' ]; then
@@ -47,7 +42,7 @@ _brew_install_cask_pkgs() {
     fi
 
     pkg="${pkg%%\#*}"
-    pkg="${pkg%% *}"
+    pkg="$(echo "$pkg" | tr -d '[:space:]')"
 
     if ! echo "$installed_pkgs" | fgrep "$pkg" > /dev/null; then
       set -x
