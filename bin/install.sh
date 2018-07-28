@@ -14,6 +14,10 @@ DOTFILES_CONFIG=$DOTFILES_ROOT/config
 install() {
   local f
   local tasks
+  local -i begin_at
+  local -i end_at
+
+  begin_at=$(date +%s)
 
   for f in $(find tasks -type f -name "*.bash"); do
     echo "Loading \`$f\`"
@@ -30,8 +34,10 @@ install() {
     done
   done
 
+  end_at=$(date +%s)
+
   printf "\e[32msuccess\e[39m\n"
-  printf "\xe2\x9c\xa8  Done in XXXs.\n"
+  printf "\xe2\x9c\xa8  Done in $(($end_at - $begin_at))s.\n"
 }
 
 install
