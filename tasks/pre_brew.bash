@@ -5,6 +5,7 @@
 brew_preinstall() {
   _brew_update
   _brew_taps
+  _brew_update
   _brew_upgrade
 }
 
@@ -17,9 +18,8 @@ _brew_update() {
   fg="${fg##update}"
 
   if [[ "$fg" = *on* ]]; then
-    set -x
+    echo "> brew update"
     brew update || brew update
-    set +x
   fi
 }
 
@@ -31,11 +31,13 @@ _brew_taps() {
 
   cat "$taps" | while read tap; do
     if ! echo "$installed_taps" | fgrep "$tap" > /dev/null; then
-      set -x
+      echo "> brew tap \"$tap\""
       brew tap "$tap"
-      set +x
     fi
   done
+
+  echo "> brew tap --repair"
+  brew tap --repair
 }
 
 
@@ -47,8 +49,7 @@ _brew_upgrade() {
   fg="${fg##upgrade}"
 
   if [[ "$fg" = *on* ]]; then
-    set -x
+    echo "> brew upgrade"
     brew upgrade || brew upgrade
-    set +x
   fi
 }

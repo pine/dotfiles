@@ -13,18 +13,18 @@ DOTFILES_CONFIG=$DOTFILES_ROOT/config
 
 install() {
   local f
-  local tasks
-  local -i begin_at
+  local task
+  local action
+  local tasks="$DOTFILES_CONFIG/tasks"
+  local -i begin_at=$(date +%s)
   local -i end_at
 
-  begin_at=$(date +%s)
 
   for f in $(find tasks -type f -name "*.bash"); do
     echo "Loading \`$f\`"
     . $f
   done
 
-  tasks="$DOTFILES_CONFIG/tasks"
   for task in $(cat "$tasks"); do
     for action in preinstall install postinstall; do
       if type ${task}_$action > /dev/null 2>&1; then
