@@ -1,0 +1,13 @@
+# Vim
+*~
+*.swp
+*.swo
+
+# Mac OS X
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# ctags
+tags

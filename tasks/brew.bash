@@ -22,7 +22,7 @@ _brew_install_pkgs() {
     pkg="$(echo "$pkg" | tr -d '[:space:]')"
 
     if ! echo "$installed_pkgs" | fgrep "$pkg" > /dev/null; then
-      echo "> brew install \"$pkg\""
+      echo "> brew install $pkg"
       brew install "$pkg"
     fi
   done
@@ -44,7 +44,7 @@ _brew_install_cask_pkgs() {
     pkg="$(echo "$pkg" | tr -d '[:space:]')"
 
     if ! echo "$installed_pkgs" | fgrep "$pkg" > /dev/null; then
-      echo "> brew cask install \"$pkg\""
+      echo "> brew cask install $pkg"
       brew cask install "$pkg"
     fi
   done

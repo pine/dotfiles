@@ -8,24 +8,30 @@ DOTFILES_ROOT=$(cd ${BASH_SOURCE%/*}/..; pwd)
 cd $DOTFILES_ROOT
 
 DOTFILES_CONFIG=$DOTFILES_ROOT/config
+DOTFILES_RESOURCE=$DOTFILES_ROOT/resources
 
 # -------------------------------------------------------------------
 
 install() {
+  local action
   local f
   local task
-  local action
-  local tasks="$DOTFILES_CONFIG/tasks"
+  local tasks
   local -i begin_at=$(date +%s)
   local -i end_at
 
+  if [ -n "$*" ]; then
+    tasks=$*
+  else
+    tasks="$(cat $DOTFILES_CONFIG/tasks)"
+  fi
 
   for f in $(find tasks -type f -name "*.bash"); do
     echo "Loading \`$f\`"
     . $f
   done
 
-  for task in $(cat "$tasks"); do
+  for task in $tasks; do
     for action in preinstall install postinstall; do
       if type ${task}_$action > /dev/null 2>&1; then
         echo "Running \`${task}_$action\`"
@@ -40,4 +46,4 @@ install() {
   printf "\xe2\x9c\xa8  Done in $(($end_at - $begin_at))s.\n"
 }
 
-install
+install $*
