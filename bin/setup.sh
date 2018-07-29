@@ -9,7 +9,6 @@ if uname | fgrep -i Darwin > /dev/null; then
     /usr/bin/ruby -e \
       "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
-  sudo chown -R $USER /usr/local
   set +x
 
   echo "========== setup git =========="
