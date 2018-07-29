@@ -6,13 +6,8 @@ home_install() {
   local secured_files="$DOTFILES_SECURED_CONFIG/home/files.conf"
   local src
 
-  # Process files
-  cat "$files" | while read file; do
-    src="$DOTFILES_RESOURCE/home/$file"
-
-    echo "> ln -s $src ~/$file"
-    rm -f "$HOME/$file"
-    ln -s "$src" "$HOME/$file"
+  cat $files | while read file; do
+    _home_install_file "$file"
   done
 
   # Process secured files
@@ -25,4 +20,16 @@ home_install() {
       ln -s "$src" "~/$file"
     done
   fi
+}
+
+_home_install_file() {
+  local file=$1
+  local src="$DOTFILES_RESOURCE/home/$file"
+  local dest="$HOME/$file"
+  local dest_dir="${dest%/*}"
+
+  echo "> ln -s $src $dest"
+  mkdir -p "$dest_dir"
+  rm -f "$HOME/$file"
+  ln -s "$src" "$HOME/$file"
 }
