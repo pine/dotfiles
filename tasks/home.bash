@@ -11,8 +11,8 @@ home_install() {
     src="$DOTFILES_RESOURCE/home/$file"
 
     echo "> ln -s $src ~/$file"
-    rm -f "~/$file"
-    ln -s "$src" "~/$file"
+    rm -f "$HOME/$file"
+    ln -s "$src" "$HOME/$file"
   done
 
   # Process secured files

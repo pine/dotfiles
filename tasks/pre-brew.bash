@@ -3,12 +3,28 @@
 
 # Setup Homebrew
 brew_preinstall() {
+  _brew_init
   _brew_update
   _brew_taps
   _brew_update
   _brew_upgrade
 }
 
+
+_brew_init() {
+  local dir
+
+  for dir in /usr/local/Cellar /usr/local/opt \
+    /usr/local/include /usr/local/lib /usr/local/Frameworks
+  do
+    if [ ! -d "$dir" ]; then
+      sudo mkdir "$dir"
+    fi
+    if [ "$(stat -f "%Su" "$dir")" != "$(whoami)" ]; then
+      sudo chown -R "$(whoami)" "$dir"
+    fi
+  done
+}
 
 _brew_update() {
   local opts="$DOTFILES_CONFIG/brew/opts.conf"
