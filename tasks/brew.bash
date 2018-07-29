@@ -31,7 +31,7 @@ _brew_install_pkgs() {
 
 _brew_install_cask_pkgs() {
   local installed_pkgs="$(brew cask list | tr ' ' "\n")"
-  local pkgs="$DOTFILES_CONFIG/brew/cask_pkgs.conf"
+  local pkgs="$DOTFILES_CONFIG/brew/cask-pkgs.conf"
   local pkg
 
 

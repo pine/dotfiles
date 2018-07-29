@@ -12,16 +12,14 @@ brew_preinstall() {
 
 
 _brew_init() {
-  local dir
+  local name
 
-  for dir in /usr/local/Cellar /usr/local/opt \
-    /usr/local/include /usr/local/lib /usr/local/Frameworks
-  do
-    if [ ! -d "$dir" ]; then
-      sudo mkdir "$dir"
+  for name in Caskroom Cellar Frameworks etc include lib opt var; do
+    if [ ! -d "/usr/local/$name" ]; then
+      sudo mkdir "/usr/local/$name"
     fi
-    if [ "$(stat -f "%Su" "$dir")" != "$(whoami)" ]; then
-      sudo chown -R "$(whoami)" "$dir"
+    if [ "$(stat -f "%Su" "/usr/local/$name")" != "$(whoami)" ]; then
+      sudo chown -R "$(whoami)" "/usr/local/$name"
     fi
   done
 }
