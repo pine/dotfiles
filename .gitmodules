@@ -1,0 +1,3 @@
+[submodule "secured"]
+	path = secured
+	url = git@github.com:pine/dotfiles.secured.git
