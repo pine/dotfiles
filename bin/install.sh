@@ -24,10 +24,14 @@ install() {
   local -i begin_at=$(date +%s)
   local -i end_at
 
+  # Create task list
   if [ -n "$*" ]; then
     tasks=$*
   else
-    tasks="$(cat $DOTFILES_CONFIG/tasks)"
+    tasks=$(cat "$DOTFILES_CONFIG/tasks")
+    if [ -r "$DOTFILES_SECURED_CONFIG/tasks" ]; then
+      tasks=$tasks$'\n'$(cat "$DOTFILES_SECURED_CONFIG/tasks")
+    fi
   fi
 
   # Load task files
@@ -44,6 +48,9 @@ install() {
 
   # Execute tasks
   for task in $tasks; do
+    if [ -z "$task" ]; then
+      continue
+    fi
     for action in preinstall install postinstall; do
       if type "${task}_$action" &> /dev/null; then
         echo "Running \`${task}_$action\`"
@@ -53,7 +60,6 @@ install() {
   done
 
   end_at=$(date +%s)
-
   printf "\e[32msuccess\e[39m\n"
   printf "\xe2\x9c\xa8  Done in $(($end_at - $begin_at))s.\n"
 }
