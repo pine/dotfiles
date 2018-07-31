@@ -4,17 +4,21 @@ set -eu -o pipefail
 
 # -------------------------------------------------------------------
 
-DOTFILES_ROOT=$(cd ${BASH_SOURCE%/*}/..; pwd)
-cd $DOTFILES_ROOT
+declare -r DOTFILES_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
+cd "$DOTFILES_ROOT"
 
-DOTFILES_CONFIG=$DOTFILES_ROOT/config
-DOTFILES_RESOURCE=$DOTFILES_ROOT/resources
+declare -r DOTFILES_CONFIG="$DOTFILES_ROOT/config"
+declare -r DOTFILES_RESOURCE="$DOTFILES_ROOT/resources"
+declare -r DOTFILES_TASKS="$DOTFILES_ROOT/tasks"
+declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_ROOT/secured/config"
+declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_ROOT/secured/resources"
+declare -r DOTFILES_SECURED_TASKS="$DOTFILES_ROOT/secured/tasks"
 
 # -------------------------------------------------------------------
 
 install() {
   local action
-  local f
+  local file
   local task
   local tasks
   local -i begin_at=$(date +%s)
@@ -26,14 +30,22 @@ install() {
     tasks="$(cat $DOTFILES_CONFIG/tasks)"
   fi
 
-  for f in $(find tasks -type f -name "*.bash"); do
-    echo "Loading \`$f\`"
-    . $f
+  # Load task files
+  for file in $(find "$DOTFILES_TASKS" -type f -name "*.bash"); do
+    echo "Loading \`$file\`"
+    . $file
   done
+  if [ -d "$DOTFILES_SECURED_TASKS" ]; then
+    for file in $(find "$DOTFILES_SECURED_TASKS" -type f -name "*.bash"); do
+      echo "Loading \`$file\`"
+      . $file
+    done
+  fi
 
+  # Execute tasks
   for task in $tasks; do
     for action in preinstall install postinstall; do
-      if type ${task}_$action > /dev/null 2>&1; then
+      if type "${task}_$action" &> /dev/null; then
         echo "Running \`${task}_$action\`"
         "${task}_$action"
       fi
