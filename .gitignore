@@ -11,3 +11,6 @@ Thumbs.db
 
 # ctags
 tags
+
+# secured
+*.zip

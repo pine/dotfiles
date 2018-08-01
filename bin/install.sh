@@ -10,21 +10,51 @@ cd "$DOTFILES_ROOT"
 declare -r DOTFILES_CONFIG="$DOTFILES_ROOT/config"
 declare -r DOTFILES_RESOURCE="$DOTFILES_ROOT/resources"
 declare -r DOTFILES_TASKS="$DOTFILES_ROOT/tasks"
-declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_ROOT/secured/config"
-declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_ROOT/secured/resources"
-declare -r DOTFILES_SECURED_TASKS="$DOTFILES_ROOT/secured/tasks"
+declare -r DOTFILES_SECURED_ROOT="$DOTFILES_ROOT/secured"
+declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_SECURED_ROOT/config"
+declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_SECURED_ROOT/resources"
+declare -r DOTFILES_SECURED_TASKS="$DOTFILES_SECURED_ROOT/tasks"
 
 # -------------------------------------------------------------------
 
 install() {
-  local action
-  local file
-  local task
   local tasks
   local -i begin_at=$(date +%s)
   local -i end_at
 
-  # Create task list
+  # Process secured dotfiles
+  __extract_secured_zip
+
+  # Run tasks
+  tasks=$(__construct_tasks $*)
+  __load_tasks
+  __execute_tasks $tasks
+
+  end_at=$(date +%s)
+  printf "\e[32msuccess\e[39m\n"
+  printf "\xe2\x9c\xa8  Done in $(($end_at - $begin_at))s.\n"
+}
+
+
+__extract_secured_zip() {
+  local zip_fname="dotfiles.secured-master.zip"
+  local dir="dotfiles.secured-master"
+
+  if [ -f "$DOTFILES_SECURED_ROOT/README.md" ]; then
+    return
+  fi
+
+  if [ -r "$DOTFILES_ROOT/$zip_fname" ]; then
+    rm -rf "$DOTFILES_ROOT/$dir"
+    unzip "$zip_fname"
+    mv "$dir" "$DOTFILES_SECURED_ROOT"
+  fi
+}
+
+
+__construct_tasks() {
+  local tasks
+
   if [ -n "$*" ]; then
     tasks=$*
   else
@@ -34,19 +64,32 @@ install() {
     fi
   fi
 
-  # Load task files
+  echo $tasks
+}
+
+
+__load_tasks() {
+  local file
+
   for file in $(find "$DOTFILES_TASKS" -type f -name "*.bash"); do
     echo "Loading \`$file\`"
     . $file
   done
+
   if [ -d "$DOTFILES_SECURED_TASKS" ]; then
     for file in $(find "$DOTFILES_SECURED_TASKS" -type f -name "*.bash"); do
       echo "Loading \`$file\`"
       . $file
     done
   fi
+}
 
-  # Execute tasks
+
+__execute_tasks() {
+  local action
+  local task
+  local tasks=$*
+
   for task in $tasks; do
     if [ -z "$task" ]; then
       continue
@@ -58,10 +101,7 @@ install() {
       fi
     done
   done
-
-  end_at=$(date +%s)
-  printf "\e[32msuccess\e[39m\n"
-  printf "\xe2\x9c\xa8  Done in $(($end_at - $begin_at))s.\n"
 }
+
 
 install $*

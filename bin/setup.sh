@@ -2,55 +2,57 @@
 
 set -eu -o pipefail
 
-if uname | fgrep -i Darwin > /dev/null; then
-  echo "========== setup brew =========="
-  set -x
-  if ! type -p brew > /dev/null 2>&1; then
-    /usr/bin/ruby -e \
-      "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# -------------------------------------------------------------------
+
+declare -r DOTFILES_PARENT="$HOME/project/pine"
+declare -r DOTFILES_ROOT="$DOTFILES_PARENT/dotfiles"
+declare -r DOTFILES_BIN="$DOTFILES_ROOT/bin"
+declare -r DOTFILES_GIT="https://github.com/pine/dotfiles.git"
+
+# -------------------------------------------------------------------
+
+setup() {
+  echo "Installing dotfiles"
+
+  echo "> mkdir -p $DOTFILES_PARENT"
+  mkdir -p "$DOTFILES_PARENT"
+  cd "$DOTFILES_PARENT"
+
+  # Install git
+  if type -p git > /dev/null; then
+    # macOS
+    if uname -a | fgrep -i Darwin > /dev/null; then
+      :
+    # Ubuntu
+    elif type -p apt > /dev/null; then
+      sudo apt update -y
+      sudo apt-get install git -y
+    fi
   fi
-  set +x
 
-  echo "========== setup git =========="
-  set -x
-  brew update || brew update
-  brew install git
-  brew cleanup -s
-  set +x
+  # Clone Git repository
+  if [ ! -d dotfiles ]; then
+    echo "> git clone $DOTFILES_GIT $DOTFILES_ROOT"
+    git clone "$DOTFILES_GIT" "$DOTFILES_ROOT"
+  fi
+  cd "$DOTFILES_ROOT"
 
-else
-  echo "========== setup apt =========="
-  set -x
-  sudo apt-get update -y
-  set +x
+  # Install dotfiles
+  echo "> $DOTFILES_BIN/install.sh"
+  "$DOTFILES_BIN/install.sh"
+}
 
-  echo "========== setup git =========="
-  set -x
-  sudo apt-get install git -y
-  set +x
-fi
+setup
 
 
-echo "========== setup repository =========="
-set -x
-
-mkdir -p ~/project/pine
-cd ~/project/pine
-
-if [ ! -d dotfiles ]; then
-  git clone https://github.com/pine/dotfiles.git
-fi
-cd dotfiles
-
-git fetch
-git checkout master
-
-set +x
+# if uname | fgrep -i Darwin > /dev/null; then
+#   echo "========== setup brew =========="
+#   set -x
+#   if ! type -p brew > /dev/null 2>&1; then
+#     /usr/bin/ruby -e \
+#       "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+#   fi
+#   set +x
 
 
-echo "========== install dotfiles =========="
-set -x
-bash ./bin/install.sh
-set +x
-
-# vim: se ts=2 sw=2 sts=2 et ft=sh :
+# # vim: se ts=2 sw=2 sts=2 et ft=sh :
