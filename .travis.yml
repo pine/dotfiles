@@ -1,7 +1,7 @@
 language: objective-c
 
 script:
-  - echo ok
+  - ./bin/install.sh
 
 notifications:
   slack:
