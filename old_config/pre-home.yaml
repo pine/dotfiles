@@ -1,5 +1,0 @@
-mkdirp:
-  - .go
-  - bin
-  - project
-  - tmp
