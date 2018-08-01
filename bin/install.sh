@@ -46,6 +46,7 @@ __extract_secured_zip() {
 
   if [ -r "$DOTFILES_ROOT/$zip_fname" ]; then
     rm -rf "$DOTFILES_ROOT/$dir"
+    rm -rf "$DOTFILES_SECURED_ROOT"
     unzip "$zip_fname"
     mv "$dir" "$DOTFILES_SECURED_ROOT"
   fi
