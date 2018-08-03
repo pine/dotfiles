@@ -4,6 +4,7 @@ git:
   submodules: false
 
 script:
+  - sed -i '' -e 's/upgrade on/upgrade off/' config/brew/opts.conf
   - ./bin/install.sh
 
 notifications:
