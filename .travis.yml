@@ -1,5 +1,8 @@
 language: objective-c
 
+git:
+  submodule: false
+
 script:
   - ./bin/install.sh
 
