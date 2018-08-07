@@ -8,7 +8,7 @@ declare -r DOTFILES_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
 cd "$DOTFILES_ROOT"
 
 declare -r DOTFILES_CONFIG="$DOTFILES_ROOT/config"
-declare -r DOTFILES_RESOURCE="$DOTFILES_ROOT/resources"
+declare -r DOTFILES_RESOURCES="$DOTFILES_ROOT/resources"
 declare -r DOTFILES_TASKS="$DOTFILES_ROOT/tasks"
 declare -r DOTFILES_SECURED_ROOT="$DOTFILES_ROOT/secured"
 declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_SECURED_ROOT/config"

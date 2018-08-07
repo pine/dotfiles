@@ -7,24 +7,21 @@ home_install() {
   local src
 
   cat $files | while read file; do
-    _home_install_file "$file"
+    _home_install_file "$DOTFILES_RESOURCES" "$file"
   done
 
   # Process secured files
   if [ -r "$secured_files" ]; then
     cat "$secured_files" | while read file; do
-      src="$DOTFILES_SECURED_RESOURCES/home/$file"
-
-      echo "> ln -s $src ~/$file"
-      rm -f "~/$file"
-      ln -s "$src" "~/$file"
+      _home_install_file "$DOTFILES_SECURED_RESOURCES" "$file"
     done
   fi
 }
 
 _home_install_file() {
-  local file=$1
-  local src="$DOTFILES_RESOURCE/home/$file"
+  local resources="$1"
+  local file="$2"
+  local src="$resources/home/$file"
   local dest="$HOME/$file"
   local dest_dir="${dest%/*}"
 

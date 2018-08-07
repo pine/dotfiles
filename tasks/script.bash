@@ -6,7 +6,7 @@ script_install() {
   local scripts="$DOTFILES_CONFIG/script/files.conf"
 
   cat "$scripts" | while read script; do
-    basename="$DOTFILES_RESOURCE/script/$script"
+    basename="$DOTFILES_RESOURCES/script/$script"
     if [ -e "$basename.sh" ]; then
       echo "> $basename.sh"
       "$basename.sh"
