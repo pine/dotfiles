@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+# Install anyenv
 anyenv_preinstall() {
   if [ -d ~/.anyenv ]; then
     pushd ~/.anyenv > /dev/null

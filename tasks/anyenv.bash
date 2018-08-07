@@ -1,8 +1,12 @@
 #!/bin/bash
 
-
-# Install envs
 anyenv_install() {
+  _anyenv_install_envs
+  _anyenv_update_envs
+}
+
+# Install anvs
+_anyenv_install_envs() {
   local env
   local envs="$DOTFILES_CONFIG/anyenv/envs.conf"
 
@@ -12,3 +16,14 @@ anyenv_install() {
   done
 }
 
+# Update envs
+_anyenv_update_envs() {
+  local env
+  local envs="$DOTFILES_CONFIG/anyenv/envs.conf"
+
+  cat "$envs" | while read env; do
+    pushd "$HOME/.anyenv/envs/$env"
+    git pull origin master
+    popd
+  done
+}
