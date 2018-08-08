@@ -44,6 +44,9 @@ _apt_add_repositories() {
   local source
 
   cat "$repos" | while read repo; do
+    if [ "${repo:0:1}" = "#" ]; then
+      continue
+    fi
     repo="$(echo "$repo" | tr '\t' ' ')"
 
     pattern="${repo%% *}"
@@ -56,11 +59,9 @@ _apt_add_repositories() {
       continue
     fi
 
-    echo $pattern
-    echo $source
-
-    if cat /etc/apt/sources.list.d/*.list | fgrep "$pattern" >/dev/null; then
-      echo has pattern
+    if ! cat /etc/apt/sources.list.d/*.list | fgrep "$pattern" >/dev/null; then
+      echo"> sudo add-apt-repository $source --yes"
+      sudo add-apt-repository "$source" --yes
     fi
   done
 
