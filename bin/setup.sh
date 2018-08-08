@@ -19,7 +19,7 @@ setup() {
   cd "$DOTFILES_PARENT"
 
   # Install git
-  if type -p git > /dev/null; then
+  if ! type -p git > /dev/null; then
     # macOS
     if uname -a | fgrep -i Darwin > /dev/null; then
       :
@@ -27,6 +27,7 @@ setup() {
     elif type -p apt > /dev/null; then
       sudo apt update -y
       sudo apt-get install git -y
+      sudo apt autoremove -y
     fi
   fi
 
