@@ -38,9 +38,27 @@ _apt_install_pre_pkgs() {
 
 
 _apt_add_repositories() {
+  local pattern
+  local repo
+  local repos="$DOTFILES_CONFIG/apt/repos.conf"
   local source
 
-  find "/etc/apt/sources.list.d/" -type f -name "*.list" | while read source; do
+  cat "$repos" | while read repo; do
+    repo="$(echo "$repo" | tr '\t' ' ')"
+
+    pattern="${repo%% *}"
+    if [ -z "$pattern" ]; then
+      continue
+    fi
+
+    source="${repo##* }"
+    if [ -z "$source" ]; then
+      continue
+    fi
+
+    echo $pattern
     echo $source
   done
+
+  # cat "/etc/apt/sources.list.d/*.list"
 }
