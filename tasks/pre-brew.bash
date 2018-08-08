@@ -3,11 +3,13 @@
 
 # Setup Homebrew
 brew_preinstall() {
-  _brew_init
-  _brew_update
-  _brew_taps
-  _brew_update
-  _brew_upgrade
+  if uname -a | fgrep -i Darwin > /dev/null; then
+    _brew_init
+    _brew_update
+    _brew_taps
+    _brew_update
+    _brew_upgrade
+  fi
 }
 
 

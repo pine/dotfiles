@@ -3,8 +3,10 @@
 
 # Install brew packages
 brew_install() {
-  _brew_install_pkgs
-  _brew_install_cask_pkgs
+  if uname -a | fgrep -i Darwin > /dev/null; then
+    _brew_install_pkgs
+    _brew_install_cask_pkgs
+  fi
 }
 
 

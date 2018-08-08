@@ -2,6 +2,8 @@
 
 
 brew_postinstall() {
-  echo "> brew cleanup -s"
-  brew cleanup -s
+  if uname -a | fgrep -i Darwin > /dev/null; then
+    echo "> brew cleanup -s"
+    brew cleanup -s
+  fi
 }
