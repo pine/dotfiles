@@ -29,7 +29,7 @@ _apt_install_pre_pkgs() {
 
   cat "$pkgs" | while read pkg; do
     if ! dpkg -s "$pkg" > /dev/null; then
-      echo "sudo apt install $pkg -y"
+      echo "> sudo apt install $pkg -y -qq"
       sudo apt install "$pkg" -y -qq
     fi
   done
