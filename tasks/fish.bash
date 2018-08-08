@@ -2,7 +2,10 @@
 
 fish_install() {
   _fish_install_fisherman
-  _fish_set_default_shell
+
+  if [ -z "${CI:-}" ]; then
+    _fish_set_default_shell
+  fi
 }
 
 
