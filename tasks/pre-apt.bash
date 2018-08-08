@@ -59,7 +59,7 @@ _apt_add_repositories() {
     echo $pattern
     echo $source
 
-    if cat "/etc/apt/sources.list.d/*.list" | fgrep "$pattern" >/dev/null; then
+    if cat /etc/apt/sources.list.d/*.list | fgrep "$pattern" >/dev/null; then
       echo has pattern
     fi
   done
