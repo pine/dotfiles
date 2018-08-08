@@ -5,6 +5,7 @@ apt_preinstall() {
   if ! is-macos && has-apt; then
     _apt_update
     _apt_install_pre_pkgs
+    _apt_add_repositories
   fi
 }
 
@@ -32,5 +33,14 @@ _apt_install_pre_pkgs() {
       echo "> sudo apt install $pkg -y -qq"
       sudo apt install "$pkg" -y -qq
     fi
+  done
+}
+
+
+_apt_add_repositories() {
+  local source
+
+  find "/etc/apt/sources.list.d/" -type f -name "*.list" | while read source; do
+    echo $source
   done
 }
