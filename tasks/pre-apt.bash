@@ -1,8 +1,10 @@
 # tasks/pre-apt.bash
 
+
 apt_preinstall() {
   if ! is-macos && has-apt; then
     _apt_update
+    _apt_install_pre_pkgs
   fi
 }
 
@@ -20,3 +22,15 @@ _apt_update() {
   fi
 }
 
+
+_apt_install_pre_pkgs() {
+  local pkgs="$DOTFILES_CONFIG/apt/pre-pkgs.conf"
+  local pkg
+
+  cat "$pkgs" | while read pkg; do
+    if ! dpkg -s "$pkg" > /dev/null; then
+      echo "sudo apt install $pkg -y"
+      sudo apt install "$pkg" -y -qq
+    fi
+  done
+}
