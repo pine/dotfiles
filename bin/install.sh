@@ -42,7 +42,7 @@ dotfiles_install() {
   dotfiles_execute_tasks $tasks
 
   end_at=$(date +%s)
-  printf "\e[32msuccess\e[39m\n"
+  printf "\n\e[32msuccess\e[39m\n"
   printf "\xe2\x9c\xa8  Done in $(($end_at - $begin_at))s.\n"
 }
 
