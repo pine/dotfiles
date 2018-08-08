@@ -16,6 +16,17 @@ declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_SECURED_ROOT/resources"
 declare -r DOTFILES_SECURED_TASKS="$DOTFILES_SECURED_ROOT/tasks"
 
 # -------------------------------------------------------------------
+# TODO: export functions
+
+is-macos() {
+  uname -a | fgrep -i Darwin > /dev/null
+}
+
+has-apt() {
+  type -p apt > /dev/null
+}
+
+# -------------------------------------------------------------------
 
 dotfiles_install() {
   local tasks
