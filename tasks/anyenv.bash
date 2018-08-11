@@ -1,4 +1,5 @@
-#!/bin/bash
+# tasks/anyenv.bash
+
 
 anyenv_install() {
   _anyenv_install_envs
