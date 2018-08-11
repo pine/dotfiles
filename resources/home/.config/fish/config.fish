@@ -3,6 +3,7 @@
 # env -------------------------------------------------------------------------
 
 set -g CDPATH .
+test -d ~/project/pine; and set -g CDPATH $CDPATH ~/project/pine
 test -d ~/project; and set -g CDPATH $CDPATH ~/project
 
 begin
