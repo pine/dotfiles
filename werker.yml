@@ -1,0 +1,4 @@
+box: debian:stretch
+build:
+  steps:
+    - ./bin/install.sh
