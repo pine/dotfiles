@@ -3,7 +3,7 @@
 
 # Setup Homebrew
 brew_preinstall() {
-  if uname -a | fgrep -i Darwin > /dev/null; then
+  if is-macos; then
     _brew_init
     _brew_update
     _brew_taps

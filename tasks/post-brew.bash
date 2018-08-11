@@ -2,7 +2,7 @@
 
 
 brew_postinstall() {
-  if uname -a | fgrep -i Darwin > /dev/null; then
+  if is-macos; then
     echo "> brew cleanup -s"
     brew cleanup -s
   fi

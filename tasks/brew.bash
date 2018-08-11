@@ -3,7 +3,7 @@
 
 # Install brew packages
 brew_install() {
-  if uname -a | fgrep -i Darwin > /dev/null; then
+  if is-macos; then
     _brew_install_pkgs
     _brew_install_cask_pkgs
   fi

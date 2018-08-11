@@ -18,7 +18,7 @@ _fish_install_fisherman() {
 
 
 _fish_set_default_shell() {
-  if uname -a | fgrep Darwin > /dev/null; then
+  if is-macos; then
     if ! fgrep /usr/local/bin/fish /etc/shells > /dev/null; then
       echo /usr/local/bin/fish | sudo tee -a /etc/shells > /dev/null
     fi
