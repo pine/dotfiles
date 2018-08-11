@@ -1,5 +1,5 @@
-box: debian:stretch
 build:
+  box: debian:stretch
   steps:
     - script:
         name: test
