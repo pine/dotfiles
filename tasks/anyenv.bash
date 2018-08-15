@@ -9,12 +9,29 @@ anyenv_install() {
 }
 
 
-# Install anvs
-_anyenv_install_envs() {
+_anyenv_envs() {
   local env
   local envs="$DOTFILES_CONFIG/anyenv/envs.conf"
 
   cat "$envs" | while read env; do
+    env="$(echo "$env" | tr -d '[:space:]')"
+
+    if [ "${env:0:1}" = "#" ]; then
+      continue
+    fi
+    if [ -z "$env" ]; then
+      continue
+    fi
+
+    echo "$env"
+  done
+}
+
+# Install anvs
+_anyenv_install_envs() {
+  local env
+
+  _anyenv_envs | while read env; do
     echo "> anyenv install -s $env"
     anyenv install -s $env
   done
@@ -24,14 +41,13 @@ _anyenv_install_envs() {
 # Install plugins
 _anyenv_install_plugins() {
   local env
-  local envs="$DOTFILES_CONFIG/anyenv/envs.conf"
   local name
   local plugin
   local plugins
   local repo_url
   local repo_path
 
-  cat "$envs" | while read env; do
+  _anyenv_envs | while read env; do
     if [ ! -d "$HOME/.anyenv/envs/$env" ]; then
       continue
     fi
@@ -67,9 +83,8 @@ _anyenv_install_plugins() {
 # Update envs
 _anyenv_update_envs() {
   local env
-  local envs="$DOTFILES_CONFIG/anyenv/envs.conf"
 
-  cat "$envs" | while read env; do
+  _anyenv_envs | while read env; do
     pushd "$HOME/.anyenv/envs/$env"
     git pull origin master
     popd > /dev/null
@@ -80,12 +95,11 @@ _anyenv_update_envs() {
 # Update plugins
 _anyenv_update_plugins() {
   local env
-  local envs="$DOTFILES_CONFIG/anyenv/envs.conf"
   local name
   local plugin
   local plugins
 
-  cat "$envs" | while read env; do
+  _anyenv_envs | while read env; do
     if [ ! -d "$HOME/.anyenv/envs/$env" ]; then
       continue
     fi
