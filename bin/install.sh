@@ -37,12 +37,12 @@ dotfiles_install() {
   _dotfiles_show_sys_info
 
   # Process secured dotfiles
-  dotfiles_extract_secured_zip
+  _dotfiles_extract_secured_zip
 
   # Run tasks
-  tasks=$(dotfiles_construct_tasks $*)
-  dotfiles_load_tasks
-  dotfiles_execute_tasks $tasks
+  tasks=$(_dotfiles_construct_tasks $*)
+  _dotfiles_load_tasks
+  _dotfiles_execute_tasks $tasks
 
   end_at=$(date +%s)
   printf "\n\e[32msuccess\e[39m\n"
@@ -56,7 +56,7 @@ _dotfiles_show_sys_info() {
 }
 
 
-dotfiles_extract_secured_zip() {
+_dotfiles_extract_secured_zip() {
   local zip_fname="dotfiles.secured-master.zip"
   local dir="dotfiles.secured-master"
 
@@ -73,7 +73,7 @@ dotfiles_extract_secured_zip() {
 }
 
 
-dotfiles_construct_tasks() {
+_dotfiles_construct_tasks() {
   local tasks
 
   if [ -n "$*" ]; then
@@ -89,7 +89,7 @@ dotfiles_construct_tasks() {
 }
 
 
-dotfiles_load_tasks() {
+_dotfiles_load_tasks() {
   local file
 
   for file in $(find "$DOTFILES_TASKS" -type f -name "*.bash"); do
@@ -106,7 +106,7 @@ dotfiles_load_tasks() {
 }
 
 
-dotfiles_execute_tasks() {
+_dotfiles_execute_tasks() {
   local action
   local task
   local tasks=$*
