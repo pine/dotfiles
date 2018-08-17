@@ -33,6 +33,9 @@ dotfiles_install() {
   local -i begin_at=$(date +%s)
   local -i end_at
 
+  # Show system information
+  _dotfiles_show_sys_info
+
   # Process secured dotfiles
   dotfiles_extract_secured_zip
 
@@ -44,6 +47,12 @@ dotfiles_install() {
   end_at=$(date +%s)
   printf "\n\e[32msuccess\e[39m\n"
   printf "\xe2\x9c\xa8  Done in $(($end_at - $begin_at))s.\n"
+}
+
+
+_dotfiles_show_sys_info() {
+  echo "SysInfo: $(uname -mnrs)"
+  echo "SysInfo: bash v$BASH_VERSION"
 }
 
 
@@ -84,13 +93,13 @@ dotfiles_load_tasks() {
   local file
 
   for file in $(find "$DOTFILES_TASKS" -type f -name "*.bash"); do
-    echo "Loading \`$file\`"
+    echo "Loading: $file"
     . $file
   done
 
   if [ -d "$DOTFILES_SECURED_TASKS" ]; then
     for file in $(find "$DOTFILES_SECURED_TASKS" -type f -name "*.bash"); do
-      echo "Loading \`$file\`"
+      echo "Loading: $file"
       . $file
     done
   fi
@@ -108,7 +117,7 @@ dotfiles_execute_tasks() {
     fi
     for action in preinstall install postinstall; do
       if type "${task}_$action" &> /dev/null; then
-        echo "Running \`${task}_$action\`"
+        echo "Running: ${task}_$action"
         "${task}_$action"
       fi
     done
