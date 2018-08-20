@@ -60,12 +60,12 @@ _apt_add_repositories() {
     fi
 
     if [ -z "$(find "/etc/apt/sources.list.d/" -mindepth 1)" ]; then
-      echo"> sudo add-apt-repository $source --yes"
+      echo "> sudo add-apt-repository $source --yes"
       sudo add-apt-repository "$source" --yes
     fi
 
     if ! cat /etc/apt/sources.list.d/*.list | fgrep "$pattern" >/dev/null; then
-      echo"> sudo add-apt-repository $source --yes"
+      echo "> sudo add-apt-repository $source --yes"
       sudo add-apt-repository "$source" --yes
     fi
   done
