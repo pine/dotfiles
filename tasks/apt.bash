@@ -23,7 +23,7 @@ _apt_install_pkgs() {
     fi
 
     if ! dpkg -s "$pkg" &> /dev/null; then
-      echo "> apt install $pkg -y"
+      echo "> sudo apt install $pkg -y"
       sudo apt install "$pkg" -y
     fi
   done
