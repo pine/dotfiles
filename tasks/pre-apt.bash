@@ -29,6 +29,10 @@ _apt_install_pre_pkgs() {
   local pkg
 
   cat "$pkgs" | while read pkg; do
+    if [ "${pkg:0:1}" = "#" ]; then
+      continue
+    fi
+
     if ! dpkg -s "$pkg" > /dev/null; then
       echo "> sudo apt install $pkg -y -qq"
       sudo apt install "$pkg" -y -qq
