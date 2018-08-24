@@ -2,6 +2,10 @@
 
 set -eu -o pipefail
 
+export LANG=en_US.UTF8
+export LANGUAGE=en_US.UTF8
+export LC_ALL=en_US.UTF8
+
 # -------------------------------------------------------------------
 
 declare -r DOTFILES_PARENT="$HOME/project/pine"
