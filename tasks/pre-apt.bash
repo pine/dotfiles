@@ -32,6 +32,9 @@ _apt_install_pre_pkgs() {
     if [ "${pkg:0:1}" = "#" ]; then
       continue
     fi
+    if [ -z "$pkg" ]; then
+      continue
+    fi
 
     if ! dpkg -s "$pkg" > /dev/null; then
       echo "> sudo apt install $pkg -y -qq"
