@@ -1,4 +1,4 @@
-#!/bin/bash
+# tasks/fish.bash
 
 fish_install() {
   _fish_install_fisherman

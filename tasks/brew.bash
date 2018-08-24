@@ -1,4 +1,4 @@
-#!/bin/bash
+# tasks/bash.bash
 
 
 # Install brew packages
