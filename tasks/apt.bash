@@ -12,12 +12,15 @@ _apt_install_pkgs() {
   local pkg
 
   cat "$pkgs" | while read pkg; do
+    pkg="${pkg%%\#*}"
+    pkg="$(echo "$pkg" | tr -d '[:space:]')"
+
     if [ "${pkg:0:1}" == '#' ]; then
       continue
     fi
-
-    pkg="${pkg%%\#*}"
-    pkg="$(echo "$pkg" | tr -d '[:space:]')"
+    if [ -z "$pkg" ]; then
+      continue
+    fi
 
     if ! dpkg -s "$pkg" > /dev/null; then
       echo "> apt install $pkg -y"
