@@ -21,6 +21,7 @@ function! GetFileType()
                 \'php'       : 'PHP',
                 \'python'    : 'Python',
                 \'ruby'      : 'Ruby',
+                \'scala'     : 'Scala',
                 \'sh'        : 'Shell',
                 \'sql'       : 'SQL',
                 \'swift'     : 'Swift',
