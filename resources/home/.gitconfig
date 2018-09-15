@@ -9,9 +9,13 @@
 	ignorecase = false
 	pager = less -R -F -X
 
+[commit]
+	gpgsign = true
+
 [user]
 	name = Pine Mizune
 	email = pinemz@gmail.com
+	signingkey = 9F69CCA2DEF16377BAEDDF64E9DB4E782EBE0F76
 
 [fetch]
 	prune = true
