@@ -116,6 +116,9 @@ _dotfiles_execute_tasks() {
   local tasks=$*
 
   for task in $tasks; do
+    if [ "${task:0:1}" == "#" ]; then
+      continue
+    fi
     if [ -z "$task" ]; then
       continue
     fi
