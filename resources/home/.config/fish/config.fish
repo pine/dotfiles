@@ -44,6 +44,13 @@ if test -d ~/.anyenv
   set -x PATH $HOME/.anyenv/bin $PATH
 end
 
+# goenv
+if test -d ~/.anyenv/envs/goenv
+  set -x GOENV_ROOT "$HOME/.anyenv/envs/goenv"
+  set -x PATH "$GOENV_ROOT/bin" $PATH
+  status --is-interactive; and . (goenv init - | psub)
+end
+
 # rbenv
 if test -d ~/.anyenv/envs/rbenv
   set -x RBENV_ROOT "$HOME/.anyenv/envs/rbenv"
