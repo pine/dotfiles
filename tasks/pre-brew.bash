@@ -16,7 +16,7 @@ brew_preinstall() {
 _brew_init() {
   local name
 
-  for name in Caskroom Cellar Frameworks etc include lib opt var; do
+  for name in Caskroom Cellar Frameworks etc include lib opt sbin var; do
     if [ ! -d "/usr/local/$name" ]; then
       sudo mkdir "/usr/local/$name"
     fi
@@ -25,6 +25,7 @@ _brew_init() {
     fi
   done
 }
+
 
 _brew_update() {
   local opts="$DOTFILES_CONFIG/brew/opts.conf"
