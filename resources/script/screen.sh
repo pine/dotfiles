@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -eu -o pipefail
+
+# --------------------------------------------------------------------
+
 if uname -a | fgrep -i Darwin > /dev/null; then
   if [ ! -f /usr/local/bin/screen ]; then
     mkdir -p ~/project/FreedomBen
