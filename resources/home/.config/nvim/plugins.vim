@@ -61,6 +61,7 @@ call dein#add('dag/vim-fish')
 call dein#add('uarun/vim-protobuf')
 call dein#add('posva/vim-vue')
 call dein#add('lambdalisue/vim-cython-syntax')
+call dein#add('Glench/Vim-Jinja2-Syntax')
 
 
 call dein#end()
