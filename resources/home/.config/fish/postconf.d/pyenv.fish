@@ -1,6 +1,6 @@
 # ~/.config/fish/conf.d/pyenv.fish
 
-set -x PYTHON_CONFIGURE_OPTS="--enable-shared"
+set -x PYTHON_CONFIGURE_OPTS "--enable-shared"
 
 if test -d ~/.anyenv/envs/pyenv
   set -x PYENV_ROOT "$HOME/.anyenv/envs/pyenv"
