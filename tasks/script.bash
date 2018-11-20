@@ -1,15 +1,22 @@
-#!/bin/bash
+# tasks/script.bash
 
 script_install() {
-  local basename
+  local fullpath
   local script
   local scripts="$DOTFILES_CONFIG/script/files.conf"
 
   cat "$scripts" | while read script; do
-    basename="$DOTFILES_RESOURCES/script/$script"
-    if [ -e "$basename.sh" ]; then
-      echo "> $basename.sh"
-      "$basename.sh"
+    if [ -z "$script" ]; then
+      continue
+    fi
+    if [ "${script:0:1}" = "#" ]; then
+      continue
+    fi
+
+    fullpath="$DOTFILES_RESOURCES/script/$script.sh"
+    if [ -e "$fullpath" ]; then
+      echo "> $fullpath"
+      "$fullpath"
     fi
   done
 }
