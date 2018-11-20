@@ -21,6 +21,14 @@ home_install() {
 _home_install_file() {
   local resources="$1"
   local file="$2"
+
+  if [ -z "$file" ]; then
+    return
+  fi
+  if [ "${file:0:1}" = "#" ]; then
+    return
+  fi
+
   local src="$resources/home/$file"
   local dest="$HOME/$file"
   local dest_dir="${dest%/*}"
