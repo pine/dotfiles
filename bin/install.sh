@@ -83,9 +83,9 @@ _dotfiles_construct_tasks() {
   if [ -n "$*" ]; then
     tasks=$*
   else
-    tasks=$(cat "$DOTFILES_CONFIG/tasks")
-    if [ -r "$DOTFILES_SECURED_CONFIG/tasks" ]; then
-      tasks=$tasks$'\n'$(cat "$DOTFILES_SECURED_CONFIG/tasks")
+    tasks=$(cat "$DOTFILES_CONFIG/tasks.conf")
+    if [ -r "$DOTFILES_SECURED_CONFIG/tasks.conf" ]; then
+      tasks=$tasks$'\n'$(cat "$DOTFILES_SECURED_CONFIG/tasks.conf")
     fi
   fi
 
