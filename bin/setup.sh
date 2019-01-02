@@ -49,15 +49,4 @@ setup() {
 
 setup
 
-
-# if uname | fgrep -i Darwin > /dev/null; then
-#   echo "========== setup brew =========="
-#   set -x
-#   if ! type -p brew > /dev/null 2>&1; then
-#     /usr/bin/ruby -e \
-#       "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-#   fi
-#   set +x
-
-
-# # vim: se ts=2 sw=2 sts=2 et ft=sh :
+# vim: se ts=2 sw=2 sts=2 et ft=sh :
