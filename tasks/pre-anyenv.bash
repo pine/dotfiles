@@ -11,6 +11,9 @@ anyenv_preinstall() {
     git clone 'https://github.com/riywo/anyenv.git' ~/.anyenv
   fi
 
-  PATH=~/.anyenv/bin:$PATH
-  anyenv init - > /dev/null
+  PATH=$HOME/.anyenv/bin:$PATH
+  if [ ! -d ~/.config/anyenv/anyenv-install/ ]; then
+    anyenv install --force-init
+  fi
+  anyenv init -
 }
