@@ -11,3 +11,8 @@ Thumbs.db
 
 # ctags
 tags
+
+# InteliJ IDEA
+.idea/codeStyles/Project.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/copyright/
