@@ -1,6 +1,6 @@
 #!/bin/bash
 
-home_install() {
+tasks_home_install() {
   local file
   local files="$DOTFILES_CONFIG/home/files.conf"
   local secured_files="$DOTFILES_SECURED_CONFIG/home/files.conf"

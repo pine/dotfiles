@@ -2,7 +2,7 @@
 
 
 # Install brew packages
-brew_install() {
+tasks_brew_install() {
   if is-macos; then
     _brew_install_pkgs
     _brew_install_cask_pkgs

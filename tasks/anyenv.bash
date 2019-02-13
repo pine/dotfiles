@@ -1,7 +1,7 @@
 # tasks/anyenv.bash
 
 
-anyenv_install() {
+tasks_anyenv_install() {
   _anyenv_install_envs
   _anyenv_install_plugins
   _anyenv_update_envs

@@ -1,6 +1,6 @@
 # tasks/fish.bash
 
-fish_install() {
+tasks_fish_install() {
   if type -p fish > /dev/null; then
     _fish_install_fisherman
 

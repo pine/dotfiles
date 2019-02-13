@@ -2,7 +2,7 @@
 
 
 # Setup Homebrew
-brew_preinstall() {
+tasks_brew_preinstall() {
   if is-macos; then
     _brew_init
     _brew_update
@@ -15,7 +15,7 @@ brew_preinstall() {
 
 _brew_init() {
   local name
-  
+
   if ! type -p brew > /dev/null 2>&1; then
     /usr/bin/ruby -e \
       "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

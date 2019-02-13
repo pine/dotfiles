@@ -1,6 +1,6 @@
 # tasks/script.bash
 
-script_install() {
+tasks_script_install() {
   local fullpath
   local script
   local scripts="$DOTFILES_CONFIG/script/files.conf"

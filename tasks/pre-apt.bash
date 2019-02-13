@@ -1,7 +1,7 @@
 # tasks/pre-apt.bash
 
 
-apt_preinstall() {
+tasks_apt_preinstall() {
   if ! is-macos && has-apt; then
     _apt_update
     _apt_install_pre_pkgs

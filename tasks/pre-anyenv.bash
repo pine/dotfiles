@@ -2,7 +2,7 @@
 
 
 # Install anyenv
-anyenv_preinstall() {
+tasks_anyenv_preinstall() {
   if [ -d ~/.anyenv ]; then
     pushd ~/.anyenv > /dev/null
     git pull origin master

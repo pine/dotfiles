@@ -1,7 +1,7 @@
 # tasks/pref.bash
 
 
-pref_install() {
+tasks_pref_install() {
   if is-macos; then
     _pref_install_macos_osascript
     _pref_install_macos_defaults

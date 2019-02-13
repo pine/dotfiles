@@ -1,6 +1,6 @@
 # tasks/apt.bash
 
-apt_install() {
+tasks_apt_install() {
   if ! is-macos && has-apt; then
     _apt_install_pkgs
   fi

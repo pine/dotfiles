@@ -123,9 +123,9 @@ _dotfiles_execute_tasks() {
       continue
     fi
     for action in preinstall install postinstall; do
-      if type "${task}_$action" &> /dev/null; then
-        echo "Running: ${task}_$action"
-        "${task}_$action"
+      if type "tasks_${task}_$action" &> /dev/null; then
+        echo "Running: tasks_${task}_$action"
+        "tasks_${task}_$action"
       fi
     done
   done
