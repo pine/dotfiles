@@ -11,6 +11,7 @@
 
 [commit]
 	gpgsign = true
+	verbose = true
 
 [user]
 	name = Pine Mizune
