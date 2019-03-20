@@ -52,6 +52,13 @@ _brew_taps() {
   local tap
 
   cat "$taps" | while read tap; do
+    if [ "${tap:0:1}" = '#' ]; then
+      continue
+    fi
+    if [ -z "$tap" ]; then
+      continue
+    fi
+
     if ! echo "$installed_taps" | fgrep "$tap" > /dev/null; then
       echo "> brew tap \"$tap\""
       brew tap "$tap"
