@@ -27,6 +27,7 @@ function! GetFileType()
                 \'swift'     : 'Swift',
                 \'tex'       : 'TeX',
                 \'text'      : 'Text',
+                \'tf'        : 'Terraform',
                 \'typescript': 'TypeScript',
                 \'vim'       : 'Vim',
                 \'xslate'    : 'Xslate',
