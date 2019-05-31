@@ -43,10 +43,10 @@
 	d = diff
 	dc = diff --cached
 	dw = diff --ignore-space-change
-	sync = !git pull && git push
 	master = checkout master
 	develop = checkout develop
 	dev = checkout develop
+	beta = checkout beta
 
 	# http://qiita.com/masarufuruya/items/7480854d4bc2f0443fc1
 	graph = log --graph --oneline --decorate
