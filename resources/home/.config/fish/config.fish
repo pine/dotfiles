@@ -94,6 +94,11 @@ end
 set -Ux GIT_MERGE_AUTOEDIT no
 
 
+# poetry ----------------------------------------------------------------------
+
+set -Ux POETRY_VIRTUALENVS_IN_PROJECT true
+
+
 # -----------------------------------------------------------------------------
 
 for i in ~/.config/fish/postconf.d/* ;
