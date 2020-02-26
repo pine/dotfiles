@@ -63,6 +63,7 @@ call dein#add('posva/vim-vue')
 call dein#add('lambdalisue/vim-cython-syntax')
 call dein#add('Glench/Vim-Jinja2-Syntax')
 call dein#add('hashivim/vim-terraform')
+call dein#add('aklt/plantuml-syntax')
 
 
 call dein#end()
