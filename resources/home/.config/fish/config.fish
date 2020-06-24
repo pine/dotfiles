@@ -16,7 +16,8 @@ begin
     /usr/local/opt/mysql@5.7/bin \
     ~/project/flutter/flutter/bin \
     ~/.cargo/bin \
-    ~/bin ~/bin/*/bin
+    ~/bin \
+    ~/bin/*/bin
 
   for p in $paths
     test -d $p; and set -x PATH $p $PATH
@@ -50,28 +51,28 @@ end
 if test -d ~/.anyenv/envs/rbenv
   set -x RBENV_ROOT "$HOME/.anyenv/envs/rbenv"
   set -x PATH "$RBENV_ROOT/bin" $PATH
-  status --is-interactive; and . (rbenv init - | psub)
+  status --is-interactive; and rbenv init - | source
 end
 
 # plenv
 if test -d ~/.anyenv/envs/plenv
   set -x PLENV_ROOT "$HOME/.anyenv/envs/plenv"
   set -x PATH "$PLENV_ROOT/bin" $PATH
-  status --is-interactive; and . (plenv init - | psub)
+  status --is-interactive; and plenv init - | source
 end
 
 # swiftenv
 if test -d ~/.anyenv/envs/swiftenv
   set -x SWIFTENV_ROOT "$HOME/.anyenv/envs/swiftenv"
   set -x PATH "$SWIFTENV_ROOT/bin" $PATH
-  status --is-interactive; and . (swiftenv init - | psub)
+  status --is-interactive; and swiftenv init - | source
 end
 
 # scalaenv
 if test -d ~/.anyenv/envs/scalaenv
   set -x SCALAENV_ROOT "$HOME/.anyenv/envs/scalaenv"
   set -x PATH "$SCALAENV_ROOT/bin" $PATH
-  status --is-interactive; and . (scalaenv init - | psub)
+  status --is-interactive; and scalaenv init - | source
 end
 
 # rustup
