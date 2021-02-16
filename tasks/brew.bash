@@ -32,7 +32,7 @@ _brew_install_pkgs() {
 
 
 _brew_install_cask_pkgs() {
-  local installed_pkgs="$(brew cask list | tr ' ' "\n")"
+  local installed_pkgs="$(brew list --cask | tr ' ' "\n")"
   local pkgs="$DOTFILES_CONFIG/brew/cask-pkgs.conf"
   local pkg
 
@@ -47,7 +47,7 @@ _brew_install_cask_pkgs() {
 
     if ! echo "$installed_pkgs" | fgrep "$pkg" > /dev/null; then
       echo "> brew cask install $pkg"
-      brew cask install "$pkg"
+      brew install "$pkg" --cask
     fi
   done
 }
