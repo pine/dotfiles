@@ -11,6 +11,7 @@ begin
     /usr/local/sbin /usr/local/bin \
     /usr/local/*/bin  \
     ~/Library/Android/sdk/tools/bin ~/Library/Android/sdk/platform-tools \
+    /usr/local/opt/terraform@0.13/bin \
     /usr/local/Homebrew/bin \
     /usr/lib/dart/bin \
     /usr/local/opt/mysql@5.7/bin \
