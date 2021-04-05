@@ -44,6 +44,7 @@
 	dc = diff --cached
 	dw = diff --ignore-space-change
 	master = checkout master
+	main = checkout main
 	develop = checkout develop
 	dev = checkout develop
 	beta = checkout beta
