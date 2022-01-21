@@ -15,7 +15,7 @@ _brew_install_pkgs() {
   local pkgs="$DOTFILES_CONFIG/brew/pkgs.conf"
   local pkg
 
-  cat "$pkgs" | while read pkg; do
+  while read -u 9 pkg; do
     if [ "${pkg:0:1}" == '#' ]; then
       continue
     fi
@@ -27,7 +27,7 @@ _brew_install_pkgs() {
       echo "> brew install $pkg"
       brew install "$pkg"
     fi
-  done
+  done 9< "$pkgs"
 }
 
 
@@ -37,7 +37,7 @@ _brew_install_cask_pkgs() {
   local pkg
 
 
-  cat "$pkgs" | while read pkg; do
+  while read -u 9 pkg; do
     if [ "${pkg:0:1}" == '#' ]; then
       continue
     fi
@@ -49,6 +49,6 @@ _brew_install_cask_pkgs() {
       echo "> brew cask install $pkg"
       brew install "$pkg" --cask
     fi
-  done
+  done 9< "$pkgs"
 }
 

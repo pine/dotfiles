@@ -78,7 +78,7 @@ end
 
 # rustup
 if test -f ~/.cargo/env
-  source ~/.cargo/env
+  # source ~/.cargo/env
 end
 
 # vim -------------------------------------------------------------------------
