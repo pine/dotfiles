@@ -11,7 +11,7 @@ tasks_brew_install() {
 
 
 _brew_install_pkgs() {
-  local installed_pkgs="$(brew list | tr ' ' "\n")"
+  local installed_pkgs="$(brew list --formula | tr ' ' "\n")"
   local pkgs="$DOTFILES_CONFIG/brew/pkgs.conf"
   local pkg
 
@@ -23,7 +23,7 @@ _brew_install_pkgs() {
     pkg="${pkg%%\#*}"
     pkg="$(echo "$pkg" | tr -d '[:space:]')"
 
-    if ! echo "$installed_pkgs" | fgrep "$pkg" > /dev/null; then
+    if ! echo "$installed_pkgs" | fgrep -x "$pkg" > /dev/null; then
       echo "> brew install $pkg"
       brew install "$pkg"
     fi
@@ -45,7 +45,7 @@ _brew_install_cask_pkgs() {
     pkg="${pkg%%\#*}"
     pkg="$(echo "$pkg" | tr -d '[:space:]')"
 
-    if ! echo "$installed_pkgs" | fgrep "$pkg" > /dev/null; then
+    if ! echo "$installed_pkgs" | fgrep -x "$pkg" > /dev/null; then
       echo "> brew cask install $pkg"
       brew install "$pkg" --cask
     fi
