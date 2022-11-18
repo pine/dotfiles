@@ -43,6 +43,7 @@
 	d = diff
 	dc = diff --cached
 	dw = diff --ignore-space-change
+	sw = switch
 	master = checkout master
 	main = checkout main
 	develop = checkout develop
