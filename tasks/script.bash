@@ -1,7 +1,6 @@
 # tasks/script.bash
 
 tasks_script_install() {
-  local fullpath
   local script
   local scripts="$DOTFILES_CONFIG/script/files.conf"
   local secured_scripts="$DOTFILES_SECURED_CONFIG/script/files.conf"
