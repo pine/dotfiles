@@ -74,6 +74,6 @@ indent_size = 4
 indent_style = space
 indent_size = 4
 
-[*.uml]
+[*.{uml,puml}]
 indent_style = space
 indent_size = 2
