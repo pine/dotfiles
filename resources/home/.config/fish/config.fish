@@ -18,7 +18,8 @@ begin
     ~/project/flutter/flutter/bin \
     ~/.cargo/bin \
     ~/bin \
-    ~/bin/*/bin
+    ~/bin/*/bin \
+    ~/.rd/bin # Rancher Desktop
 
   for p in $paths
     test -d $p; and set -x PATH $p $PATH
