@@ -9,6 +9,7 @@ test -d ~/project; and set -g CDPATH $CDPATH ~/project
 begin
   set -l paths /sbin /usr/sbin /bin /usr/sbin \
     /usr/local/sbin /usr/local/bin \
+    /opt/homebrew/bin \
     /usr/local/*/bin  \
     ~/Library/Android/sdk/tools/bin ~/Library/Android/sdk/platform-tools \
     /usr/local/opt/terraform@0.13/bin \

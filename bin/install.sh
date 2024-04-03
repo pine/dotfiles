@@ -12,6 +12,7 @@ declare -r DOTFILES_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
 cd "$DOTFILES_ROOT"
 
 declare -r DOTFILES_CONFIG="$DOTFILES_ROOT/config"
+declare -r DOTFILES_FUNCTIONS="$DOTFILES_ROOT/functions"
 declare -r DOTFILES_RESOURCES="$DOTFILES_ROOT/resources"
 declare -r DOTFILES_TASKS="$DOTFILES_ROOT/tasks"
 declare -r DOTFILES_SECURED_ROOT="$DOTFILES_ROOT/secured"
@@ -42,6 +43,9 @@ dotfiles_install() {
 
   # Process secured dotfiles
   _dotfiles_extract_secured_zip
+
+  # Import functions
+  _dotfiles_import_functions
 
   # Run tasks
   tasks=$(_dotfiles_construct_tasks $*)
@@ -74,6 +78,16 @@ _dotfiles_extract_secured_zip() {
     unzip "$zip_fname"
     mv "$dir" "$DOTFILES_SECURED_ROOT"
   fi
+}
+
+
+_dotfiles_import_functions() {
+  local file
+
+  for file in $(find "$DOTFILES_FUNCTIONS" -type f -name "*.bash"); do
+    echo "Importing $file"
+    . $file
+  done
 }
 
 

@@ -11,7 +11,8 @@ export LC_ALL=en_US.UTF-8
 declare -r DOTFILES_PARENT="$HOME/project/pine"
 declare -r DOTFILES_ROOT="$DOTFILES_PARENT/dotfiles"
 declare -r DOTFILES_BIN="$DOTFILES_ROOT/bin"
-declare -r DOTFILES_GIT="https://github.com/pine/dotfiles.git"
+declare -r DOTFILES_GIT_HTTPS="https://github.com/pine/dotfiles.git"
+declare -r DOTFILES_GIT_SSH="git@github.com:pine/dotfiles.git"
 
 # -------------------------------------------------------------------
 
@@ -37,10 +38,11 @@ setup() {
 
   # Clone Git repository
   if [ ! -d dotfiles ]; then
-    echo "> git clone $DOTFILES_GIT $DOTFILES_ROOT"
-    git clone "$DOTFILES_GIT" "$DOTFILES_ROOT"
+    echo "> git clone $DOTFILES_GIT_HTTPS $DOTFILES_ROOT"
+    git clone "$DOTFILES_GIT_HTTPS" "$DOTFILES_ROOT"
   fi
   cd "$DOTFILES_ROOT"
+  git remote set-url origin "$DOTFILES_GIT_SSH"
 
   # Install dotfiles
   echo "> $DOTFILES_BIN/install.sh"
