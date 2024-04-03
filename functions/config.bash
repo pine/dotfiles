@@ -13,6 +13,7 @@ config_get_nth() {
 config_get_opt() {
   local str=$1
   local name=$2
+  local default_value=$3
   local value
 
   str="${str%%\#*}"
@@ -20,6 +21,11 @@ config_get_opt() {
 
   value=$(echo "$str" | grep -o -E "(^|,)$name=[[:alnum:]_-]*($|,)")
   value="$(echo "$value" | tr -d ',')"
+  value=${value:$((${#name}+1))}
 
-  echo ${value:$((${#name}+1))}
+  if [ -n "$value" ]; then
+    echo $value
+  else
+    echo $default_value
+  fi
 }

@@ -23,9 +23,10 @@ _brew_install_pkgs() {
       continue
     fi
 
-    state=$(config_get_opt "$line" 'state')
-    if [ -z $state ]; then
-      state=present
+    state=$(config_get_opt "$line" 'state' 'present')
+    env=$(config_get_opt "$line" 'env' 'all')
+    if [ "$env" != 'all' ] && [ "$(env_current)" != "$env" ]; then
+      continue
     fi
 
     if [ "$state" = 'present' ]; then
