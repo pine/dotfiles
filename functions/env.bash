@@ -1,4 +1,4 @@
-env_current() {
+env_name() {
   if [ "$USER" = 'kazuki.matsushita' ]; then
     echo 'company'
   else

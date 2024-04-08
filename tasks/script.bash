@@ -30,6 +30,6 @@ _script_run_script() {
   local fullpath="$resources/script/$script.sh"
   if [ -e "$fullpath" ]; then
     echo "> $fullpath"
-    ENV_NAME=$(env_current) "$fullpath"
+    ENV_NAME=$(env_name) "$fullpath"
   fi
 }
