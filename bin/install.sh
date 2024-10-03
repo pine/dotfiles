@@ -6,6 +6,9 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+
+# -------------------------------------------------------------------
+# Setup global variables
 # -------------------------------------------------------------------
 
 declare -r DOTFILES_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
@@ -19,6 +22,12 @@ declare -r DOTFILES_SECURED_ROOT="$DOTFILES_ROOT/secured"
 declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_SECURED_ROOT/config"
 declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_SECURED_ROOT/resources"
 declare -r DOTFILES_SECURED_TASKS="$DOTFILES_SECURED_ROOT/tasks"
+
+# Corporate
+declare -r CORPORATE_DIR="$HOME/project/kazuki-matsushita/dotfiles-corporate"
+declare -r CORPORATE_CONFIG_DIR="$CORPORATE_DIR/config"
+declare -r CORPORATE_RESOURCES_DIR="$CORPORATE_DIR/resources"
+
 
 # -------------------------------------------------------------------
 # TODO: export functions
