@@ -20,7 +20,8 @@ begin
     ~/.cargo/bin \
     ~/bin \
     ~/bin/*/bin \
-    ~/.rd/bin # Rancher Desktop
+    ~/.rd/bin \ # Rancher Desktop
+    ~/opt/athenz-utils
 
   for p in $paths
     test -d $p; and set -x PATH $p $PATH
