@@ -20,7 +20,8 @@ begin
     ~/.cargo/bin \
     ~/bin \
     ~/bin/*/bin \
-    ~/.rd/bin \ # Rancher Desktop
+    ~/.rd/bin \
+    ~/opt/zms-cli \
     ~/opt/athenz-utils
 
   for p in $paths
