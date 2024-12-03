@@ -17,8 +17,7 @@ _brew_init() {
   local name
 
   if ! type -p brew > /dev/null 2>&1; then
-    /usr/bin/ruby -e \
-      "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
   for name in Caskroom Cellar Frameworks etc include lib opt sbin var; do
