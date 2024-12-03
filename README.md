@@ -1,4 +1,4 @@
-# dotfiles v3 &nbsp;[![Build Status](https://travis-ci.org/pine/dotfiles.svg?branch=master)](https://travis-ci.org/pine/dotfiles)
+# dotfiles v3
 
 ## Getting started
 First, you must clone the repository in your development computer.
