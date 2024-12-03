@@ -23,6 +23,9 @@ declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_SECURED_ROOT/config"
 declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_SECURED_ROOT/resources"
 declare -r DOTFILES_SECURED_TASKS="$DOTFILES_SECURED_ROOT/tasks"
 
+declare -r DF_INIT_DIR="$DOTFILES_ROOT/init"
+declare -r DF_VENDOR_DIR="$DOTFILES_ROOT/vendor"
+
 # Corporate
 declare -r CORPORATE_DIR="$HOME/project/kazuki-matsushita/dotfiles-corporate"
 declare -r CORPORATE_CONFIG_DIR="$CORPORATE_DIR/config"
@@ -42,10 +45,13 @@ has-apt() {
 
 # -------------------------------------------------------------------
 
-dotfiles_install() {
+df_install() {
   local tasks
   local -i begin_at=$(date +%s)
   local -i end_at
+
+  # Import init scripts
+  _df_run_init_scripts
 
   # Show system information
   _dotfiles_show_sys_info
@@ -87,6 +93,18 @@ _dotfiles_extract_secured_zip() {
     unzip "$zip_fname"
     mv "$dir" "$DOTFILES_SECURED_ROOT"
   fi
+}
+
+
+_df_run_init_scripts() {
+  local path
+  local relative_path
+
+  for path in $(find "$DF_INIT_DIR" -type f -name "*.bash" | sort); do
+    relative_path=$(echo $path | sed -e "s@^$DOTFILES_ROOT@\.@")
+    echo "Running $relative_path"
+    . $path
+  done
 }
 
 
@@ -137,6 +155,7 @@ _dotfiles_execute_tasks() {
   local action
   local task
   local tasks=$*
+  local func
 
   for task in $tasks; do
     if [ "${task:0:1}" == "#" ]; then
@@ -148,11 +167,13 @@ _dotfiles_execute_tasks() {
     for action in preinstall install postinstall; do
       if type "tasks_${task}_$action" &> /dev/null; then
         echo "Running: tasks_${task}_$action"
-        "tasks_${task}_$action"
+
+        func="tasks_${task}_$action"
+        $func
       fi
     done
   done
 }
 
 
-dotfiles_install $*
+df_install $*

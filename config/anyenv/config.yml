@@ -1,0 +1,14 @@
+# Available envs on anyenv
+
+- name: nodenv
+  plugins:
+    - name: node-build
+      uri: https://github.com/nodenv/node-build.git
+    - name: nodenv-yarn-install
+      uri: https://github.com/pine/nodenv-yarn-install.git
+- name: jenv
+- name: pyenv
+# - name: rbenv
+#   plugins:
+#     - name: rbenv-binstubs
+#       uri: https://github.com/ianheggie/rbenv-binstubs.git
