@@ -1,11 +1,10 @@
 # Install yq command
 
 declare -r YQ_VERSION=v4.44.5
-declare -r YQ_URL="https://github.com/mikefarah/yq/releases/download/$YQ_VERSION/yq_${DF_OS}_${DF_ARCH}"
+declare -r YQ_URL="https://github.com/mikefarah/yq/releases/download/$YQ_VERSION/yq_${ENV_OS}_${ENV_ARCH}"
 declare -r YQ_DIR="$DF_VENDOR_DIR/yq"
-declare -r YQ_FILENAME="yq_${DF_OS}_${DF_ARCH}"
-
-export YQ_PATH="$YQ_DIR/$YQ_FILENAME"
+declare -r YQ_FILENAME="yq_${ENV_OS}_${ENV_ARCH}"
+declare -r YQ_PATH="$YQ_DIR/$YQ_FILENAME"
 
 # -------------------------------------------------------------------
 
