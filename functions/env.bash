@@ -5,3 +5,7 @@ env_name() {
     echo 'personal'
   fi
 }
+
+env_is_macos() {
+  [ $ENV_OS = 'darwin' ]
+}

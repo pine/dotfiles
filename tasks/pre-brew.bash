@@ -3,7 +3,7 @@
 
 # Setup Homebrew
 tasks_brew_preinstall() {
-  if is-macos; then
+  if env_is_macos; then
     _brew_init
     _brew_update
     _brew_taps

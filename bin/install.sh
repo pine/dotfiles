@@ -121,7 +121,7 @@ declare _SCRIPT_RELATIVE_PATH
 
 for _SCRIPT_PATH in $(find "$DF_INIT_DIR" -type f -name "*.bash" | sort); do
   _SCRIPT_RELATIVE_PATH=$(echo $_SCRIPT_PATH | sed -e "s@^$DF_ROOT@\.@")
-  echo "Running $_SCRIPT_RELATIVE_PATH"
+  echo "Loading: $_SCRIPT_RELATIVE_PATH"
 
   pushd "$DF_ROOT" > /dev/null
   . "$_SCRIPT_PATH"
@@ -140,7 +140,7 @@ declare _FUNC_RELATIVE_PATH
 
 for _FUNC_PATH in $(find "$DF_FUNC_DIR" -type f -name "*.bash"); do
   _FUNC_RELATIVE_PATH=$(echo $_FUNC_PATH | sed -e "s@^$DF_ROOT@\.@")
-  echo "Importing $_FUNC_RELATIVE_PATH"
+  echo "Loading: $_FUNC_RELATIVE_PATH"
 
   pushd "$DF_ROOT" > /dev/null
   . "$_FUNC_PATH"

@@ -3,7 +3,7 @@
 
 # Install brew packages
 tasks_brew_install() {
-  if is-macos; then
+  if env_is_macos; then
     _brew_install_pkgs "$DOTFILES_CONFIG/brew/pkgs.conf" formula
     _brew_install_pkgs "$DOTFILES_CONFIG/brew/cask-pkgs.conf" cask
   fi

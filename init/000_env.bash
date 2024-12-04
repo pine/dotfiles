@@ -10,6 +10,8 @@ case "$OSTYPE" in
     exit 1;;
 esac
 
+# -------------------------------------------------------------------
+
 case "$(uname -m)" in
   x86_64|amd64)
     declare -r ENV_ARCH=amd64;;
@@ -20,5 +22,17 @@ case "$(uname -m)" in
     exit 1;;
 esac
 
+# -------------------------------------------------------------------
+
+case "$USER" in
+  kazuki.matsushita)
+    declare -r ENV_USE=corporate;;
+  *)
+    declare -r ENV_USE=personal;;
+esac
+
+# -------------------------------------------------------------------
+
 echo "ENV_OS: $ENV_OS"
 echo "ENV_ARCH: $ENV_ARCH"
+echo "ENV_USE: $ENV_USE"

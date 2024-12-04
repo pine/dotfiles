@@ -2,7 +2,7 @@
 
 # Install AppStore packages
 tasks_mas_install() {
-  if is-macos; then
+  if env_is_macos; then
     _tasks_mas_install_pkgs
   fi
 }

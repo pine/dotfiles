@@ -2,7 +2,7 @@
 
 
 tasks_brew_postinstall() {
-  if is-macos; then
+  if env_is_macos; then
     echo "> brew cleanup -s"
     brew cleanup -s
   fi
