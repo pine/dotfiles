@@ -11,20 +11,20 @@ export LC_ALL=en_US.UTF-8
 # Setup global variables
 # -------------------------------------------------------------------
 
-declare -r DOTFILES_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
-cd "$DOTFILES_ROOT"
+declare -r DF_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
+cd "$DF_ROOT"
 
-declare -r DOTFILES_CONFIG="$DOTFILES_ROOT/config"
-declare -r DOTFILES_FUNCTIONS="$DOTFILES_ROOT/functions"
-declare -r DOTFILES_RESOURCES="$DOTFILES_ROOT/resources"
-declare -r DOTFILES_TASKS="$DOTFILES_ROOT/tasks"
-declare -r DOTFILES_SECURED_ROOT="$DOTFILES_ROOT/secured"
+declare -r DOTFILES_CONFIG="$DF_ROOT/config"
+declare -r DOTFILES_FUNCTIONS="$DF_ROOT/functions"
+declare -r DOTFILES_RESOURCES="$DF_ROOT/resources"
+declare -r DOTFILES_TASKS="$DF_ROOT/tasks"
+declare -r DOTFILES_SECURED_ROOT="$DF_ROOT/secured"
 declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_SECURED_ROOT/config"
 declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_SECURED_ROOT/resources"
 declare -r DOTFILES_SECURED_TASKS="$DOTFILES_SECURED_ROOT/tasks"
 
-declare -r DF_INIT_DIR="$DOTFILES_ROOT/init"
-declare -r DF_VENDOR_DIR="$DOTFILES_ROOT/vendor"
+declare -r DF_INIT_DIR="$DF_ROOT/init"
+declare -r DF_VENDOR_DIR="$DF_ROOT/vendor"
 
 # Corporate
 declare -r CORPORATE_DIR="$HOME/project/kazuki-matsushita/dotfiles-corporate"
@@ -44,22 +44,6 @@ has-apt() {
 }
 
 # -------------------------------------------------------------------
-
-_dotfiles_extract_secured_zip() {
-  local zip_fname="dotfiles.secured-master.zip"
-  local dir="dotfiles.secured-master"
-
-  if [ -f "$DOTFILES_SECURED_ROOT/README.md" ]; then
-    return
-  fi
-
-  if [ -r "$DOTFILES_ROOT/$zip_fname" ]; then
-    rm -rf "$DOTFILES_ROOT/$dir"
-    rm -rf "$DOTFILES_SECURED_ROOT"
-    unzip "$zip_fname"
-    mv "$dir" "$DOTFILES_SECURED_ROOT"
-  fi
-}
 
 
 _dotfiles_import_functions() {
@@ -123,9 +107,9 @@ _dotfiles_execute_tasks() {
         echo "Running: tasks_${task}_$action"
 
         func="tasks_${task}_$action"
-        pushd "$DOTFILES_ROOT"
+        pushd "$DF_ROOT" > /dev/null
         $func
-        popd
+        popd > /dev/null
       fi
     done
   done
@@ -146,19 +130,18 @@ declare _SCRIPT_PATH
 declare _SCRIPT_RELATIVE_PATH
 
 for _SCRIPT_PATH in $(find "$DF_INIT_DIR" -type f -name "*.bash" | sort); do
-  _SCRIPT_RELATIVE_PATH=$(echo $_SCRIPT_PATH | sed -e "s@^$DOTFILES_ROOT@\.@")
+  _SCRIPT_RELATIVE_PATH=$(echo $_SCRIPT_PATH | sed -e "s@^$DF_ROOT@\.@")
   echo "Running $_SCRIPT_RELATIVE_PATH"
-  pushd "$DOTFILES_ROOT"
+
+  pushd "$DF_ROOT" > /dev/null
   . "$_SCRIPT_PATH"
-  popd
+  popd > /dev/null
 done
 
 unset -v _SCRIPT_PATH
 unset -v _SCRIPT_RELATIVE_PATH
 
-
-# Process secured dotfiles
-_dotfiles_extract_secured_zip
+# -------------------------------------------------------------------
 
 # Import functions
 _dotfiles_import_functions
