@@ -45,12 +45,6 @@ has-apt() {
 
 # -------------------------------------------------------------------
 
-_dotfiles_show_sys_info() {
-  echo "SysInfo: $(uname -mnrs)"
-  echo "SysInfo: bash v$BASH_VERSION"
-}
-
-
 _dotfiles_extract_secured_zip() {
   local zip_fname="dotfiles.secured-master.zip"
   local dir="dotfiles.secured-master"
@@ -142,7 +136,10 @@ declare _TASKS
 declare -i _INSTALL_BEGIN_AT=$(date +%s)
 declare -i _INSTALL_END_AT
 
+# -------------------------------------------------------------------
 # Import init scripts
+# -------------------------------------------------------------------
+
 declare _SCRIPT_PATH
 declare _SCRIPT_RELATIVE_PATH
 
@@ -155,9 +152,6 @@ done
 unset -v _SCRIPT_PATH
 unset -v _SCRIPT_RELATIVE_PATH
 
-
-# Show system information
-_dotfiles_show_sys_info
 
 # Process secured dotfiles
 _dotfiles_extract_secured_zip
