@@ -45,34 +45,6 @@ has-apt() {
 
 # -------------------------------------------------------------------
 
-df_install() {
-  local tasks
-  local -i begin_at=$(date +%s)
-  local -i end_at
-
-  # Import init scripts
-  _df_run_init_scripts
-
-  # Show system information
-  _dotfiles_show_sys_info
-
-  # Process secured dotfiles
-  _dotfiles_extract_secured_zip
-
-  # Import functions
-  _dotfiles_import_functions
-
-  # Run tasks
-  tasks=$(_dotfiles_construct_tasks $*)
-  _dotfiles_load_tasks
-  _dotfiles_execute_tasks $tasks
-
-  end_at=$(date +%s)
-  printf "\n\e[32msuccess\e[39m\n"
-  printf "\xe2\x9c\xa8  Done in $(($end_at - $begin_at))s.\n"
-}
-
-
 _dotfiles_show_sys_info() {
   echo "SysInfo: $(uname -mnrs)"
   echo "SysInfo: bash v$BASH_VERSION"
@@ -93,18 +65,6 @@ _dotfiles_extract_secured_zip() {
     unzip "$zip_fname"
     mv "$dir" "$DOTFILES_SECURED_ROOT"
   fi
-}
-
-
-_df_run_init_scripts() {
-  local path
-  local relative_path
-
-  for path in $(find "$DF_INIT_DIR" -type f -name "*.bash" | sort); do
-    relative_path=$(echo $path | sed -e "s@^$DOTFILES_ROOT@\.@")
-    echo "Running $relative_path"
-    . $path
-  done
 }
 
 
@@ -176,4 +136,40 @@ _dotfiles_execute_tasks() {
 }
 
 
-df_install $*
+# -------------------------------------------------------------------
+
+declare _TASKS
+declare -i _INSTALL_BEGIN_AT=$(date +%s)
+declare -i _INSTALL_END_AT
+
+# Import init scripts
+declare _SCRIPT_PATH
+declare _SCRIPT_RELATIVE_PATH
+
+for _SCRIPT_PATH in $(find "$DF_INIT_DIR" -type f -name "*.bash" | sort); do
+  _SCRIPT_RELATIVE_PATH=$(echo $_SCRIPT_PATH | sed -e "s@^$DOTFILES_ROOT@\.@")
+  echo "Running $_SCRIPT_RELATIVE_PATH"
+  . $_SCRIPT_PATH
+done
+
+unset _SCRIPT_PATH
+unset _SCRIPT_RELATIVE_PATH
+
+
+# Show system information
+_dotfiles_show_sys_info
+
+# Process secured dotfiles
+_dotfiles_extract_secured_zip
+
+# Import functions
+_dotfiles_import_functions
+
+# Run tasks
+_TASKS=$(_dotfiles_construct_tasks $*)
+_dotfiles_load_tasks
+_dotfiles_execute_tasks $_TASKS
+
+_INSTALL_END_AT=$(date +%s)
+printf "\n\e[32msuccess\e[39m\n"
+printf "\xe2\x9c\xa8  Done in $(($_INSTALL_END_AT - $_INSTALL_BEGIN_AT))s.\n"
