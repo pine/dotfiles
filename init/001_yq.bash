@@ -9,13 +9,13 @@ declare -r YQ_PATH="$YQ_DIR/$YQ_FILENAME"
 # -------------------------------------------------------------------
 
 init_yq_install() {
-  _init_yq_printenv
   if _init_yq_exists; then
+    _init_yq_printenv
     return
   fi
 
-
   _init_yq_install
+  _init_yq_printenv
 }
 
 _init_yq_printenv() {
@@ -28,29 +28,38 @@ _init_yq_printenv() {
 
 
 _init_yq_exists() {
+  echo -n 'Checking if yq is installed ... '
   if [ ! -f "$YQ_PATH" ]; then
+    echo no
     return 1
   fi
 
   local current_version=$("$YQ_PATH" -V | grep -o -E ' v[0-9\.]+$' | tr -d '[:space:]')
   if [ "$YQ_VERSION" != "$current_version" ]; then
+    echo no
     return 1
   fi
 
+  echo yes
   return 0
 }
 
 _init_yq_install() {
   local tmpdir=$(mktemp -d)
-  cd $tmpdir
 
+  echo 'Installing yq ...'
+
+  pushd $tmpdir
   curl -L "$YQ_URL" -o "$YQ_FILENAME"
 
   mkdir -p "$YQ_DIR"
   cp -f "$YQ_FILENAME" "$YQ_PATH"
   chmod +x "$YQ_PATH"
 
+  popd
   rm -rf $tmpdir
+
+  echo 'Successfully installed'
 }
 
 

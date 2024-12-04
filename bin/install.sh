@@ -123,7 +123,9 @@ _dotfiles_execute_tasks() {
         echo "Running: tasks_${task}_$action"
 
         func="tasks_${task}_$action"
+        pushd "$DOTFILES_ROOT"
         $func
+        popd
       fi
     done
   done
@@ -146,7 +148,9 @@ declare _SCRIPT_RELATIVE_PATH
 for _SCRIPT_PATH in $(find "$DF_INIT_DIR" -type f -name "*.bash" | sort); do
   _SCRIPT_RELATIVE_PATH=$(echo $_SCRIPT_PATH | sed -e "s@^$DOTFILES_ROOT@\.@")
   echo "Running $_SCRIPT_RELATIVE_PATH"
-  . $_SCRIPT_PATH
+  pushd "$DOTFILES_ROOT"
+  . "$_SCRIPT_PATH"
+  popd
 done
 
 unset -v _SCRIPT_PATH
