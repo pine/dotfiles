@@ -15,7 +15,7 @@ declare -r DF_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
 cd "$DF_ROOT"
 
 declare -r DOTFILES_CONFIG="$DF_ROOT/config"
-declare -r DOTFILES_FUNCTIONS="$DF_ROOT/functions"
+declare -r DF_FUNC_DIR="$DF_ROOT/functions"
 declare -r DOTFILES_RESOURCES="$DF_ROOT/resources"
 declare -r DOTFILES_TASKS="$DF_ROOT/tasks"
 declare -r DOTFILES_SECURED_ROOT="$DF_ROOT/secured"
@@ -44,16 +44,6 @@ has-apt() {
 }
 
 # -------------------------------------------------------------------
-
-
-_dotfiles_import_functions() {
-  local file
-
-  for file in $(find "$DOTFILES_FUNCTIONS" -type f -name "*.bash"); do
-    echo "Importing $file"
-    . $file
-  done
-}
 
 
 _dotfiles_construct_tasks() {
@@ -142,9 +132,25 @@ unset -v _SCRIPT_PATH
 unset -v _SCRIPT_RELATIVE_PATH
 
 # -------------------------------------------------------------------
-
 # Import functions
-_dotfiles_import_functions
+# -------------------------------------------------------------------
+
+declare _FUNC_PATH
+declare _FUNC_RELATIVE_PATH
+
+for _FUNC_PATH in $(find "$DF_FUNC_DIR" -type f -name "*.bash"); do
+  _FUNC_RELATIVE_PATH=$(echo $_FUNC_PATH | sed -e "s@^$DF_ROOT@\.@")
+  echo "Importing $_FUNC_RELATIVE_PATH"
+
+  pushd "$DF_ROOT" > /dev/null
+  . "$_FUNC_PATH"
+  popd > /dev/null
+done
+
+unset -v _FUNC_PATH
+unset -v _FUNC_RELATIVE_PATH
+
+# -------------------------------------------------------------------
 
 # Run tasks
 _TASKS=$(_dotfiles_construct_tasks $*)
