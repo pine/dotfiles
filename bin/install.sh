@@ -152,8 +152,8 @@ for _SCRIPT_PATH in $(find "$DF_INIT_DIR" -type f -name "*.bash" | sort); do
   . $_SCRIPT_PATH
 done
 
-unset _SCRIPT_PATH
-unset _SCRIPT_RELATIVE_PATH
+unset -v _SCRIPT_PATH
+unset -v _SCRIPT_RELATIVE_PATH
 
 
 # Show system information
