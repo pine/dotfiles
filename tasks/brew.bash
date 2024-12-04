@@ -38,7 +38,7 @@ _brew_install_pkgs() {
         echo 'no'
       fi
       echo "Installing $pkg ..."
-      brew install "$pkg" "--$repository" --force
+      brew install "$pkg" "--$repository" --no-quarantine
     elif [ "$state" = 'absent' ]; then
       echo -n "Checking if $pkg is uninstalled ... "
       if brew list $pkg "--$repository" > /dev/null 2>&1; then
