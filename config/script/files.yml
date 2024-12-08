@@ -1,0 +1,6 @@
+- name: bats
+- name: git-fire
+- name: jasypt
+- name: phpbrew
+- name: rustup
+- name: sdkman
