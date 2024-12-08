@@ -1,7 +1,0 @@
-build:
-  box: debian:stretch
-  steps:
-    - script:
-        name: test
-        code: |
-          ./bin/install.sh
