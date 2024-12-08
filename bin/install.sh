@@ -15,6 +15,7 @@ declare -r DF_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
 cd "$DF_ROOT"
 
 declare -r DOTFILES_CONFIG="$DF_ROOT/config"
+declare -r DF_CONFIG="$DF_ROOT/config"
 declare -r DF_FUNC_DIR="$DF_ROOT/functions"
 declare -r DOTFILES_RESOURCES="$DF_ROOT/resources"
 declare -r DOTFILES_TASKS="$DF_ROOT/tasks"

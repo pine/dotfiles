@@ -1,11 +1,22 @@
-#!/bin/bash
-
+# Prepare home directory
 
 tasks_home_preinstall() {
-  local mkdirp="$DOTFILES_CONFIG/home/mkdirp.conf"
+  _tasks_home_create_directories
+}
 
-  cat "$mkdirp" | while read dir; do
-    echo "> mkdir -p $HOME/$dir"
-    mkdir -p "$HOME/$dir"
+_tasks_home_create_directories() {
+  local config_path="$DF_CONFIG/home/directories.yml"
+
+  cat "$config_path" | "$YQ_PATH" '.[]' | while read directory; do
+    echo -n "Checking if ~/$directory exists ..."
+
+    if [ -d "$HOME/$directory" ]; then
+      echo 'yes'
+    else
+      echo 'no'
+
+      echo "Creating directory ~/$directory"
+      mkdir -p "$HOME/$directory"
+    fi
   done
 }
