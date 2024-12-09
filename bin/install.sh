@@ -14,23 +14,30 @@ export LC_ALL=en_US.UTF-8
 declare -r DF_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
 cd "$DF_ROOT"
 
-declare -r DOTFILES_CONFIG="$DF_ROOT/config"
-declare -r DF_CONFIG="$DF_ROOT/config"
-declare -r DF_FUNC_DIR="$DF_ROOT/functions"
+declare -r DOTFILES_CONFIG="$DF_ROOT/config" # deprecated
 declare -r DOTFILES_RESOURCES="$DF_ROOT/resources"
 declare -r DOTFILES_TASKS="$DF_ROOT/tasks"
-declare -r DOTFILES_SECURED_ROOT="$DF_ROOT/secured"
-declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_SECURED_ROOT/config"
-declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_SECURED_ROOT/resources"
-declare -r DOTFILES_SECURED_TASKS="$DOTFILES_SECURED_ROOT/tasks"
-
+declare -r DF_CONFIG="$DF_ROOT/config"
+declare -r DF_FUNC_DIR="$DF_ROOT/functions"
 declare -r DF_INIT_DIR="$DF_ROOT/init"
 declare -r DF_VENDOR_DIR="$DF_ROOT/vendor"
 
+# Secure
+declare -r DOTFILES_SECURED_ROOT="$DF_ROOT/secured" # deprecated
+declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_SECURED_ROOT/config" # deprecated
+declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_SECURED_ROOT/resources" # deprecated
+declare -r DOTFILES_SECURED_TASKS="$DOTFILES_SECURED_ROOT/tasks"
+declare -r DF_SECURE_ROOT_DIR="$DF_ROOT/secured"
+declare -r DF_SECURE_CONFIG_DIR="$DF_SECURE_ROOT_DIR/config"
+declare -r DF_SECURE_RESOURCES_DIR="$DF_SECURE_ROOT_DIR/resources"
+
 # Corporate
-declare -r CORPORATE_DIR="$HOME/project/kazuki-matsushita/dotfiles-corporate"
-declare -r CORPORATE_CONFIG_DIR="$CORPORATE_DIR/config"
-declare -r CORPORATE_RESOURCES_DIR="$CORPORATE_DIR/resources"
+declare -r CORPORATE_DIR="$HOME/project/kazuki-matsushita/dotfiles-corporate" # deprecated
+declare -r CORPORATE_CONFIG_DIR="$CORPORATE_DIR/config" # deprecated
+declare -r CORPORATE_RESOURCES_DIR="$CORPORATE_DIR/resources" # deprecated
+declare -r DF_CORPORATE_DIR="$HOME/project/kazuki-matsushita/dotfiles-corporate"
+declare -r DF_CORPORATE_CONFIG_DIR="$DF_CORPORATE_DIR/config"
+declare -r DF_CORPORATE_RESOURCES_DIR="$DF_CORPORATE_DIR/resources"
 
 
 # -------------------------------------------------------------------
