@@ -15,9 +15,17 @@ tasks_brew_preinstall() {
 
 _brew_init() {
   local name
+  local tmp_dir
+  local install_script_path
 
   if ! type -p brew > /dev/null 2>&1; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    tmp_dir="$DF_TMP_DIR/pre-brew"
+    install_script_path="$tmp_dir/install.sh"
+    mkdir -p "$tmp_dir"
+
+    curl -sL 'https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh' -o "$install_script_path"
+    chmod +x "$install_script_path"
+    "$install_script_path"
   fi
 
   for name in Caskroom Cellar Frameworks etc include lib opt sbin var; do
