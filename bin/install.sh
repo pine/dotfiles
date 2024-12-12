@@ -2,6 +2,21 @@
 
 set -eu -o pipefail
 
+
+# -------------------------------------------------------------------
+# Start installing
+# -------------------------------------------------------------------
+
+echo 'Started installing'
+
+declare -i _INSTALL_BEGIN_AT=$(date +%s)
+declare -i _INSTALL_END_AT
+
+
+# -------------------------------------------------------------------
+# Setup global environment variables
+# -------------------------------------------------------------------
+
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -11,8 +26,13 @@ export LC_ALL=en_US.UTF-8
 # Setup global variables
 # -------------------------------------------------------------------
 
+# Move to root directory
 declare -r DF_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
 cd "$DF_ROOT"
+
+# Create temporary directory
+declare -r DF_TMP_DIR=$(mktemp -d)
+trap "rm -rf $DF_TMP_DIR" EXIT
 
 declare -r DOTFILES_CONFIG="$DF_ROOT/config" # deprecated
 declare -r DOTFILES_RESOURCES="$DF_ROOT/resources"
@@ -39,6 +59,9 @@ declare -r DF_CORPORATE_DIR="$HOME/project/kazuki-matsushita/dotfiles-corporate"
 declare -r DF_CORPORATE_CONFIG_DIR="$DF_CORPORATE_DIR/config"
 declare -r DF_CORPORATE_RESOURCES_DIR="$DF_CORPORATE_DIR/resources"
 
+# Print variables
+echo "DF_ROOT: $DF_ROOT"
+echo "DF_TMP_DIR: $DF_TMP_DIR"
 
 # -------------------------------------------------------------------
 # TODO: export functions
@@ -115,12 +138,6 @@ _dotfiles_execute_tasks() {
 
 
 # -------------------------------------------------------------------
-
-declare _TASKS
-declare -i _INSTALL_BEGIN_AT=$(date +%s)
-declare -i _INSTALL_END_AT
-
-# -------------------------------------------------------------------
 # Import init scripts
 # -------------------------------------------------------------------
 
@@ -161,6 +178,7 @@ unset -v _FUNC_RELATIVE_PATH
 # -------------------------------------------------------------------
 
 # Run tasks
+declare _TASKS
 _TASKS=$(_dotfiles_construct_tasks $*)
 _dotfiles_load_tasks
 _dotfiles_execute_tasks $_TASKS
