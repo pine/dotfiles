@@ -1,10 +1,11 @@
 tasks_script_install() {
   local config_path="$DF_CONFIG/script/files.yml"
   local secured_scripts="$DOTFILES_SECURED_CONFIG/script/files.conf"
+  local corporate_config_path="$DF_CORPORATE_CONFIG_DIR/script/files.yml"
 
   _script_run_scripts_yml "$DOTFILES_RESOURCES" "$config_path" 'main'
   _script_run_scripts "$DOTFILES_SECURED_RESOURCES" "$secured_scripts" 'secure script conf'
-  _script_run_scripts "$CORPORATE_RESOURCES_DIR" "$CORPORATE_CONFIG_DIR/script/files.conf" 'corporate script conf'
+  _script_run_scripts_yml "$DF_CORPORATE_RESOURCES_DIR" "$corporate_config_path" 'corporate'
 }
 
 _script_run_scripts() {
