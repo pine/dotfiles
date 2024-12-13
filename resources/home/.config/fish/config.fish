@@ -21,8 +21,9 @@ begin
     ~/bin \
     ~/bin/*/bin \
     ~/.rd/bin \
-    ~/opt/zms-cli \
-    ~/opt/athenz-utils
+    ~/opt/athenz-utils \
+    ~/opt/vksctl \
+    ~/opt/zms-cli
 
   for p in $paths
     test -d $p; and set -x PATH $p $PATH
