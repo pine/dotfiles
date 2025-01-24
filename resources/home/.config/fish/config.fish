@@ -15,7 +15,7 @@ begin
     /usr/local/opt/terraform@0.13/bin \
     /usr/local/Homebrew/bin \
     /usr/lib/dart/bin \
-    /usr/local/opt/mysql@5.7/bin \
+    /opt/homebrew/opt/mysql@8.0/bin \
     ~/project/flutter/flutter/bin \
     ~/.cargo/bin \
     ~/bin \
