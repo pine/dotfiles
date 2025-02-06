@@ -1,6 +1,3 @@
-#!/bin/bash
-
-
 # Setup Homebrew
 tasks_brew_preinstall() {
   if env_is_macos; then
@@ -40,52 +37,48 @@ _brew_init() {
 
 
 _brew_update() {
-  local opts="$DOTFILES_CONFIG/brew/opts.conf"
-  local fg
+  local config_path="$DF_CONFIG_DIR/brew/options.yml"
+  local update=$(cat "$config_path" | "$YQ_PATH" '.update')
 
-  fg="$(grep update $opts)"
-  fg="${fg##update}"
-
-  if [[ "$fg" = *on* ]]; then
-    echo "> brew update"
+  if [[ "$update" == 'true' ]]; then
+    echo 'Updating Homebrew ...'
     brew update || brew update
+  else
+    echo 'Skip Homebrew updates ...'
+  fi
+}
+
+
+_brew_upgrade() {
+  local config_path="$DF_CONFIG_DIR/brew/options.yml"
+  local upgrade=$(cat "$config_path" | "$YQ_PATH" '.upgrade')
+
+  if [[ "$upgrade" == 'true' ]]; then
+    echo 'Upgrading Homebrew ...'
+    brew upgrade || brew upgrade
+  else
+    echo 'Skip Homebrew upgrades ...'
   fi
 }
 
 
 _brew_taps() {
   local installed_taps="$(brew tap | tr ' ' "\n")"
-  local taps="$DOTFILES_CONFIG/brew/taps.conf"
+  local config_path="$DF_CONFIG_DIR/brew/taps.yml"
   local tap
 
-  cat "$taps" | while read tap; do
-    if [ "${tap:0:1}" = '#' ]; then
-      continue
-    fi
-    if [ -z "$tap" ]; then
-      continue
-    fi
+  cat "$config_path" | "$YQ_PATH" '.[]' | while read tap; do
+    echo -n "Checking if $tap is tapped ..."
 
-    if ! echo "$installed_taps" | fgrep "$tap" > /dev/null; then
-      echo "> brew tap \"$tap\""
+    if echo "$installed_taps" | fgrep "$tap" > /dev/null; then
+      echo yes
+    else
+      echo no
+      echo "Tapping $tap"
       brew tap "$tap"
     fi
   done
 
-  echo "> brew tap --repair"
+  echo 'Repairing taps ...'
   brew tap --repair
-}
-
-
-_brew_upgrade() {
-  local opts="$DOTFILES_CONFIG/brew/opts.conf"
-  local fg
-
-  fg="$(grep upgrade $opts)"
-  fg="${fg##upgrade}"
-
-  if [[ "$fg" = *on* ]]; then
-    echo "> brew upgrade"
-    brew upgrade || brew upgrade
-  fi
 }

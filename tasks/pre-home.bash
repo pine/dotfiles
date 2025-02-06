@@ -5,7 +5,7 @@ tasks_home_preinstall() {
 }
 
 _tasks_home_create_directories() {
-  local config_path="$DF_CONFIG/home/directories.yml"
+  local config_path="$DF_CONFIG_DIR/home/directories.yml"
 
   cat "$config_path" | "$YQ_PATH" '.[]' | while read directory; do
     echo -n "Checking if ~/$directory exists ..."

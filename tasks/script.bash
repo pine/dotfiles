@@ -1,5 +1,5 @@
 tasks_script_install() {
-  local config_path="$DF_CONFIG/script/files.yml"
+  local config_path="$DF_CONFIG_DIR/script/files.yml"
   local secured_scripts="$DOTFILES_SECURED_CONFIG/script/files.conf"
   local corporate_config_path="$DF_CORPORATE_CONFIG_DIR/script/files.yml"
 
