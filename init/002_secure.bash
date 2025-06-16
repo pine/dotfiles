@@ -12,8 +12,8 @@ _init_secure_extract_zip() {
     return
   fi
 
-  if [ -r "$DF_ROOT/$zip_fname" ]; then
-    rm -rf "$DF_ROOT/$dir"
+  if [ -r "$DF_ROOT_DIR/$zip_fname" ]; then
+    rm -rf "$DF_ROOT_DIR/$dir"
     rm -rf "$DOTFILES_SECURED_ROOT"
     unzip "$zip_fname"
     mv "$dir" "$DOTFILES_SECURED_ROOT"

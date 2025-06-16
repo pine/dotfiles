@@ -27,27 +27,28 @@ export LC_ALL=en_US.UTF-8
 # -------------------------------------------------------------------
 
 # Move to root directory
-declare -r DF_ROOT="$(cd ${BASH_SOURCE%/*}/..; pwd)"
-cd "$DF_ROOT"
+declare -r DF_ROOT_DIR="$(cd ${BASH_SOURCE%/*}/..; pwd)"
+declare -r DF_ROOT=$DF_ROOT_DIR # deprecated
+cd "$DF_ROOT_DIR"
 
 # Create temporary directory
 declare -r DF_TMP_DIR=$(mktemp -d)
 trap "rm -rf $DF_TMP_DIR" EXIT
 
-declare -r DOTFILES_CONFIG="$DF_ROOT/config" # deprecated
-declare -r DOTFILES_RESOURCES="$DF_ROOT/resources"
-declare -r DOTFILES_TASKS="$DF_ROOT/tasks"
-declare -r DF_CONFIG_DIR="$DF_ROOT/config"
-declare -r DF_FUNC_DIR="$DF_ROOT/functions"
-declare -r DF_INIT_DIR="$DF_ROOT/init"
-declare -r DF_VENDOR_DIR="$DF_ROOT/vendor"
+declare -r DOTFILES_CONFIG="$DF_ROOT_DIR/config" # deprecated
+declare -r DOTFILES_RESOURCES="$DF_ROOT_DIR/resources"
+declare -r DOTFILES_TASKS="$DF_ROOT_DIR/tasks"
+declare -r DF_CONFIG_DIR="$DF_ROOT_DIR/config"
+declare -r DF_FUNC_DIR="$DF_ROOT_DIR/functions"
+declare -r DF_INIT_DIR="$DF_ROOT_DIR/init"
+declare -r DF_VENDOR_DIR="$DF_ROOT_DIR/vendor"
 
 # Secure
-declare -r DOTFILES_SECURED_ROOT="$DF_ROOT/secured" # deprecated
+declare -r DOTFILES_SECURED_ROOT="$DF_ROOT_DIR/secured" # deprecated
 declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_SECURED_ROOT/config" # deprecated
 declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_SECURED_ROOT/resources" # deprecated
 declare -r DOTFILES_SECURED_TASKS="$DOTFILES_SECURED_ROOT/tasks"
-declare -r DF_SECURE_ROOT_DIR="$DF_ROOT/secured"
+declare -r DF_SECURE_ROOT_DIR="$DF_ROOT_DIR/secured"
 declare -r DF_SECURE_CONFIG_DIR="$DF_SECURE_ROOT_DIR/config"
 declare -r DF_SECURE_RESOURCES_DIR="$DF_SECURE_ROOT_DIR/resources"
 
@@ -57,7 +58,7 @@ declare -r DF_CORPORATE_CONFIG_DIR="$DF_CORPORATE_DIR/config"
 declare -r DF_CORPORATE_RESOURCES_DIR="$DF_CORPORATE_DIR/resources"
 
 # Print variables
-echo "DF_ROOT: $DF_ROOT"
+echo "DF_ROOT_DIR: $DF_ROOT_DIR"
 echo "DF_TMP_DIR: $DF_TMP_DIR"
 
 # -------------------------------------------------------------------
@@ -142,10 +143,10 @@ declare _SCRIPT_PATH
 declare _SCRIPT_RELATIVE_PATH
 
 for _SCRIPT_PATH in $(find "$DF_INIT_DIR" -type f -name "*.bash" | sort); do
-  _SCRIPT_RELATIVE_PATH=$(echo $_SCRIPT_PATH | sed -e "s@^$DF_ROOT@\.@")
+  _SCRIPT_RELATIVE_PATH=$(echo $_SCRIPT_PATH | sed -e "s@^$DF_ROOT_DIR@\.@")
   echo "Loading: $_SCRIPT_RELATIVE_PATH"
 
-  pushd "$DF_ROOT" > /dev/null
+  pushd "$DF_ROOT_DIR" > /dev/null
   . "$_SCRIPT_PATH"
   popd > /dev/null
 done
@@ -161,10 +162,10 @@ declare _FUNC_PATH
 declare _FUNC_RELATIVE_PATH
 
 for _FUNC_PATH in $(find "$DF_FUNC_DIR" -type f -name "*.bash"); do
-  _FUNC_RELATIVE_PATH=$(echo $_FUNC_PATH | sed -e "s@^$DF_ROOT@\.@")
+  _FUNC_RELATIVE_PATH=$(echo $_FUNC_PATH | sed -e "s@^$DF_ROOT_DIR@\.@")
   echo "Loading: $_FUNC_RELATIVE_PATH"
 
-  pushd "$DF_ROOT" > /dev/null
+  pushd "$DF_ROOT_DIR" > /dev/null
   . "$_FUNC_PATH"
   popd > /dev/null
 done
