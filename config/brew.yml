@@ -1,0 +1,16 @@
+options:
+  update: true
+  upgrade: true
+
+# Homebrew taps
+taps:
+  - adoptopenjdk/openjdk
+  - alehouse/unofficial
+  - carlocab/personal
+  - cloudfoundry/tap
+  - hashicorp/tap
+  - heroku/brew
+  - instantclienttap/instantclient
+  - mike-engel/jwt-cli
+  - neovim/neovim
+  - kyoshidajp/ghkw

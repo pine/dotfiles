@@ -14,7 +14,7 @@ _brew_init() {
   local name
   local tmp_dir
   local install_script_path
-  
+
   if [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
@@ -41,8 +41,8 @@ _brew_init() {
 
 
 _brew_update() {
-  local config_path="$DF_CONFIG_DIR/brew/options.yml"
-  local update=$(cat "$config_path" | "$YQ_PATH" '.update')
+  local config_path="$DF_CONFIG_DIR/brew.yml"
+  local update=$(cat "$config_path" | "$YQ_PATH" '.options.update')
 
   if [[ "$update" == 'true' ]]; then
     echo 'Updating Homebrew ...'
@@ -54,8 +54,8 @@ _brew_update() {
 
 
 _brew_upgrade() {
-  local config_path="$DF_CONFIG_DIR/brew/options.yml"
-  local upgrade=$(cat "$config_path" | "$YQ_PATH" '.upgrade')
+  local config_path="$DF_CONFIG_DIR/brew.yml"
+  local upgrade=$(cat "$config_path" | "$YQ_PATH" '.options.upgrade')
 
   if [[ "$upgrade" == 'true' ]]; then
     echo 'Upgrading Homebrew ...'
@@ -68,10 +68,10 @@ _brew_upgrade() {
 
 _brew_taps() {
   local installed_taps="$(brew tap | tr ' ' "\n")"
-  local config_path="$DF_CONFIG_DIR/brew/taps.yml"
+  local config_path="$DF_CONFIG_DIR/brew.yml"
   local tap
 
-  cat "$config_path" | "$YQ_PATH" '.[]' | while read tap; do
+  cat "$config_path" | "$YQ_PATH" '.taps.[]' | while read tap; do
     echo -n "Checking if $tap is tapped ..."
 
     if echo "$installed_taps" | fgrep "$tap" > /dev/null; then
