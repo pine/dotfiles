@@ -1,7 +1,7 @@
 # Install and update each env in anyenv
 
 tasks_anyenv_install() {
-  local config_path="$DOTFILES_CONFIG/anyenv/config.yml"
+  local config_path="$DOTFILES_CONFIG/anyenv.yml"
   local env_json
   local env_name
   local plugin_json
