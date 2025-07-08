@@ -12,7 +12,6 @@ filetype plugin indent on
 
 " 文字コード関係の設定
 set fileformats=unix,dos,mac " ファイルフォーマット
-set termencoding=utf-8 " 端末のエンコード
 set ambiwidth=double " 全角文字を2文字として扱う
 
 " 自動判定するエンコード一覧
