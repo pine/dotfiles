@@ -14,6 +14,10 @@ _brew_init() {
   local name
   local tmp_dir
   local install_script_path
+  
+  if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
 
   if ! type -p brew > /dev/null 2>&1; then
     tmp_dir="$DF_TMP_DIR/pre-brew"

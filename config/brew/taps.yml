@@ -6,7 +6,6 @@
 - cloudfoundry/tap
 - hashicorp/tap
 - heroku/brew
-- homebrew/services
 - instantclienttap/instantclient
 - mike-engel/jwt-cli
 - neovim/neovim
