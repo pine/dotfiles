@@ -16,6 +16,7 @@ begin
     /usr/local/Homebrew/bin \
     /usr/lib/dart/bin \
     /opt/homebrew/opt/mysql@8.0/bin \
+    /usr/local/opt/mysql@8.0/bin \
     ~/project/flutter/flutter/bin \
     ~/.cargo/bin \
     ~/bin \
