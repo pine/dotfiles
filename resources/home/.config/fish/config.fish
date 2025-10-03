@@ -22,6 +22,7 @@ begin
     ~/bin \
     ~/bin/*/bin \
     ~/.rd/bin \
+    ~/.local/bin \
     ~/opt/athenz-utils \
     ~/opt/vksctl \
     ~/opt/zms-cli
