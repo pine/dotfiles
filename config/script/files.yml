@@ -3,4 +3,4 @@
 - name: jasypt
 - name: phpbrew
 - name: rustup
-- name: sdkman
+# - name: sdkman
