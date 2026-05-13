@@ -52,8 +52,8 @@ declare -r DF_SECURE_ROOT_DIR="$DF_ROOT_DIR/secured"
 declare -r DF_SECURE_CONFIG_DIR="$DF_SECURE_ROOT_DIR/config"
 declare -r DF_SECURE_RESOURCES_DIR="$DF_SECURE_ROOT_DIR/resources"
 
-# Corporate
-declare -r DF_CORPORATE_DIR="$HOME/project/kazuki-matsushita/dotfiles-corporate"
+# Work
+declare -r DF_CORPORATE_DIR="$HOME/project/kazuki-matsushita/dotfiles-work"
 declare -r DF_CORPORATE_CONFIG_DIR="$DF_CORPORATE_DIR/config"
 declare -r DF_CORPORATE_RESOURCES_DIR="$DF_CORPORATE_DIR/resources"
 
