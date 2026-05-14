@@ -104,6 +104,11 @@ end
 set -Ux GIT_MERGE_AUTOEDIT no
 
 
+# gpg -------------------------------------------------------------------------
+
+set -Ux GPG_TTY $(tty)
+
+
 # poetry ----------------------------------------------------------------------
 
 set -Ux POETRY_VIRTUALENVS_IN_PROJECT true
