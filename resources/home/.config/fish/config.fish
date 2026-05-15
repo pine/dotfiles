@@ -3,6 +3,8 @@
 # env -------------------------------------------------------------------------
 
 set -g CDPATH .
+test -d ~/project/bm-sms; and set -g CDPATH $CDPATH ~/project/bm-sms
+test -d ~/project/kazuki-matsushita; and set -g CDPATH $CDPATH ~/project/kazuki-matsushita
 test -d ~/project/pine; and set -g CDPATH $CDPATH ~/project/pine
 test -d ~/project; and set -g CDPATH $CDPATH ~/project
 
