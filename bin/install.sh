@@ -39,6 +39,7 @@ declare -r DOTFILES_CONFIG="$DF_ROOT_DIR/config" # deprecated
 declare -r DOTFILES_RESOURCES="$DF_ROOT_DIR/resources"
 declare -r DOTFILES_TASKS="$DF_ROOT_DIR/tasks"
 declare -r DF_CONFIG_DIR="$DF_ROOT_DIR/config"
+declare -r DF_RESOURCES_DIR="$DF_ROOT_DIR/resources"
 declare -r DF_FUNC_DIR="$DF_ROOT_DIR/functions"
 declare -r DF_INIT_DIR="$DF_ROOT_DIR/init"
 declare -r DF_VENDOR_DIR="$DF_ROOT_DIR/vendor"

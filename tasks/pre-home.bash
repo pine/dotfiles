@@ -1,22 +1,43 @@
 # Prepare home directory
 
 tasks_home_preinstall() {
-  _tasks_home_create_directories
+  _tasks_home_create_directories "$DF_CONFIG_DIR"
+  _tasks_home_create_directories "$DF_SECURE_CONFIG_DIR"
+  _tasks_home_create_directories "$DF_CORPORATE_CONFIG_DIR"
 }
 
 _tasks_home_create_directories() {
-  local config_path="$DF_CONFIG_DIR/home/directories.yml"
+  local config_dir=$1
+  local config_file="$config_dir/home/directories.yml"
+  local path
+  local mode
 
-  cat "$config_path" | "$YQ_PATH" '.[]' | while read directory; do
-    echo -n "Checking if ~/$directory exists ..."
+  if [ ! -f "$config_file" ]; then
+    return 0
+  fi
 
-    if [ -d "$HOME/$directory" ]; then
+  cat "$config_file" | "$YQ_PATH" '.[]' -o=json -I=0 | while read directory; do
+    path=$(echo "$directory" | "$YQ_PATH" '.path')
+    mode=$(echo "$directory" | "$YQ_PATH" '.mode // ""')
+
+    echo -n "Checking if ~/$path exists ..."
+    if [ -d "$HOME/$path" ]; then
       echo 'yes'
     else
       echo 'no'
+      echo "Creating directory ~/$path"
+      mkdir -p "$HOME/$path"
+    fi
 
-      echo "Creating directory ~/$directory"
-      mkdir -p "$HOME/$directory"
+    if [ -n "$mode" ]; then
+      echo -n "Checking if the permissions of ~/$path are $mode ... "
+      if [ "$mode" == $(stat -f '%Lp' "$HOME/$path") ]; then
+        echo yes
+      else
+        echo no
+        echo "Change the permissions of ~/$path to $mode"
+        chmod "$mode" "$HOME/$path"
+      fi
     fi
   done
 }

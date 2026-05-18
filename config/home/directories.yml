@@ -1,6 +1,6 @@
-- .go
-- bin
-- opt
-- project
-- tmp
-- var
+- path: .go
+- path: bin
+- path: opt
+- path: project
+- path: tmp
+- path: var

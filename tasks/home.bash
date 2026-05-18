@@ -1,40 +1,50 @@
-#!/bin/bash
 
 tasks_home_install() {
-  local file
-  local files="$DOTFILES_CONFIG/home/files.conf"
-  local secured_files="$DOTFILES_SECURED_CONFIG/home/files.conf"
-  local src
-
-  cat $files | while read file; do
-    _home_install_file "$DOTFILES_RESOURCES" "$file"
-  done
-
-  # Process secured files
-  if [ -r "$secured_files" ]; then
-    cat "$secured_files" | while read file; do
-      _home_install_file "$DOTFILES_SECURED_RESOURCES" "$file"
-    done
-  fi
+  _tasks_home_install "$DF_CONFIG_DIR" "$DF_RESOURCES_DIR"
+  _tasks_home_install "$DF_SECURE_CONFIG_DIR" "$DF_SECURE_RESOURCES_DIR"
+  _tasks_home_install "$DF_CORPORATE_CONFIG_DIR" "$DF_CORPORATE_RESOURCES_DIR"
 }
 
-_home_install_file() {
+_tasks_home_install() {
+  local config_dir="$1"
+  local resources_dir="$2"
+  local config_file="$config_dir/home/files.yml"
+  local path
+
+  if [ ! -f "$config_file" ]; then
+    return 0
+  fi
+
+  cat "$config_file" | "$YQ_PATH" '.[]' -o=json -I=0 | while read file_json; do
+    _tasks_home_install_file "$resources_dir" "$file_json"
+  done
+}
+
+_tasks_home_install_file() {
   local resources="$1"
-  local file="$2"
+  local file_json="$2"
 
-  if [ -z "$file" ]; then
+  local path=$(echo $file_json | "$YQ_PATH" '.path')
+  local strategy=$(echo $file_json | "$YQ_PATH" '.strategy // ""')
+
+  if [ -z "$path" ]; then
     return
   fi
-  if [ "${file:0:1}" = "#" ]; then
-    return
-  fi
 
-  local src="$resources/home/$file"
-  local dest="$HOME/$file"
+  local src="$resources/home/$path"
+  local dest="$HOME/$path"
   local dest_dir="${dest%/*}"
 
-  echo "> ln -s $src $dest"
   mkdir -p "$dest_dir"
-  rm -f "$HOME/$file"
-  ln -s "$src" "$HOME/$file"
+
+  if [ "$strategy" = "copy" ]; then
+    echo "> cp $src $dest"
+    rm -f "$HOME/$path"
+    cp "$src" "$HOME/$path"
+    chmod 600 "$HOME/$path" # XXX
+  else
+    echo "> ln -s $src $dest"
+    rm -f "$HOME/$path"
+    ln -s "$src" "$HOME/$path"
+  fi
 }

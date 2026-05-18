@@ -1,0 +1,29 @@
+# config/home/files.conf
+
+- path: .config/fish/config.fish
+- path: .config/fish/fish_plugins
+- path: .config/fish/completions/jenv.fish
+- path: .config/fish/completions/ndenv.fish
+- path: .config/fish/completions/pyenv.fish
+- path: .config/fish/completions/sdkman.fish
+- path: .config/fish/conf.d/google-cloud-sdk.fish
+- path: .config/fish/postconf.d/goenv.fish
+- path: .config/fish/postconf.d/jenv.fish
+- path: .config/fish/postconf.d/nodenv.fish
+- path: .config/fish/postconf.d/pyenv.fish
+- path: .config/fish/postconf.d/sdkman.fish
+- path: .config/nvim/common.vim
+- path: .config/nvim/completion.vim
+- path: .config/nvim/cursor.vim
+- path: .config/nvim/functions.vim
+- path: .config/nvim/grep.vim
+- path: .config/nvim/init.vim
+- path: .config/nvim/plugins.vim
+- path: .editorconfig
+- path: .gemrc
+- path: .gitconfig
+- path: .gitignore
+- path: .gnupg/gpg-agent.conf
+- path: .screenrc
+- path: .tmux.conf
+- path: bin/vim
