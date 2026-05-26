@@ -5,7 +5,6 @@
 - path: .config/fish/completions/jenv.fish
 - path: .config/fish/completions/ndenv.fish
 - path: .config/fish/completions/pyenv.fish
-- path: .config/fish/completions/sdkman.fish
 - path: .config/fish/conf.d/google-cloud-sdk.fish
 - path: .config/fish/postconf.d/goenv.fish
 - path: .config/fish/postconf.d/jenv.fish
