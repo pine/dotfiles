@@ -10,13 +10,7 @@
 - path: .config/fish/postconf.d/jenv.fish
 - path: .config/fish/postconf.d/nodenv.fish
 - path: .config/fish/postconf.d/pyenv.fish
-- path: .config/nvim/common.vim
-- path: .config/nvim/completion.vim
-- path: .config/nvim/cursor.vim
-- path: .config/nvim/functions.vim
-- path: .config/nvim/grep.vim
-- path: .config/nvim/init.vim
-- path: .config/nvim/plugins.vim
+- path: .config/nvim/init.lua
 - path: .editorconfig
 - path: .gemrc
 - path: .gitconfig
