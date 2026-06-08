@@ -11,11 +11,32 @@ vim.opt.shiftwidth = 4            -- インデント幅
 vim.opt.autowrite = true          -- 自動保存
 vim.opt.hidden = true             -- 保存していないバッファの切り替えを有効
 vim.opt.mouse = "h"               -- マウス操作の制限
-vim.opt.clipboard = "unnamedplus" -- OSのクリップボードと同期
 vim.opt.shortmess:remove("S")     -- vim-anzu の代替 (検索結果のカウント [1/10] を標準表示)
 
 vim.g.mapleader = " "             -- リーダーキーをスペースに設定
 
+
+---------------------------------------------
+-- クリップボード
+---------------------------------------------
+
+-- OSのクリップボードと同期
+vim.opt.clipboard = "unnamedplus"
+
+-- 書式付きテキストを貼り付けできない問題を修正
+-- クリップボードプロバイダを自動検出に頼らず、macOS純正の pbcopy/pbpaste に強制固定する
+vim.g.clipboard = {
+  name = 'macOS-clipboard',
+  copy = {
+    ['+'] = 'pbcopy',
+    ['*'] = 'pbcopy',
+  },
+  paste = {
+    ['+'] = 'pbpaste',
+    ['*'] = 'pbpaste',
+  },
+  cache_enabled = 0,
+}
 
 -- ==========================================
 -- 2. キーマッピング (common.vim / cursor.vim からの移植)
@@ -142,8 +163,24 @@ require("lazy").setup({
         -- デフォルトのキーバインド（Enterで開く、aで新規作成など）をまず読み込む
         api.config.mappings.default_on_attach(bufnr)
 
+        -- 標準キーバインドの無効化
+        vim.keymap.set('n', 'd', '<Nop>', opts('None'))
+        vim.keymap.set('n', 'a', '<Nop>', opts('None'))
+        vim.keymap.set('n', 'c', '<Nop>', opts('None'))
+
         -- 【重要】ファイラー内部で <C-e> を押した時は、ツリーを閉じる命令にする
         vim.keymap.set('n', '<C-e>', api.tree.close, opts('Close'))
+
+        -- カスタムキーバインドの追加
+        vim.keymap.set('n', 'r', api.tree.reload, opts('Refresh')) -- リフレッシュ
+        vim.keymap.set('n', 'x', api.node.navigate.parent_close, opts('Close Directory')) -- 閉じる
+        vim.keymap.set('n', 'ma', api.fs.create, opts('Create')) -- 新規作成
+        vim.keymap.set('n', 'mc', api.fs.create, opts('Create')) -- 新規作成
+        vim.keymap.set('n', 'mr', api.fs.rename, opts('Rename')) -- リネーム
+        vim.keymap.set('n', 'md', api.fs.remove, opts('Delete')) -- 削除
+
+        -- 必要であれば追記：切り取り（Cut）機能を大文字の X に退避させる
+        vim.keymap.set('n', 'X', api.fs.cut, opts('Cut'))
       end
 
       require("nvim-tree").setup({
