@@ -204,3 +204,30 @@ require("lazy").setup({
     end
   }
 })
+
+
+-- =====================================================================
+-- 条件付き自動起動：特定のファイル指定時以外、初期状態でファイラを開く
+-- =====================================================================
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function(data)
+    -- 1. 引数なしで起動したかどうかの判定 (例: nvim)
+    local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+    -- 2. ディレクトリを指定して起動したかどうかの判定 (例: nvim .)
+    local directory = vim.fn.isdirectory(data.file) == 1
+
+    -- 「引数なし」でも「ディレクトリ指定」でもない場合（＝ファイル指定時）は何もしない
+    if not no_name and not directory then
+      return
+    end
+
+    -- ディレクトリ指定だった場合は、Neovimのカレントディレクトリをそこに移動
+    if directory then
+      vim.cmd.cd(data.file)
+    end
+
+    -- ファイラーを開く
+    require("nvim-tree.api").tree.open()
+  end,
+})
