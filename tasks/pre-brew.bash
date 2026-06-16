@@ -59,7 +59,7 @@ _brew_upgrade() {
 
   if [[ "$upgrade" == 'true' ]]; then
     echo 'Upgrading Homebrew ...'
-    brew upgrade || brew upgrade
+    brew upgrade --no-ask || brew upgrade --no-ask
   else
     echo 'Skip Homebrew upgrades ...'
   fi
