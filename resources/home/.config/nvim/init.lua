@@ -192,7 +192,11 @@ require("lazy").setup({
         },
         filters = {
           dotfiles = false,
-          custom = { "^\\.git$" }
+          custom = {
+            "^\\.DS_Store$",
+          },
+          -- gitignore 対象のファイルも隠さず表示する
+          git_ignored = false,
         },
         actions = {
           open_file = {
