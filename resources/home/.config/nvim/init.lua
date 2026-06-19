@@ -20,23 +20,25 @@ vim.g.mapleader = " "             -- リーダーキーをスペースに設定
 -- クリップボード
 ---------------------------------------------
 
--- OSのクリップボードと同期
+-- システムクリップボード（+レジスタ）をデフォルトのヤンク・ペースト先に指定
 vim.opt.clipboard = "unnamedplus"
 
--- 書式付きテキストを貼り付けできない問題を修正
--- クリップボードプロバイダを自動検出に頼らず、macOS純正の pbcopy/pbpaste に強制固定する
+-- クリップボードの挙動をカスタマイズ（MacからNeovimへの受信専用に設定）
 vim.g.clipboard = {
-  name = 'macOS-clipboard',
+  name = "macOS-clipboard",
   copy = {
-    ['+'] = 'pbcopy',
-    ['*'] = 'pbcopy',
+    -- Neovim内でのヤンクや削除時に、Mac側のクリップボードを上書きしないよう遮断
+    ["+"] = "true",
+    ["*"] = "true",
   },
   paste = {
-    ['+'] = 'pbpaste',
-    ['*'] = 'pbpaste',
+    -- 貼り付け時は、Macのクリップボードから書式を剥ぎ取ったプレーンテキストを読み込む
+    ["+"] = "pbpaste",
+    ["*"] = "pbpaste",
   },
   cache_enabled = 0,
 }
+
 
 -- ==========================================
 -- 2. キーマッピング (common.vim / cursor.vim からの移植)
