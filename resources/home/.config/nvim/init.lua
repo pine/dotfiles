@@ -20,9 +20,6 @@ vim.g.mapleader = " "             -- リーダーキーをスペースに設定
 -- クリップボード
 ---------------------------------------------
 
--- システムクリップボード（+レジスタ）をデフォルトのヤンク・ペースト先に指定
-vim.opt.clipboard = "unnamedplus"
-
 -- クリップボードの挙動をカスタマイズ（MacからNeovimへの受信専用に設定）
 vim.g.clipboard = {
   name = "macOS-clipboard",
