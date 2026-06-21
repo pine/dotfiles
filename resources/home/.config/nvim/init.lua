@@ -165,7 +165,6 @@ require("lazy").setup({
         -- 標準キーバインドの無効化
         vim.keymap.set('n', 'd', '<Nop>', opts('None'))
         vim.keymap.set('n', 'a', '<Nop>', opts('None'))
-        vim.keymap.set('n', 'c', '<Nop>', opts('None'))
         vim.keymap.set('n', 'e', '<Nop>', opts('None'))
 
         -- 【重要】ファイラー内部で <C-e> を押した時は、ツリーを閉じる命令にする
@@ -175,7 +174,6 @@ require("lazy").setup({
         vim.keymap.set('n', 'r', api.tree.reload, opts('Refresh')) -- リフレッシュ
         vim.keymap.set('n', 'x', api.node.navigate.parent_close, opts('Close Directory')) -- 閉じる
         vim.keymap.set('n', 'ma', api.fs.create, opts('Create')) -- 新規作成
-        vim.keymap.set('n', 'mc', api.fs.create, opts('Create')) -- 新規作成
         vim.keymap.set('n', 'mr', api.fs.rename, opts('Rename')) -- リネーム
         vim.keymap.set('n', 'mm', api.fs.rename, opts('Move'))   -- 移動
         vim.keymap.set('n', 'md', api.fs.remove, opts('Delete')) -- 削除
