@@ -26,7 +26,7 @@ _tasks_home_install_file() {
 
   local path=$(echo $file_json | "$YQ_PATH" '.path')
   local strategy=$(echo $file_json | "$YQ_PATH" '.strategy // ""')
-  local op_path=$(echo $file_json | "$YQ_PATH" '.op_path // ""')
+  local copy_from_op=$(echo $file_json | "$YQ_PATH" '.copy_from_op // ""')
 
   if [ -z "$path" ]; then
     return
@@ -38,16 +38,15 @@ _tasks_home_install_file() {
 
   mkdir -p "$dest_dir"
 
-  if [ "$strategy" = "copy" ]; then
+  if [ -n "$copy_from_op" ]; then
+    echo "> op read $copy_from_op > $dest"
+    rm -f "$HOME/$path"
+    op read "$copy_from_op" > "$dest"
+    chmod 600 "$HOME/$path"
+  elif [ "$strategy" = "copy" ]; then
     echo "> cp $src $dest"
     rm -f "$HOME/$path"
-
-    if [ -n "$op_path" ]; then
-      op read "$op_path" > "$dest"
-    else
-      cp "$src" "$HOME/$path"
-    fi
-
+    cp "$src" "$HOME/$path"
     chmod 600 "$HOME/$path" # XXX
   else
     echo "> ln -s $src $dest"
