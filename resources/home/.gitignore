@@ -16,3 +16,5 @@ tags
 .idea/codeStyles/Project.xml
 .idea/codeStyles/codeStyleConfig.xml
 .idea/copyright/
+
+**/.claude/settings.local.json
