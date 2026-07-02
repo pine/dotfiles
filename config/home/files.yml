@@ -14,6 +14,7 @@
 - path: .editorconfig
 - path: .gemrc
 - path: .gitconfig
+- path: .gitconfig-personal
 - path: .gitignore
 - path: .gnupg/gpg-agent.conf
 - path: .screenrc
