@@ -60,6 +60,8 @@
 	path = ~/.gitconfig-work
 [includeIf "hasconfig:remote.*.url:git@github.com:bm-sms/**"]
 	path = ~/.gitconfig-work
+[includeIf "hasconfig:remote.*.url:*/Google Drive/**"]
+	path = ~/.gitconfig-work
 
 [diff]
 	indentHeuristic = true
