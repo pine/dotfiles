@@ -26,7 +26,7 @@ _tasks_home_install_file() {
 
   local path=$(echo $file_json | "$YQ_PATH" '.path')
   local strategy=$(echo $file_json | "$YQ_PATH" '.strategy // ""')
-  local op_inject=$(echo $file_json | "$YQ_PATH" '.op_inject // false')
+  local op_path=$(echo $file_json | "$YQ_PATH" '.op_path // ""')
 
   if [ -z "$path" ]; then
     return
@@ -42,9 +42,8 @@ _tasks_home_install_file() {
     echo "> cp $src $dest"
     rm -f "$HOME/$path"
 
-    if [ "$op_inject" == "true" ]; then
-      # Inject 1Password secrets
-      op inject -i "$src" -o "$dest"
+    if [ -n "$op_path" ]; then
+      op read "$op_path" > "$dest"
     else
       cp "$src" "$HOME/$path"
     fi
