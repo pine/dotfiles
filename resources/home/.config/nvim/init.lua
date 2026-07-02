@@ -147,6 +147,15 @@ require("lazy").setup({
       })
     end
   },
+  -- [コメントトグル]
+  {
+    "tpope/vim-commentary",
+    config = function()
+      vim.keymap.set('n', '<C-k>', 'gcc', { remap = true, silent = true })
+      vim.keymap.set('x', '<C-k>', 'gc', { remap = true, silent = true })
+    end
+  },
+
   -- [ファイラー]
   {
     "nvim-tree/nvim-tree.lua",
