@@ -119,6 +119,14 @@ for i in ~/.config/fish/postconf.d/* ;
   source $i
 end
 
+if test "$USER" = "kazuki-matsushita"
+  if test -f ~/.config/fish/config-work.fish
+    source ~/.config/fish/config-work.fish
+  end
+end
+
+# -----------------------------------------------------------------------------
+
 set -U fish_user_paths (echo $fish_user_paths | tr ' ' '\n' | awk '!a[$0]++' -)
 set -gx PATH (echo $PATH | tr ' ' '\n' | awk '!a[$0]++' -)
 
