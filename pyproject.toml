@@ -1,0 +1,6 @@
+[project]
+name = "df"
+version = "0.1.0"
+description = "Personal dotfiles installer (Python orchestrator, bash tasks)"
+requires-python = ">=3.11"
+dependencies = []

@@ -20,11 +20,28 @@ The installer is idempotent — it can be run multiple times safely.
 
 ## Architecture
 
-### Execution flow in `bin/install.sh`
+### Execution flow
 
-1. **init scripts** (`init/*.bash`) — loaded in filename-sorted order. Sets `ENV_OS` (darwin/linux), `ENV_ARCH` (amd64/arm64), and `ENV_USE` (personal/corporate).
-2. **functions** (`functions/*.bash`) — loaded next. Provides a config file parser and `env_name`/`env_is_macos` helpers.
-3. **tasks** (`tasks/*.bash`) — all task files are sourced, then tasks from `config/tasks.conf` are executed in order.
+The orchestration is Python; the individual tasks are still bash. This is
+phase 1 of an ongoing bash → uv/Python migration (control flow first, tasks
+ported one at a time later).
+
+1. `bin/install.sh` is a thin wrapper: it ensures `uv` is installed, then runs
+   the `df` package (`uv run python -m df "$@"`).
+2. `df/cli.py` (the orchestrator) computes the `DF_*`/`DOTFILES_*` environment
+   variables the tasks expect, builds the ordered task list (CLI args, else
+   `config/tasks.conf` + the secured `tasks.conf`), and dispatches each
+   `(task, action)` to the bash runner shim.
+3. `bin/run_task.bash` is invoked once per `(task, action)`. It re-sources — on
+   every call, by design, nothing is cached — the init scripts, the shared
+   functions, and every task file, then calls `tasks_<task>_<action>` if defined.
+   - **init scripts** (`init/*.bash`), filename-sorted: set `ENV_OS`
+     (darwin/linux), `ENV_ARCH` (amd64/arm64), `ENV_USE` (personal/corporate),
+     install `yq`, and extract the secured archive.
+   - **functions** (`functions/*.bash`): config file parser plus
+     `env_name`/`env_is_macos`/`is-macos`/`has-apt` helpers.
+   - **tasks** (`tasks/*.bash` + secured `tasks/*.bash`): all sourced so any
+     `tasks_*` function is resolvable.
 
 ### Task system
 
@@ -52,7 +69,7 @@ Files listed in `config/home/files.yml` are deployed from `resources/home/` to `
 - `strategy: copy` — copies the file instead and sets `chmod 600`
 - `copy_from_op: <op-reference>` — fetches content from 1Password via `op read` and writes it directly (takes precedence over `strategy`)
 
-The home task merges files from three sources: this repo, the `secured` submodule, and the corporate dotfiles repo (path defined in `bin/install.sh`).
+The home task merges files from three sources: this repo, the `secured` submodule, and the corporate dotfiles repo (path defined as `CORPORATE_DIR` in `df/cli.py`).
 
 ### Secured submodule
 
