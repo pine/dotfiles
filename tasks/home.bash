@@ -27,6 +27,9 @@ _tasks_home_install_file() {
   local path=$(echo $file_json | "$YQ_PATH" '.path')
   local strategy=$(echo $file_json | "$YQ_PATH" '.strategy // ""')
   local copy_from_op=$(echo $file_json | "$YQ_PATH" '.copy_from_op // ""')
+  local infisical_project_id=$(echo $file_json | "$YQ_PATH" '.copy_from_infisical.project_id // ""')
+  local infisical_env=$(echo $file_json | "$YQ_PATH" '.copy_from_infisical.env // ""')
+  local infisical_name=$(echo $file_json | "$YQ_PATH" '.copy_from_infisical.name // ""')
 
   if [ -z "$path" ]; then
     return
@@ -42,6 +45,14 @@ _tasks_home_install_file() {
     echo "> op read $copy_from_op > $dest"
     rm -f "$HOME/$path"
     op read "$copy_from_op" > "$dest"
+    chmod 600 "$HOME/$path"
+  elif [ -n "$infisical_name" ]; then
+    echo "> infisical secrets get $infisical_name --projectId=$infisical_project_id --env=$infisical_env --plain --silent > $dest"
+    rm -f "$HOME/$path"
+    infisical secrets get "$infisical_name" \
+      --projectId="$infisical_project_id" \
+      --env="$infisical_env" \
+      --plain --silent > "$dest"
     chmod 600 "$HOME/$path"
   elif [ "$strategy" = "copy" ]; then
     echo "> cp $src $dest"
