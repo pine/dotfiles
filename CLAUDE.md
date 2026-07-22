@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a personal dotfiles repository (not intended for use by others). It is a shell-based installer that sets up a macOS or Ubuntu development environment — symlinking config files into `$HOME`, installing Homebrew/apt packages, Mac App Store apps, and version managers, and running setup scripts. Scripts target the macOS system Bash (version 3.x).
+This is a personal dotfiles repository (not intended for use by others). It is an installer that sets up a macOS (Apple Silicon) development environment — symlinking config files into `$HOME`, installing Homebrew and Mac App Store packages and version managers, and running setup scripts. Orchestration is Python (via uv); the individual tasks are bash and target the macOS system Bash (version 3.x).
 
 ## Running the installer
 
@@ -39,7 +39,7 @@ ported one at a time later).
      (darwin/linux), `ENV_ARCH` (amd64/arm64), `ENV_USE` (personal/corporate),
      install `yq`, and extract the secured archive.
    - **functions** (`functions/*.bash`): config file parser plus
-     `env_name`/`env_is_macos`/`is-macos`/`has-apt` helpers.
+     `env_name`/`env_is_macos`/`is-macos` helpers.
    - **tasks** (`tasks/*.bash` + secured `tasks/*.bash`): all sourced so any
      `tasks_*` function is resolvable.
 
@@ -50,7 +50,7 @@ Tasks are defined in `config/tasks.conf`. For each task name (e.g. `brew`), the 
 - `tasks_<name>_install`
 - `tasks_<name>_postinstall`
 
-Task order: `apt → brew → mas → home → fish → anyenv → git → script → pref`
+Task order: `brew → mas → home → fish → anyenv → git → script → pref`
 
 ### Config files
 

@@ -21,7 +21,7 @@ for _f in $(find "$DF_INIT_DIR" -type f -name "*.bash" | sort); do
   . "$_f"
 done
 
-# shared functions (config parser, env helpers, is-macos/has-apt).
+# shared functions (config parser, env helpers, is-macos).
 for _f in $(find "$DF_FUNC_DIR" -type f -name "*.bash"); do
   # shellcheck disable=SC1090
   . "$_f"
