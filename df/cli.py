@@ -14,6 +14,10 @@ import tempfile
 import time
 from pathlib import Path
 
+from df.context import Context, build_context
+from df.tasks import PYTHON_TASKS
+from df.tasks.base import Task
+
 # Actions attempted for every task, in order (matches the old installer).
 ACTIONS = ("preinstall", "install", "postinstall")
 
@@ -102,6 +106,29 @@ def run_task(root: Path, env: dict[str, str], task: str, action: str) -> None:
     subprocess.run(["bash", str(runner), task, action], env=env, check=True)
 
 
+def run_python_task(task: Task, ctx: Context) -> None:
+    """Run one Python task through its three phases.
+
+    Per phase the whole-task hook runs first, then the per-project hook once for
+    each project (see df/tasks/base.py for the contract).
+    """
+    print(f"==> {task.name}: start")
+
+    task.before(ctx)
+    for project in ctx.projects:
+        task.before_project(ctx, project)
+
+    task.run(ctx)
+    for project in ctx.projects:
+        task.run_project(ctx, project)
+
+    task.after(ctx)
+    for project in ctx.projects:
+        task.after_project(ctx, project)
+
+    print(f"==> {task.name}: done")
+
+
 def main() -> int:
     # Line-buffer stdout so our prints interleave correctly with the output of
     # the bash subprocesses (which write to the same fd directly).
@@ -125,6 +152,24 @@ def main() -> int:
         for task in tasks:
             for action in ACTIONS:
                 run_task(root, env, task, action)
+
+        # Python task layer: runs after all bash tasks have completed. A task is
+        # selected the same way bash tasks are -- by name, via `tasks`. Order is
+        # the PYTHON_TASKS list order. Each selected task runs three phases
+        # (before -> run -> after); within a phase the whole-task hook fires
+        # first, then the per-project hook once per project (see df/tasks/base).
+        ctx = build_context(
+            root=root,
+            secured_root=root / "secured",
+            corporate_root=CORPORATE_DIR,
+            tmp_dir=tmp_dir,
+            env=env,
+        )
+        selected = set(tasks)
+        for py_task in PYTHON_TASKS:
+            if py_task.name not in selected:
+                continue
+            run_python_task(py_task, ctx)
 
     elapsed = int(time.time() - begin)
     print("\n\033[32msuccess\033[39m")
