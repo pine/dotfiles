@@ -51,7 +51,11 @@ Tasks are defined in `config/tasks.conf`. For each task name (e.g. `brew`), the 
 - `tasks_<name>_install`
 - `tasks_<name>_postinstall`
 
-Task order: `brew → mas → home → fish → anyenv → git → script → pref`
+Task order: `brew → mas → home → fish → anyenv → git → script`
+
+macOS system preferences (dark mode, `defaults`) are applied by
+`resources/script/pref.sh` via the `script` task — there is no separate `pref`
+task.
 
 ### Python task layer (`df/tasks/`)
 

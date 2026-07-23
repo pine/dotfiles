@@ -3,3 +3,4 @@
 - name: jasypt
 - name: phpbrew
 - name: rustup
+- name: pref
