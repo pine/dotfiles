@@ -1,6 +1,7 @@
-- name: bats
-- name: git-fire
-- name: jasypt
-- name: phpbrew
-- name: rustup
-- name: pref
+files:
+  - name: bats
+  - name: git-fire
+  - name: jasypt
+  - name: phpbrew
+  - name: rustup
+  - name: pref

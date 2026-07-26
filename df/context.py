@@ -8,6 +8,7 @@ than merging configs from every source into one).
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from typing import TypeVar
@@ -17,6 +18,11 @@ from pydantic import BaseModel
 from df.yaml_config import load_yaml
 
 M = TypeVar("M", bound=BaseModel)
+
+
+def _env_name() -> str:
+    """Resolve the work/personal environment name, mirroring env_name() in functions/env.bash."""
+    return "work" if os.environ.get("USER") == "kazuki-matsushita" else "personal"
 
 
 @dataclass(frozen=True)
@@ -55,13 +61,20 @@ class Project:
 
 @dataclass(frozen=True)
 class Context:
-    """Everything a Python task needs to run."""
+    """Everything a Python task needs to run.
+
+    ``os_environ`` is the raw OS environment (plus the DF_*/DOTFILES_*
+    variables set up for the bash tasks); ``env`` is the resolved
+    work/personal environment name (see _env_name() above, mirrors ENV_NAME in
+    the bash tasks).
+    """
 
     root: Path
     tmp_dir: Path
     home: Path
     projects: list[Project]
-    env: dict[str, str]
+    os_environ: dict[str, str]
+    env: str
 
 
 def build_context(
@@ -69,7 +82,7 @@ def build_context(
     secured_root: Path,
     corporate_root: Path,
     tmp_dir: Path,
-    env: dict[str, str],
+    os_environ: dict[str, str],
 ) -> Context:
     """Construct the Context, deriving the ordered project list.
 
@@ -86,5 +99,6 @@ def build_context(
         tmp_dir=tmp_dir,
         home=Path.home(),
         projects=projects,
-        env=env,
+        os_environ=os_environ,
+        env=_env_name(),
     )

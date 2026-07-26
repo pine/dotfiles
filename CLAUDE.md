@@ -88,7 +88,10 @@ Config schemas are Pydantic models (`extra="forbid"`, so unknown keys are
 rejected as typos) defined alongside the task that reads them.
 
 Ported so far: `git` (`df/tasks/git.py`, reads each project's `config/git.yml`
-into the `GitConfig`/`Repo` models).
+into the `GitConfig`/`Repo` models); `script` (`df/tasks/script.py`, reads each
+project's `config/script/files.yml` into the `ScriptConfig`/`ScriptFile`
+models, running `resources/script/<name>.sh` for each entry with `ENV_NAME`
+set to `work`/`personal`).
 
 ### Config files
 

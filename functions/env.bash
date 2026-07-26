@@ -1,6 +1,6 @@
 env_name() {
   if [ "$USER" = 'kazuki-matsushita' ]; then
-    echo 'company'
+    echo 'work'
   else
     echo 'personal'
   fi
