@@ -80,7 +80,10 @@ or `tasks.conf`), so the task name stays in `config/tasks.conf`.
   project's config independently (they do not merge configs across sources).
   `Project.config(name, model)` loads a YAML file and validates it against a
   Pydantic model, returning the typed model instance (or `None` when the file
-  is missing or empty, both treated as "no config").
+  is missing or empty, both treated as "no config"). `Context` also carries
+  `env` (the resolved `work`/`personal` name, mirrors bash's
+  `env_name()`/`ENV_NAME`; computed once by the private `_env_name()` in this
+  module, which reads the live `os.environ` directly).
 - `df/yaml_config.py` — `load_yaml(path)` (PyYAML); returns `None` for a missing
   or empty file. Wrapped by `Project.config`.
 

@@ -13,6 +13,7 @@ Config schema (validated by the models below)::
 
 from __future__ import annotations
 
+import os
 import subprocess
 
 from pydantic import BaseModel, ConfigDict
@@ -49,5 +50,5 @@ class ScriptTask(Task):
             return
 
         print(f"Running {name}.sh")
-        script_env = {**ctx.os_environ, "ENV_NAME": ctx.env}
+        script_env = {**os.environ, "ENV_NAME": ctx.env}
         subprocess.run([str(script)], env=script_env, cwd=ctx.root, check=True)
