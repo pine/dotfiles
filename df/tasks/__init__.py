@@ -9,9 +9,11 @@ from __future__ import annotations
 
 from df.tasks.base import Task
 from df.tasks.git import GitTask
+from df.tasks.home import HomeTask
 from df.tasks.script import ScriptTask
 
 PYTHON_TASKS: list[Task] = [
+    HomeTask(),
     GitTask(),
     ScriptTask(),
 ]

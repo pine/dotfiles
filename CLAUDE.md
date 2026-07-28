@@ -90,8 +90,11 @@ or `tasks.conf`), so the task name stays in `config/tasks.conf`.
 Config schemas are Pydantic models (`extra="forbid"`, so unknown keys are
 rejected as typos) defined alongside the task that reads them.
 
-Ported so far: `git` (`df/tasks/git.py`, reads each project's `config/git.yml`
-into the `GitConfig`/`Repo` models); `script` (`df/tasks/script.py`, reads each
+Ported so far: `home` (`df/tasks/home.py`, reads each project's
+`config/home.yml` into the `HomeConfig`/`HomeFile`/`HomeDirectory` models —
+see [Home file deployment](#home-file-deployment) below); `git`
+(`df/tasks/git.py`, reads each project's `config/git.yml` into the
+`GitConfig`/`Repo` models); `script` (`df/tasks/script.py`, reads each
 project's `config/script/files.yml` into the `ScriptConfig`/`ScriptFile`
 models, running `resources/script/<name>.sh` for each entry with `ENV_NAME`
 set to `work`/`personal`).
@@ -101,17 +104,31 @@ set to `work`/`personal`).
 `config/` contains declarative config in `.conf` (line-based) and `.yml` (YAML) formats. Key files:
 - `config/tasks.conf` — ordered list of tasks to run
 - `config/brew/pkgs.conf`, `config/brew/cask-pkgs.conf` — Homebrew formula/cask packages
-- `config/home/files.yml` — dotfiles to deploy into `$HOME`
-- `config/home/directories.yml` — directories to create in `$HOME` before files are deployed
+- `config/home.yml` — dotfiles to deploy into `$HOME` and directories to create beforehand
 - `config/anyenv.yml` — version managers and their plugins
 - `config/script/files.yml` — shell scripts from `resources/script/` to execute
 
-### Home file deployment (`tasks/home.bash`)
+### Home file deployment (`df/tasks/home.py`)
 
-Files listed in `config/home/files.yml` are deployed from `resources/home/` to `$HOME/`. Each entry supports:
-- Default: creates a symlink `$HOME/<path> → resources/home/<path>`
-- `strategy: copy` — copies the file instead and sets `chmod 600`
-- `copy_from_op: <op-reference>` — fetches content from 1Password via `op read` and writes it directly (takes precedence over `strategy`)
+Each project's `config/home.yml` has a `directories:` list (created in
+`before_project`, before any files are deployed) and a `files:` list
+(deployed in `run_project`). Each `files:` entry is a Map with exactly one of
+`file`/`op`/`infisical` set, naming the source of the content:
+- `file:` — deploys from `resources/home/<path>`. Default `strategy: symlink`
+  creates a symlink `$HOME/<path> → resources/home/<path>`; `strategy: copy`
+  copies the file instead.
+- `op:` — fetches content via `op read <ref>` and writes it directly to
+  `$HOME/<path>`.
+- `infisical:` — fetches content via `infisical secrets get` and writes it
+  directly to `$HOME/<path>`.
+
+All three accept an optional `mode:` (chmod, applied after writing); when
+omitted, no chmod is performed. For `file:`, `mode:` only makes sense with
+`strategy: copy` — a symlink's permissions aren't meaningful to chmod, so
+setting `mode:` under the default `strategy: symlink` is a config validation
+error. `op`/`infisical` raise if the command produces empty output, so a
+misconfigured secret reference never overwrites a previously deployed file
+with nothing.
 
 The home task merges files from three sources: this repo, the `secured` submodule, and the corporate dotfiles repo (path defined as `CORPORATE_DIR` in `df/cli.py`).
 

@@ -1,0 +1,29 @@
+files:
+  - file: { path: .config/fish/config.fish }
+  - file: { path: .config/fish/fish_plugins }
+  - file: { path: .config/fish/completions/jenv.fish }
+  - file: { path: .config/fish/completions/ndenv.fish }
+  - file: { path: .config/fish/completions/pyenv.fish }
+  - file: { path: .config/fish/conf.d/google-cloud-sdk.fish }
+  - file: { path: .config/fish/postconf.d/goenv.fish }
+  - file: { path: .config/fish/postconf.d/jenv.fish }
+  - file: { path: .config/fish/postconf.d/nodenv.fish }
+  - file: { path: .config/fish/postconf.d/pyenv.fish }
+  - file: { path: .config/nvim/init.lua }
+  - file: { path: .editorconfig }
+  - file: { path: .gemrc }
+  - file: { path: .gitconfig }
+  - file: { path: .gitconfig-personal }
+  - file: { path: .gitignore }
+  - file: { path: .gnupg/gpg-agent.conf }
+  - file: { path: .screenrc }
+  - file: { path: .tmux.conf }
+  - file: { path: bin/vim }
+
+directories:
+  - path: .go
+  - path: bin
+  - path: opt
+  - path: project
+  - path: tmp
+  - path: var
