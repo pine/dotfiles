@@ -22,7 +22,7 @@ from df.tasks.base import Task
 ACTIONS = ("preinstall", "install", "postinstall")
 
 # Corporate dotfiles repo location (was DF_CORPORATE_DIR in install.sh).
-CORPORATE_DIR = Path.home() / "project" / "kazuki-matsushita" / "dotfiles-work"
+CORPORATE_DIR = Path.home() / "project" / "bm-sms" / "xuan-care-matsushita-misc" / "dotfiles"
 
 
 def repo_root() -> Path:
