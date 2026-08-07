@@ -39,12 +39,12 @@ from __future__ import annotations
 
 import shutil
 import stat
-import subprocess
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
 from df.context import Context, Project
+from df.secrets import infisical_get, op_read
 from df.tasks.base import Task
 
 
@@ -159,27 +159,12 @@ class HomeTask(Task):
 
         if isinstance(spec, OpSpec):
             print(f"> op read {spec.ref} > ~/{spec.path}")
-            content = subprocess.run(["op", "read", spec.ref], stdout=subprocess.PIPE, check=True).stdout
-            if not content:
-                raise RuntimeError(f"op read {spec.ref} produced an empty file")
-            dest.write_bytes(content)
+            dest.write_bytes(op_read(spec.ref))
             if spec.mode is not None:
                 dest.chmod(int(spec.mode, 8))
         elif isinstance(spec, InfisicalSpec):
             print(f"> infisical secrets get {spec.name} --projectId={spec.project_id} --env={spec.env} > ~/{spec.path}")
-            content = subprocess.run(
-                [
-                    "infisical", "secrets", "get", spec.name,
-                    "--projectId", spec.project_id,
-                    "--env", spec.env,
-                    "--plain", "--silent",
-                ],
-                stdout=subprocess.PIPE,
-                check=True,
-            ).stdout
-            if not content:
-                raise RuntimeError(f"infisical secrets get {spec.name} produced an empty file")
-            dest.write_bytes(content)
+            dest.write_bytes(infisical_get(spec.name, spec.project_id, spec.env))
             if spec.mode is not None:
                 dest.chmod(int(spec.mode, 8))
         elif isinstance(spec, FileSpec):

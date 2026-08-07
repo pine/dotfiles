@@ -51,7 +51,7 @@ Tasks are defined in `config/tasks.conf`. For each task name (e.g. `brew`), the 
 - `tasks_<name>_install`
 - `tasks_<name>_postinstall`
 
-Task order: `brew → mas → home → fish → anyenv → git → script`
+Task order: `brew → mas → home → fish → anyenv → git → script → gpg`
 
 macOS system preferences (dark mode, `defaults`) are applied by
 `resources/script/pref.sh` via the `script` task — there is no separate `pref`
@@ -86,6 +86,11 @@ or `tasks.conf`), so the task name stays in `config/tasks.conf`.
   module, which reads the live `os.environ` directly).
 - `df/yaml_config.py` — `load_yaml(path)` (PyYAML); returns `None` for a missing
   or empty file. Wrapped by `Project.config`.
+- `df/secrets.py` — `op_read(ref)` / `infisical_get(name, project_id, env)`,
+  the shared secret-fetching helpers behind the `op:`/`infisical:` sources used
+  by both the home and gpg tasks. Each returns raw bytes and raises
+  `RuntimeError` on empty output; callers own writing/piping the bytes
+  wherever they need to go.
 
 Config schemas are Pydantic models (`extra="forbid"`, so unknown keys are
 rejected as typos) defined alongside the task that reads them.
@@ -97,7 +102,9 @@ see [Home file deployment](#home-file-deployment) below); `git`
 `GitConfig`/`Repo` models); `script` (`df/tasks/script.py`, reads each
 project's `config/script/files.yml` into the `ScriptConfig`/`ScriptFile`
 models, running `resources/script/<name>.sh` for each entry with `ENV_NAME`
-set to `work`/`personal`).
+set to `work`/`personal`); `gpg` (`df/tasks/gpg.py`, reads each project's
+`config/gpg.yml` into the `GpgConfig`/`GpgKey` models — see
+[GPG key import](#gpg-key-import) below).
 
 ### Config files
 
@@ -107,6 +114,7 @@ set to `work`/`personal`).
 - `config/home.yml` — dotfiles to deploy into `$HOME` and directories to create beforehand
 - `config/anyenv.yml` — version managers and their plugins
 - `config/script/files.yml` — shell scripts from `resources/script/` to execute
+- `config/gpg.yml` — GPG keys to import from `resources/gpg/`, `op`, or `infisical`
 
 ### Home file deployment (`df/tasks/home.py`)
 
@@ -131,6 +139,25 @@ misconfigured secret reference never overwrites a previously deployed file
 with nothing.
 
 The home task merges files from three sources: this repo, the `secured` submodule, and the corporate dotfiles repo (path defined as `CORPORATE_DIR` in `df/cli.py`).
+
+### GPG key import (`df/tasks/gpg.py`)
+
+`config/gpg.yml` has a `keys:` list; each entry is a Map with exactly one of
+`file`/`op`/`infisical` set, naming the source of the key material (public or
+private, `gpg --import` handles both). Unlike home files, an imported key has
+no destination path or mode — the fetched bytes are piped straight into
+`gpg --import`, which is idempotent:
+- `file:` — imports from `resources/gpg/<path>`.
+- `op:` — fetches key material via `op read <ref>` and imports it.
+- `infisical:` — fetches key material via `infisical secrets get` and imports
+  it.
+
+`op`/`infisical` reuse the fetch helpers in `df/secrets.py` shared with the
+home task.
+
+Like the home task, the gpg task processes each project's `config/gpg.yml`
+independently (main and the corporate dotfiles repo each carry their own key
+list; a project with no `config/gpg.yml` is skipped).
 
 ### Secured submodule
 
