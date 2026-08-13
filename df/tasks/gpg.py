@@ -24,7 +24,8 @@ import subprocess
 from pydantic import BaseModel, ConfigDict, model_validator
 
 from df.context import Context, Project
-from df.secrets import infisical_get, op_read
+from df.secrets.infisical import infisical_get
+from df.secrets.onepassword import op_read
 from df.tasks.base import Task
 
 

@@ -86,11 +86,15 @@ or `tasks.conf`), so the task name stays in `config/tasks.conf`.
   module, which reads the live `os.environ` directly).
 - `df/yaml_config.py` — `load_yaml(path)` (PyYAML); returns `None` for a missing
   or empty file. Wrapped by `Project.config`.
-- `df/secrets.py` — `op_read(ref)` / `infisical_get(name, project_id, env)`,
-  the shared secret-fetching helpers behind the `op:`/`infisical:` sources used
-  by both the home and gpg tasks. Each returns raw bytes and raises
+- `df/secrets/` — the shared secret-fetching helpers behind the
+  `op:`/`infisical:` sources used by both the home and gpg tasks, split by
+  backend: `onepassword.py` (`op_read(ref)`) and `infisical.py`
+  (`infisical_get(name, project_id, env)`). Each returns raw bytes and raises
   `RuntimeError` on empty output; callers own writing/piping the bytes
-  wherever they need to go.
+  wherever they need to go. When `infisical secrets get` fails because the user
+  is not logged in, `infisical_get` launches `infisical login` interactively and
+  then retries; failures for any other reason (e.g. a wrong project_id) are
+  surfaced without launching login.
 
 Config schemas are Pydantic models (`extra="forbid"`, so unknown keys are
 rejected as typos) defined alongside the task that reads them.
@@ -152,7 +156,7 @@ no destination path or mode — the fetched bytes are piped straight into
 - `infisical:` — fetches key material via `infisical secrets get` and imports
   it.
 
-`op`/`infisical` reuse the fetch helpers in `df/secrets.py` shared with the
+`op`/`infisical` reuse the fetch helpers in `df/secrets/` shared with the
 home task.
 
 Like the home task, the gpg task processes each project's `config/gpg.yml`
