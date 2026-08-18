@@ -113,6 +113,12 @@ set -Ux GPG_TTY $(tty)
 set -Ux POETRY_VIRTUALENVS_IN_PROJECT true
 
 
+# node --------------------------------------------------------------------------
+
+# suppress corepack's prompt to download a missing package manager version
+set -gx COREPACK_ENABLE_DOWNLOAD_PROMPT 0
+
+
 # -----------------------------------------------------------------------------
 
 for i in ~/.config/fish/postconf.d/* ;
