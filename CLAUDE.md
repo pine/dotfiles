@@ -171,6 +171,12 @@ When making changes related to `secured`, document them within the `secured` sub
 
 ### Environment detection
 
-- `ENV_USE` is set to `corporate` or `personal` based on the current username.
+- `ENV_USE` is set to `corporate` or `personal` based on the current username
+  (`kazuki-matsushita` → `corporate`, anything else → `personal`). This check is
+  duplicated in three places that must be kept in sync: `init/000_env.bash`
+  (bash `ENV_USE`), `functions/env.bash` (`env_name()`/`env_is_macos`), and
+  `df/context.py` (`_env_name()`, feeds `Context.env`). If the username check
+  ever changes, update all three or the bash and Python task layers will
+  disagree on which environment is active.
 - Some Homebrew packages have an `env=` option to install only in the matching environment.
 - Scripts in `resources/script/` receive `ENV_NAME` as an environment variable.
