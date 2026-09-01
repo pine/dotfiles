@@ -48,43 +48,10 @@ function history-merge --on-event fish_preexec
 end
 
 
-# anyenv ----------------------------------------------------------------------
+# mise --------------------------------------------------------------------
 
-if test -d ~/.anyenv
-  set -x PATH $HOME/.anyenv/bin $PATH
-end
-
-# rbenv
-if test -d ~/.anyenv/envs/rbenv
-  set -x RBENV_ROOT "$HOME/.anyenv/envs/rbenv"
-  set -x PATH "$RBENV_ROOT/bin" $PATH
-  status --is-interactive; and rbenv init - | source
-end
-
-# plenv
-if test -d ~/.anyenv/envs/plenv
-  set -x PLENV_ROOT "$HOME/.anyenv/envs/plenv"
-  set -x PATH "$PLENV_ROOT/bin" $PATH
-  status --is-interactive; and plenv init - | source
-end
-
-# swiftenv
-if test -d ~/.anyenv/envs/swiftenv
-  set -x SWIFTENV_ROOT "$HOME/.anyenv/envs/swiftenv"
-  set -x PATH "$SWIFTENV_ROOT/bin" $PATH
-  status --is-interactive; and swiftenv init - | source
-end
-
-# scalaenv
-if test -d ~/.anyenv/envs/scalaenv
-  set -x SCALAENV_ROOT "$HOME/.anyenv/envs/scalaenv"
-  set -x PATH "$SCALAENV_ROOT/bin" $PATH
-  status --is-interactive; and scalaenv init - | source
-end
-
-# rustup
-if test -f ~/.cargo/env
-  # source ~/.cargo/env
+if type -q mise
+  mise activate fish --shims | source
 end
 
 # vim -------------------------------------------------------------------------

@@ -51,7 +51,7 @@ Tasks are defined in `config/tasks.conf`. For each task name (e.g. `brew`), the 
 - `tasks_<name>_install`
 - `tasks_<name>_postinstall`
 
-Task order: `brew → mas → home → fish → anyenv → git → script → gpg`
+Task order: `brew → mas → home → fish → git → script → gpg`
 
 macOS system preferences (dark mode, `defaults`) are applied by
 `resources/script/pref.sh` via the `script` task — there is no separate `pref`
@@ -116,7 +116,6 @@ set to `work`/`personal`); `gpg` (`df/tasks/gpg.py`, reads each project's
 - `config/tasks.conf` — ordered list of tasks to run
 - `config/brew/pkgs.conf`, `config/brew/cask-pkgs.conf` — Homebrew formula/cask packages
 - `config/home.yml` — dotfiles to deploy into `$HOME` and directories to create beforehand
-- `config/anyenv.yml` — version managers and their plugins
 - `config/script/files.yml` — shell scripts from `resources/script/` to execute
 - `config/gpg.yml` — GPG keys to import from `resources/gpg/`, `op`, or `infisical`
 
