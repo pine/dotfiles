@@ -8,6 +8,7 @@ a task, implement a ``Task`` subclass and append it here.
 from __future__ import annotations
 
 from df.tasks.base import Task
+from df.tasks.brew import BrewTask
 from df.tasks.git import GitTask
 from df.tasks.gpg import GpgTask
 from df.tasks.home import HomeTask
@@ -20,4 +21,5 @@ PYTHON_TASKS: list[Task] = [
     ScriptTask(),
     GpgTask(),
     MasTask(),
+    BrewTask(),
 ]

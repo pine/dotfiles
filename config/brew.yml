@@ -14,3 +14,164 @@ taps:
   - mike-engel/jwt-cli
   - neovim/neovim
   - kyoshidajp/ghkw
+
+formulae:
+  # alphabetical order
+  - { name: apache-geode, state: absent }
+  - { name: apktool }
+  - { name: aria2 }
+  - { name: automake }
+  - { name: autoconf }
+  - { name: bat }
+  - { name: bfg }
+  - { name: binutils }
+  - { name: caddy }
+  - { name: carthage, state: absent }
+  - { name: cf-cli }
+  - { name: clang-format }
+  - { name: cmake }
+  - { name: composer }
+  - { name: coreutils }
+  - { name: curl }
+  - { name: dart-sdk, state: absent }
+  - { name: deno, state: { work: present } }
+  - { name: detect-secrets }
+  - { name: dex2jar }
+  - { name: dos2unix }
+  # - { name: digdag }
+  # - { name: elasticsearch }
+  - { name: findutils }
+  - { name: fish }
+  - { name: flyctl }
+  - { name: fontforge }
+  - { name: fzf }
+  - { name: ghkw }
+  - { name: gh }
+  - { name: git }
+  - { name: git-lfs }
+  - { name: gnupg }
+  - { name: gnu-sed }
+  - { name: go }
+  - { name: golang-migrate }
+  - { name: hashicorp/tap/terraform, state: absent }
+  - { name: heroku, state: absent }
+  - { name: httpd }
+  - { name: httpie, state: absent }
+  - { name: hub, state: absent }
+  - { name: hugo, state: absent }
+  - { name: imagemagick }
+  - { name: infisical }
+  - { name: instantclient-basic }
+  - { name: instantclient-sqlplus }
+  - { name: jpegoptim }
+  - { name: jq }
+  - { name: jwt-cli }
+  - { name: kafka, state: absent }
+  - { name: kubectl }
+  - { name: kustomize }
+  - { name: lame }
+  - { name: lha, state: absent }
+  - { name: libmemcached }
+  - { name: libxml2 }  # for PHP
+  - { name: libxslt }  # for Python's lxml
+  - { name: lua }
+  - { name: lynx }
+  - { name: mas }
+  # - { name: mcrypt }  # for PHP
+  - { name: memcached }
+  - { name: mise }
+  # - { name: mongodb }
+  - { name: mplayer }
+  - { name: mysql, state: absent }
+  - { name: mysql@5.7, state: absent }
+  - { name: mysql@8.0, state: absent }
+  - { name: neovim }
+  - { name: openssl@3 }
+  - { name: optipng }
+  - { name: pidcat }
+  - { name: pinentry-mac }
+  - { name: pkg-config }
+  - { name: plantuml }
+  - { name: postgresql }
+  - { name: protobuf }
+  - { name: pwgen }
+  - { name: reattach-to-user-namespace }
+  - { name: readline }
+  - { name: redis }
+  - { name: rename }
+  - { name: ripgrep }
+  # - { name: sbt }
+  - { name: sevenzip }
+  - { name: sl }
+  - { name: sqlite }
+  - { name: tfenv, state: absent }
+  - { name: the_silver_searcher }
+  - { name: thefuck, state: absent }
+  - { name: tmux }
+  - { name: tomcat }
+  - { name: tree }
+  - { name: unar }
+  - { name: uv }
+  - { name: watch }
+  - { name: webp }
+  - { name: wget }
+  - { name: xz }
+  - { name: yq }
+  - { name: zlib }
+
+casks:
+  # alphabetical order
+  - { name: 1password, state: { work: present } }
+  - { name: 1password-cli, state: { work: present } }
+  - { name: adobe-acrobat-reader }
+  - { name: adoptopenjdk11, state: absent }
+  - { name: android-studio }
+  - { name: android-file-transfer, state: absent }
+  - { name: atom, state: absent }
+  - { name: bartender, state: { work: present } }
+  - { name: daisydisk }
+  - { name: discord, state: { personal: present, work: absent } }
+  - { name: docker-desktop }
+  - { name: charles }
+  - { name: claude-code }
+  - { name: corretto@21 }
+  - { name: coteditor }
+  - { name: dropbox, state: absent }
+  - { name: elmedia-player, state: absent }
+  - { name: firefox }
+  - { name: font-sauce-code-pro-nerd-font }
+  - { name: font-source-code-pro }
+  - { name: font-symbols-only-nerd-font }
+  - { name: google-chrome, state: { work: absent, personal: present } }
+  - { name: google-cloud-sdk }
+  - { name: google-japanese-ime }
+  - { name: intellij-idea }
+  - { name: iterm2 }
+  - { name: java8, state: absent }
+  - { name: jad, state: absent }
+  - { name: jd-gui, state: absent }
+  - { name: jetbrains-toolbox, state: absent }
+  - { name: karabiner-elements }
+  - { name: realm-browser, state: absent }
+  - { name: meetingbar, state: { work: present } }
+  - { name: megasync, state: absent }
+  - { name: nightingale, state: absent }
+  - { name: onedrive, state: absent }
+  - { name: paintbrush }
+  - { name: pycharm, state: { personal: present, work: absent } }
+  - { name: qbittorrent, state: { personal: present, work: absent } }
+  - { name: rancher, state: absent }
+  - { name: rar }
+  - { name: scroll-reverser, state: absent }
+  - { name: skype, state: absent }
+  - { name: slack, state: { personal: present, work: absent } }
+  - { name: slack-beta, state: absent }
+  - { name: temurin@8 }
+  - { name: temurin@11 }
+  - { name: temurin@17 }
+  - { name: temurin@21, state: absent }
+  - { name: visual-studio-code }
+  - { name: visualvm }
+  - { name: vlc, state: { personal: present } }
+  - { name: zappy }
+  - { name: zoom }

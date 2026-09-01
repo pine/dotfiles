@@ -51,7 +51,7 @@ Tasks are defined in `config/tasks.conf`. For each task name (e.g. `brew`), the 
 - `tasks_<name>_install`
 - `tasks_<name>_postinstall`
 
-Task order: `brew → home → fish → git → script → gpg`
+Task order: `home → fish → git → script → gpg`
 
 macOS system preferences (dark mode, `defaults`) are applied by
 `resources/script/pref.sh` via the `script` task — there is no separate `pref`
@@ -111,16 +111,20 @@ set to `work`/`personal`); `gpg` (`df/tasks/gpg.py`, reads each project's
 [GPG key import](#gpg-key-import) below); `mas` (`df/tasks/mas.py`, reads each
 project's `config/mas.yml` into the `MasConfig`/`MasPkg` models, running
 `mas list` once in `before` and `mas info`/`mas install` per project for any
-package not yet installed).
+package not yet installed); `brew` (`df/tasks/brew.py`, reads each project's
+`config/brew.yml` into the `BrewConfig`/`BrewOptions`/`BrewPkg` models,
+bootstrapping Homebrew itself and handling taps/`update`/`upgrade` in
+`before`, then processing every project's formulae/casks in `run` — all
+`state: absent` packages first, then all `state: present` packages, so
+uninstalls never race name conflicts with installs).
 
-Not yet ported (still bash, in `tasks/`): `brew` (`brew.bash`, `pre-brew.bash`,
-`post-brew.bash`) and `fish` (`fish.bash`).
+Not yet ported (still bash, in `tasks/`): `fish` (`fish.bash`).
 
 ### Config files
 
 `config/` contains declarative config in `.conf` (line-based) and `.yml` (YAML) formats. Key files:
 - `config/tasks.conf` — ordered list of tasks to run
-- `config/brew/pkgs.conf`, `config/brew/cask-pkgs.conf` — Homebrew formula/cask packages
+- `config/brew.yml` — Homebrew options, taps, and formula/cask packages
 - `config/home.yml` — dotfiles to deploy into `$HOME` and directories to create beforehand
 - `config/script/files.yml` — shell scripts from `resources/script/` to execute
 - `config/gpg.yml` — GPG keys to import from `resources/gpg/`, `op`, or `infisical`
