@@ -1,0 +1,45 @@
+files:
+  - file: { path: .config/fish/config.fish }
+  - file: { path: .config/fish/fish_plugins }
+  - file: { path: .config/fish/conf.d/google-cloud-sdk.fish }
+  - file: { path: .config/nvim/init.lua }
+  - file: { path: .config/mise/conf.d/settings.toml }
+  - file: { path: .editorconfig }
+  - file: { path: .gemrc }
+  - file: { path: .gitconfig }
+  - file: { path: .gitconfig-personal }
+  - file: { path: .gitignore }
+  - file: { path: .gnupg/gpg-agent.conf }
+  - file: { path: .screenrc }
+  - file: { path: .tmux.conf }
+  - file: { path: .ssh/id_ecdsa.commons.pub, strategy: copy, mode: '600' }
+  - file: { path: .ssh/id_rsa.commons.pub, strategy: copy, mode: '600' }
+  - file: { path: .ssh/id_rsa.oracle_cloud.pub, strategy: copy, mode: '600' }
+  - infisical:
+      path: .ssh/id_ecdsa.commons
+      project_id: 846645d9-9071-4937-acec-fff39e415565
+      env: main
+      name: id_ecdsa_commons
+      mode: '600'
+  - infisical:
+      path: .ssh/id_rsa.commons
+      project_id: 846645d9-9071-4937-acec-fff39e415565
+      env: main
+      name: ssh_prv_key_rsa_commons
+      mode: '600'
+  - infisical:
+      path: .ssh/id_rsa.oracle_cloud
+      project_id: 846645d9-9071-4937-acec-fff39e415565
+      env: main
+      name: ssh_prv_key_oracle_cloud
+      mode: '600'
+
+directories:
+  - path: .go
+  - path: .ssh
+    mode: '700'
+  - path: bin
+  - path: opt
+  - path: project
+  - path: tmp
+  - path: var

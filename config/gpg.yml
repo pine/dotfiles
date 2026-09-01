@@ -1,0 +1,7 @@
+keys:
+  - file:
+      path: pinemz_gmail_com.pub
+  - infisical:
+      project_id: 846645d9-9071-4937-acec-fff39e415565
+      env: main
+      name: gpg_prv_key_pinemz_gmail_com

@@ -1,187 +1,69 @@
 #!/bin/bash
+#
+# Entry point. The orchestration lives in the `df` Python package (run via uv);
+# this wrapper vendors uv into vendor/uv/ (like init/001_yq.bash does for yq),
+# then hands off. Individual tasks are still bash (see bin/run_task.bash).
+#
+#   ./bin/install.sh            # run all tasks from config/tasks.conf
+#   ./bin/install.sh brew home  # run only the named tasks
 
 set -eu -o pipefail
 
+# Pinned uv version. Bump to upgrade.
+readonly UV_VERSION=0.11.31
 
-# -------------------------------------------------------------------
-# Start installing
-# -------------------------------------------------------------------
-
-echo 'Started installing'
-
-declare -i _INSTALL_BEGIN_AT=$(date +%s)
-declare -i _INSTALL_END_AT
-
-
-# -------------------------------------------------------------------
-# Setup global environment variables
-# -------------------------------------------------------------------
-
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-
-# -------------------------------------------------------------------
-# Setup global variables
-# -------------------------------------------------------------------
-
-# Move to root directory
-declare -r DF_ROOT_DIR="$(cd ${BASH_SOURCE%/*}/..; pwd)"
-declare -r DF_ROOT=$DF_ROOT_DIR # deprecated
+DF_ROOT_DIR="$(cd "${BASH_SOURCE%/*}/.."; pwd)"
 cd "$DF_ROOT_DIR"
 
-# Create temporary directory
-declare -r DF_TMP_DIR=$(mktemp -d)
-trap "rm -rf $DF_TMP_DIR" EXIT
+readonly VENDOR_DIR="$DF_ROOT_DIR/vendor"
+readonly UV_BIN="$VENDOR_DIR/uv"
 
-declare -r DOTFILES_CONFIG="$DF_ROOT_DIR/config" # deprecated
-declare -r DOTFILES_RESOURCES="$DF_ROOT_DIR/resources"
-declare -r DOTFILES_TASKS="$DF_ROOT_DIR/tasks"
-declare -r DF_CONFIG_DIR="$DF_ROOT_DIR/config"
-declare -r DF_RESOURCES_DIR="$DF_ROOT_DIR/resources"
-declare -r DF_FUNC_DIR="$DF_ROOT_DIR/functions"
-declare -r DF_INIT_DIR="$DF_ROOT_DIR/init"
-declare -r DF_VENDOR_DIR="$DF_ROOT_DIR/vendor"
+# Only macOS on Apple Silicon is supported (Linux/x86_64 are out of scope).
+readonly UV_TARGET=aarch64-apple-darwin
 
-# Secure
-declare -r DOTFILES_SECURED_ROOT="$DF_ROOT_DIR/secured" # deprecated
-declare -r DOTFILES_SECURED_CONFIG="$DOTFILES_SECURED_ROOT/config" # deprecated
-declare -r DOTFILES_SECURED_RESOURCES="$DOTFILES_SECURED_ROOT/resources" # deprecated
-declare -r DOTFILES_SECURED_TASKS="$DOTFILES_SECURED_ROOT/tasks"
-declare -r DF_SECURE_ROOT_DIR="$DF_ROOT_DIR/secured"
-declare -r DF_SECURE_CONFIG_DIR="$DF_SECURE_ROOT_DIR/config"
-declare -r DF_SECURE_RESOURCES_DIR="$DF_SECURE_ROOT_DIR/resources"
+if [ "$(uname -s)" != Darwin ] || [ "$(uname -m)" != arm64 ]; then
+  echo "ERROR! Unsupported platform: $(uname -s) $(uname -m) (only macOS arm64 is supported)" >&2
+  exit 1
+fi
 
-# Work
-declare -r DF_CORPORATE_DIR="$HOME/project/kazuki-matsushita/dotfiles-work"
-declare -r DF_CORPORATE_CONFIG_DIR="$DF_CORPORATE_DIR/config"
-declare -r DF_CORPORATE_RESOURCES_DIR="$DF_CORPORATE_DIR/resources"
-
-# Print variables
-echo "DF_ROOT_DIR: $DF_ROOT_DIR"
-echo "DF_TMP_DIR: $DF_TMP_DIR"
-
-# -------------------------------------------------------------------
-# TODO: export functions
-
-is-macos() {
-  uname -a | fgrep -i Darwin > /dev/null
-}
-
-has-apt() {
-  type -p apt > /dev/null
-}
-
-# -------------------------------------------------------------------
-
-
-_dotfiles_construct_tasks() {
-  local tasks
-
-  if [ -n "$*" ]; then
-    tasks=$*
-  else
-    tasks=$(cat "$DOTFILES_CONFIG/tasks.conf")
-    if [ -r "$DOTFILES_SECURED_CONFIG/tasks.conf" ]; then
-      tasks=$tasks$'\n'$(cat "$DOTFILES_SECURED_CONFIG/tasks.conf")
-    fi
+_uv_installed() {
+  echo -n 'Checking if uv is installed ... '
+  if [ ! -x "$UV_BIN" ]; then
+    echo no
+    return 1
   fi
 
-  echo $tasks
-}
-
-
-_dotfiles_load_tasks() {
-  local file
-
-  for file in $(find "$DOTFILES_TASKS" -type f -name "*.bash"); do
-    echo "Loading: $file"
-    . $file
-  done
-
-  if [ -d "$DOTFILES_SECURED_TASKS" ]; then
-    for file in $(find "$DOTFILES_SECURED_TASKS" -type f -name "*.bash"); do
-      echo "Loading: $file"
-      . $file
-    done
+  local current
+  current=$("$UV_BIN" --version 2>/dev/null | grep -o -E '[0-9]+\.[0-9]+\.[0-9]+' | head -n1)
+  if [ "$current" != "$UV_VERSION" ]; then
+    echo no
+    return 1
   fi
+
+  echo yes
+  return 0
 }
 
+_uv_install() {
+  local tarball url tmpdir
+  tarball="uv-${UV_TARGET}.tar.gz"
+  url="https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/${tarball}"
+  tmpdir=$(mktemp -d)
 
-_dotfiles_execute_tasks() {
-  local action
-  local task
-  local tasks=$*
-  local func
+  echo "Installing uv ${UV_VERSION} ..."
+  curl -fL "$url" -o "$tmpdir/$tarball"
+  tar -xzf "$tmpdir/$tarball" -C "$tmpdir"
 
-  for task in $tasks; do
-    if [ "${task:0:1}" == "#" ]; then
-      continue
-    fi
-    if [ -z "$task" ]; then
-      continue
-    fi
-    for action in preinstall install postinstall; do
-      if type "tasks_${task}_$action" &> /dev/null; then
-        echo "Running: tasks_${task}_$action"
+  mkdir -p "$VENDOR_DIR"
+  cp -f "$tmpdir/uv-${UV_TARGET}/uv" "$UV_BIN"
+  chmod +x "$UV_BIN"
 
-        func="tasks_${task}_$action"
-        pushd "$DF_ROOT" > /dev/null
-        $func
-        popd > /dev/null
-      fi
-    done
-  done
+  rm -rf "$tmpdir"
+  echo 'Successfully installed'
 }
 
+if ! _uv_installed; then
+  _uv_install
+fi
 
-# -------------------------------------------------------------------
-# Import init scripts
-# -------------------------------------------------------------------
-
-declare _SCRIPT_PATH
-declare _SCRIPT_RELATIVE_PATH
-
-for _SCRIPT_PATH in $(find "$DF_INIT_DIR" -type f -name "*.bash" | sort); do
-  _SCRIPT_RELATIVE_PATH=$(echo $_SCRIPT_PATH | sed -e "s@^$DF_ROOT_DIR@\.@")
-  echo "Loading: $_SCRIPT_RELATIVE_PATH"
-
-  pushd "$DF_ROOT_DIR" > /dev/null
-  . "$_SCRIPT_PATH"
-  popd > /dev/null
-done
-
-unset -v _SCRIPT_PATH
-unset -v _SCRIPT_RELATIVE_PATH
-
-# -------------------------------------------------------------------
-# Import functions
-# -------------------------------------------------------------------
-
-declare _FUNC_PATH
-declare _FUNC_RELATIVE_PATH
-
-for _FUNC_PATH in $(find "$DF_FUNC_DIR" -type f -name "*.bash"); do
-  _FUNC_RELATIVE_PATH=$(echo $_FUNC_PATH | sed -e "s@^$DF_ROOT_DIR@\.@")
-  echo "Loading: $_FUNC_RELATIVE_PATH"
-
-  pushd "$DF_ROOT_DIR" > /dev/null
-  . "$_FUNC_PATH"
-  popd > /dev/null
-done
-
-unset -v _FUNC_PATH
-unset -v _FUNC_RELATIVE_PATH
-
-# -------------------------------------------------------------------
-
-# Run tasks
-declare _TASKS
-_TASKS=$(_dotfiles_construct_tasks $*)
-_dotfiles_load_tasks
-_dotfiles_execute_tasks $_TASKS
-
-_INSTALL_END_AT=$(date +%s)
-printf "\n\e[32msuccess\e[39m\n"
-printf "\xe2\x9c\xa8  Done in $(($_INSTALL_END_AT - $_INSTALL_BEGIN_AT))s.\n"
+exec "$UV_BIN" run --quiet python -m df "$@"

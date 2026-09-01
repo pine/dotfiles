@@ -25,7 +25,7 @@ esac
 # -------------------------------------------------------------------
 
 case "$USER" in
-  kazuki.matsushita)
+  kazuki-matsushita)
     declare -r ENV_USE=corporate;;
   *)
     declare -r ENV_USE=personal;;
