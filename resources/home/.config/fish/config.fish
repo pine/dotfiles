@@ -58,6 +58,7 @@ end
 
 if type -p nvim > /dev/null 2>&1
   set -Ux EDITOR nvim
+  alias vim nvim
 else if type -p vim > /dev/null 2>&1
   set -Ux EDITOR vim
 else

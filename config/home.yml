@@ -12,7 +12,6 @@ files:
   - file: { path: .gnupg/gpg-agent.conf }
   - file: { path: .screenrc }
   - file: { path: .tmux.conf }
-  - file: { path: bin/vim }
 
 directories:
   - path: .go
