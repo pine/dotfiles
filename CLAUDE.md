@@ -51,7 +51,7 @@ Tasks are defined in `config/tasks.conf`. For each task name (e.g. `brew`), the 
 - `tasks_<name>_install`
 - `tasks_<name>_postinstall`
 
-Task order: `brew → mas → home → fish → git → script → gpg`
+Task order: `brew → home → fish → git → script → gpg`
 
 macOS system preferences (dark mode, `defaults`) are applied by
 `resources/script/pref.sh` via the `script` task — there is no separate `pref`
@@ -108,7 +108,13 @@ project's `config/script/files.yml` into the `ScriptConfig`/`ScriptFile`
 models, running `resources/script/<name>.sh` for each entry with `ENV_NAME`
 set to `work`/`personal`); `gpg` (`df/tasks/gpg.py`, reads each project's
 `config/gpg.yml` into the `GpgConfig`/`GpgKey` models — see
-[GPG key import](#gpg-key-import) below).
+[GPG key import](#gpg-key-import) below); `mas` (`df/tasks/mas.py`, reads each
+project's `config/mas.yml` into the `MasConfig`/`MasPkg` models, running
+`mas list` once in `before` and `mas info`/`mas install` per project for any
+package not yet installed).
+
+Not yet ported (still bash, in `tasks/`): `brew` (`brew.bash`, `pre-brew.bash`,
+`post-brew.bash`) and `fish` (`fish.bash`).
 
 ### Config files
 
@@ -118,6 +124,7 @@ set to `work`/`personal`); `gpg` (`df/tasks/gpg.py`, reads each project's
 - `config/home.yml` — dotfiles to deploy into `$HOME` and directories to create beforehand
 - `config/script/files.yml` — shell scripts from `resources/script/` to execute
 - `config/gpg.yml` — GPG keys to import from `resources/gpg/`, `op`, or `infisical`
+- `config/mas.yml` — Mac App Store packages to install via `mas`
 
 ### Home file deployment (`df/tasks/home.py`)
 

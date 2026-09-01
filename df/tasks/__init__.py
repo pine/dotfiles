@@ -11,6 +11,7 @@ from df.tasks.base import Task
 from df.tasks.git import GitTask
 from df.tasks.gpg import GpgTask
 from df.tasks.home import HomeTask
+from df.tasks.mas import MasTask
 from df.tasks.script import ScriptTask
 
 PYTHON_TASKS: list[Task] = [
@@ -18,4 +19,5 @@ PYTHON_TASKS: list[Task] = [
     GitTask(),
     ScriptTask(),
     GpgTask(),
+    MasTask(),
 ]
