@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from df.tasks.base import Task
 from df.tasks.brew import BrewTask
+from df.tasks.fish import FishTask
 from df.tasks.git import GitTask
 from df.tasks.gpg import GpgTask
 from df.tasks.home import HomeTask
@@ -22,4 +23,5 @@ PYTHON_TASKS: list[Task] = [
     GpgTask(),
     MasTask(),
     BrewTask(),
+    FishTask(),
 ]

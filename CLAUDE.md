@@ -51,7 +51,7 @@ Tasks are defined in `config/tasks.conf`. For each task name (e.g. `brew`), the 
 - `tasks_<name>_install`
 - `tasks_<name>_postinstall`
 
-Task order: `home → fish → git → script → gpg`
+Task order: `home → git → script → gpg`
 
 macOS system preferences (dark mode, `defaults`) are applied by
 `resources/script/pref.sh` via the `script` task — there is no separate `pref`
@@ -116,9 +116,9 @@ package not yet installed); `brew` (`df/tasks/brew.py`, reads each project's
 bootstrapping Homebrew itself and handling taps/`update`/`upgrade` in
 `before`, then processing every project's formulae/casks in `run` — all
 `state: absent` packages first, then all `state: present` packages, so
-uninstalls never race name conflicts with installs).
-
-Not yet ported (still bash, in `tasks/`): `fish` (`fish.bash`).
+uninstalls never race name conflicts with installs); `fish` (`df/tasks/fish.py`,
+no config file — installs/updates the fisher plugin manager and sets fish as
+the default login shell).
 
 ### Config files
 
