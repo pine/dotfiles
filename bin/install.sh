@@ -1,11 +1,10 @@
 #!/bin/bash
 #
 # Entry point. The orchestration lives in the `df` Python package (run via uv);
-# this wrapper vendors uv into vendor/uv/ (like init/001_yq.bash does for yq),
-# then hands off. Individual tasks are still bash (see bin/run_task.bash).
+# this wrapper vendors the uv binary into vendor/uv, then hands off.
 #
 #   ./bin/install.sh            # run all tasks from config/tasks.conf
-#   ./bin/install.sh brew home  # run only the named tasks
+#   ./bin/install.sh brew home  # run only the named tasks (in registry order)
 
 set -eu -o pipefail
 

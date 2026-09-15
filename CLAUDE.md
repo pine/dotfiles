@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a personal dotfiles repository (not intended for use by others). It is an installer that sets up a macOS (Apple Silicon) development environment — symlinking config files into `$HOME`, installing Homebrew and Mac App Store packages and version managers, and running setup scripts. Orchestration is Python (via uv); the individual tasks are bash and target the macOS system Bash (version 3.x).
+This is a personal dotfiles repository (not intended for use by others). It is an installer that sets up a macOS (Apple Silicon) development environment — symlinking config files into `$HOME`, installing Homebrew and Mac App Store packages and version managers, and running setup scripts. It is written in Python and run via uv.
 
 ## Running the installer
 
@@ -22,49 +22,19 @@ The installer is idempotent — it can be run multiple times safely.
 
 ### Execution flow
 
-The orchestration is Python; the individual tasks are still bash. This is
-phase 1 of an ongoing bash → uv/Python migration (control flow first, tasks
-ported one at a time later).
-
 1. `bin/install.sh` is a thin wrapper: it ensures `uv` is installed, then runs
    the `df` package (`uv run python -m df "$@"`).
-2. `df/cli.py` (the orchestrator) computes the `DF_*`/`DOTFILES_*` environment
-   variables the tasks expect, builds the ordered task list (CLI args, else
-   `config/tasks.conf` + the secured `tasks.conf`), and dispatches each
-   `(task, action)` to the bash runner shim. After all bash tasks finish it
-   runs the Python task layer (see below).
-3. `bin/run_task.bash` is invoked once per `(task, action)`. It re-sources — on
-   every call, by design, nothing is cached — the init scripts, the shared
-   functions, and every task file, then calls `tasks_<task>_<action>` if defined.
-   - **init scripts** (`init/*.bash`), filename-sorted: set `ENV_OS`
-     (darwin/linux), `ENV_ARCH` (amd64/arm64), `ENV_USE` (personal/corporate),
-     install `yq`, and extract the secured archive.
-   - **functions** (`functions/*.bash`): config file parser plus
-     `env_name`/`env_is_macos`/`is-macos` helpers.
-   - **tasks** (`tasks/*.bash` + secured `tasks/*.bash`): all sourced so any
-     `tasks_*` function is resolvable.
+2. `df/cli.py` (the orchestrator) decides which tasks to run — CLI args, else
+   `config/tasks.conf` — builds the `Context`, and runs each selected task
+   through its phases.
 
-### Task system
+### Task layer (`df/tasks/`)
 
-Tasks are defined in `config/tasks.conf`. For each task name (e.g. `brew`), the installer calls these functions if they exist:
-- `tasks_<name>_preinstall`
-- `tasks_<name>_install`
-- `tasks_<name>_postinstall`
-
-Task order: `home → git → script → gpg`
-
-macOS system preferences (dark mode, `defaults`) are applied by
-`resources/script/pref.sh` via the `script` task — there is no separate `pref`
-task.
-
-### Python task layer (`df/tasks/`)
-
-Tasks are being ported from bash to Python one at a time. Ported tasks live in
-`df/tasks/` and run **after** every bash task has completed (the ordering
-within `config/tasks.conf` no longer applies to them; their order is the
-`PYTHON_TASKS` list in `df/tasks/__init__.py`). A Python task still runs only
-when its `name` is selected — i.e. present in the effective task list (CLI args
-or `tasks.conf`), so the task name stays in `config/tasks.conf`.
+Every task is a `Task` subclass in `df/tasks/`. Tasks run in the order of the
+`PYTHON_TASKS` list in `df/tasks/__init__.py`; `config/tasks.conf` only selects
+*which* of them run, never the order. A task runs only when its `name` is
+selected — i.e. present in the effective task list (CLI args or `tasks.conf`),
+so the task name stays in `config/tasks.conf`.
 
 - `df/tasks/base.py` — `Task` base class with three phases (`before` → `run` →
   `after`), each in a whole-task form (`before`/`run`/`after`, called once) and
@@ -99,7 +69,7 @@ or `tasks.conf`), so the task name stays in `config/tasks.conf`.
 Config schemas are Pydantic models (`extra="forbid"`, so unknown keys are
 rejected as typos) defined alongside the task that reads them.
 
-Ported so far: `home` (`df/tasks/home.py`, reads each project's
+The tasks: `home` (`df/tasks/home.py`, reads each project's
 `config/home.yml` into the `HomeConfig`/`HomeFile`/`HomeDirectory` models —
 see [Home file deployment](#home-file-deployment) below); `git`
 (`df/tasks/git.py`, reads each project's `config/git.yml` into the
@@ -120,10 +90,15 @@ uninstalls never race name conflicts with installs); `fish` (`df/tasks/fish.py`,
 no config file — installs/updates the fisher plugin manager and sets fish as
 the default login shell).
 
+macOS system preferences (dark mode, `defaults`) are applied by
+`resources/script/pref.sh` via the `script` task — there is no separate `pref`
+task.
+
 ### Config files
 
-`config/` contains declarative config in `.conf` (line-based) and `.yml` (YAML) formats. Key files:
-- `config/tasks.conf` — ordered list of tasks to run
+`config/` contains declarative config. Everything is YAML except
+`config/tasks.conf`, which is a plain line-per-task list. Key files:
+- `config/tasks.conf` — the tasks to run
 - `config/brew.yml` — Homebrew options, taps, and formula/cask packages
 - `config/home.yml` — dotfiles to deploy into `$HOME` and directories to create beforehand
 - `config/script/files.yml` — shell scripts from `resources/script/` to execute
@@ -181,12 +156,8 @@ When making changes related to `secured`, document them within the `secured` sub
 
 ### Environment detection
 
-- `ENV_USE` is set to `corporate` or `personal` based on the current username
-  (`kazuki-matsushita` → `corporate`, anything else → `personal`). This check is
-  duplicated in three places that must be kept in sync: `init/000_env.bash`
-  (bash `ENV_USE`), `functions/env.bash` (`env_name()`/`env_is_macos`), and
-  `df/context.py` (`_env_name()`, feeds `Context.env`). If the username check
-  ever changes, update all three or the bash and Python task layers will
-  disagree on which environment is active.
+- The environment is `work` or `personal` based on the current username
+  (`kazuki-matsushita` → `work`, anything else → `personal`). This lives in one
+  place: `_env_name()` in `df/context.py`, which feeds `Context.env`.
 - Some Homebrew packages have an `env=` option to install only in the matching environment.
 - Scripts in `resources/script/` receive `ENV_NAME` as an environment variable.

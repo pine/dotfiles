@@ -1,9 +1,8 @@
 """Mas task: install Mac App Store packages declared in each project's
 ``config/mas.yml``.
 
-Ported from tasks/mas.bash. ``mas list`` is run once (in ``before``, shared
-across every project) so each project's ``run_project`` call doesn't re-fetch
-it.
+``mas list`` is run once (in ``before``, shared across every project) so each
+project's ``run_project`` call doesn't re-fetch it.
 
 Config schema (validated by the models below)::
 

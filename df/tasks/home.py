@@ -1,11 +1,9 @@
 """Home task: deploy dotfiles into $HOME as declared in each project's ``config/home.yml``.
 
-Ported from tasks/home.bash + tasks/pre-home.bash. ``directories:`` entries are
-created in ``before_project`` (mirrors the old preinstall action); ``files:``
-entries are deployed in ``run_project`` (mirrors the old install action) --
-this ordering matters because the orchestrator runs ``before_project`` for
-every project before ``run_project`` for any of them, matching the old
-per-action (not per-project) sequencing.
+``directories:`` entries are created in ``before_project``; ``files:`` entries
+are deployed in ``run_project``. This ordering matters because the orchestrator
+runs ``before_project`` for every project before ``run_project`` for any of
+them, so every directory exists before the first file is written.
 
 Config schema (validated by the models below)::
 

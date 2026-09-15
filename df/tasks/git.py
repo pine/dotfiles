@@ -1,8 +1,7 @@
 """Git task: clone repositories declared in each project's ``config/git.yml``.
 
-Ported from tasks/git.bash. The orchestrator drives the per-project loop, so
-this task only implements ``run_project`` -- it processes one project's
-``git.yml`` per call.
+The orchestrator drives the per-project loop, so this task only implements
+``run_project`` -- it processes one project's ``git.yml`` per call.
 
 Config schema (validated by the models below)::
 

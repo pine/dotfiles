@@ -1,8 +1,8 @@
-"""Python task registry.
+"""Task registry.
 
-``PYTHON_TASKS`` is the ordered list of migrated tasks; the orchestrator runs
-them in this order (each running preinstall -> install -> postinstall). To add
-a task, implement a ``Task`` subclass and append it here.
+``PYTHON_TASKS`` is the ordered list of tasks; the orchestrator runs them in
+this order (each running before -> run -> after). To add a task, implement a
+``Task`` subclass and append it here.
 """
 
 from __future__ import annotations

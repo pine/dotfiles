@@ -21,7 +21,7 @@ M = TypeVar("M", bound=BaseModel)
 
 
 def _env_name() -> str:
-    """Resolve the work/personal environment name, mirroring env_name() in functions/env.bash."""
+    """Resolve the work/personal environment name."""
     return "work" if os.environ.get("USER") == "kazuki-matsushita" else "personal"
 
 
@@ -61,10 +61,10 @@ class Project:
 
 @dataclass(frozen=True)
 class Context:
-    """Everything a Python task needs to run.
+    """Everything a task needs to run.
 
     ``env`` is the resolved work/personal environment name (see _env_name()
-    above, mirrors ENV_NAME in the bash tasks).
+    above); it is what the script task exports as ``ENV_NAME``.
     """
 
     root: Path
@@ -82,8 +82,7 @@ def build_context(
 ) -> Context:
     """Construct the Context, deriving the ordered project list.
 
-    Project order (main -> secure -> work) matches the source ordering used by
-    the bash tasks (e.g. tasks/home.bash).
+    Tasks process the projects in this order (main -> secure -> work).
     """
     projects = [
         Project(name="main", root=root),

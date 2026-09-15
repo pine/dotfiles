@@ -1,9 +1,9 @@
 """Fish task: install/update the fisher plugin manager and set fish as the
 default login shell.
 
-Ported from tasks/fish.bash. Unlike the other ported tasks this one has no
-per-project config file -- it's a single machine-wide procedure (fisher +
-default shell), so it implements only the whole-task ``run`` hook.
+Unlike the other tasks this one has no per-project config file -- it's a
+single machine-wide procedure (fisher + default shell), so it implements only
+the whole-task ``run`` hook.
 """
 
 from __future__ import annotations

@@ -1,8 +1,8 @@
 """GPG task: import GPG keys declared in each project's ``config/gpg.yml``.
 
-Ported from secured/tasks/gpg.bash. Unlike the home task, importing a key has
-no destination path/mode to manage -- the fetched bytes are piped straight
-into ``gpg --import``, which is idempotent.
+Unlike the home task, importing a key has no destination path/mode to manage
+-- the fetched bytes are piped straight into ``gpg --import``, which is
+idempotent.
 
 Config schema (validated by the models below)::
 

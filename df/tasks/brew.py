@@ -1,8 +1,7 @@
 """Brew task: install Homebrew itself plus formulae/casks declared in each
 project's ``config/brew.yml``.
 
-Ported from tasks/brew.bash + tasks/pre-brew.bash + tasks/post-brew.bash.
-Unlike the other ported tasks this one does not use ``before_project``/
+Unlike the other tasks this one does not use ``before_project``/
 ``run_project`` -- everything except the actual formula/cask install and
 uninstall calls happens in ``before`` (config loading, bootstrapping Homebrew
 itself, taps, ``brew update``/``brew upgrade``), and ``run`` performs the

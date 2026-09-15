@@ -1,8 +1,8 @@
 """Script task: run one-off setup scripts declared per project.
 
-Ported from tasks/script.bash. Each project's ``config/script/files.yml``
-lists script names under ``files``; for each name, ``resources/script/<name>.sh``
-is executed if present, with ``ENV_NAME`` set in its environment.
+Each project's ``config/script/files.yml`` lists script names under ``files``;
+for each name, ``resources/script/<name>.sh`` is executed if present, with
+``ENV_NAME`` set in its environment.
 
 Config schema (validated by the models below)::
 
