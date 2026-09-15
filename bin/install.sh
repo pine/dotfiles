@@ -3,7 +3,7 @@
 # Entry point. The orchestration lives in the `df` Python package (run via uv);
 # this wrapper vendors the uv binary into vendor/uv, then hands off.
 #
-#   ./bin/install.sh            # run all tasks from config/tasks.conf
+#   ./bin/install.sh            # run every task
 #   ./bin/install.sh brew home  # run only the named tasks (in registry order)
 
 set -eu -o pipefail

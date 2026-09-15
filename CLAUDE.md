@@ -24,17 +24,17 @@ The installer is idempotent — it can be run multiple times safely.
 
 1. `bin/install.sh` is a thin wrapper: it ensures `uv` is installed, then runs
    the `df` package (`uv run python -m df "$@"`).
-2. `df/cli.py` (the orchestrator) decides which tasks to run — CLI args, else
-   `config/tasks.conf` — builds the `Context`, and runs each selected task
-   through its phases.
+2. `df/cli.py` (the orchestrator) decides which tasks to run (CLI args, else
+   all of them), builds the `Context`, and runs each selected task through its
+   phases.
 
 ### Task layer (`df/tasks/`)
 
-Every task is a `Task` subclass in `df/tasks/`. Tasks run in the order of the
-`PYTHON_TASKS` list in `df/tasks/__init__.py`; `config/tasks.conf` only selects
-*which* of them run, never the order. A task runs only when its `name` is
-selected — i.e. present in the effective task list (CLI args or `tasks.conf`),
-so the task name stays in `config/tasks.conf`.
+Every task is a `Task` subclass in `df/tasks/`. The `PYTHON_TASKS` list in
+`df/tasks/__init__.py` is the single registry: it defines both the set of valid
+task names and the order they run in. `./bin/install.sh` with no arguments runs
+all of them; arguments narrow the set but never reorder it, and an unrecognised
+name is an error (exit 2) rather than a silent no-op.
 
 - `df/tasks/base.py` — `Task` base class with three phases (`before` → `run` →
   `after`), each in a whole-task form (`before`/`run`/`after`, called once) and
@@ -51,9 +51,9 @@ so the task name stays in `config/tasks.conf`.
   `Project.config(name, model)` loads a YAML file and validates it against a
   Pydantic model, returning the typed model instance (or `None` when the file
   is missing or empty, both treated as "no config"). `Context` also carries
-  `env` (the resolved `work`/`personal` name, mirrors bash's
-  `env_name()`/`ENV_NAME`; computed once by the private `_env_name()` in this
-  module, which reads the live `os.environ` directly).
+  `env` (the resolved `work`/`personal` name, exported to scripts as
+  `ENV_NAME`; computed once by the private `_env_name()` in this module, which
+  reads the live `os.environ` directly).
 - `df/yaml_config.py` — `load_yaml(path)` (PyYAML); returns `None` for a missing
   or empty file. Wrapped by `Project.config`.
 - `df/secrets/` — the shared secret-fetching helpers behind the
@@ -96,9 +96,7 @@ task.
 
 ### Config files
 
-`config/` contains declarative config. Everything is YAML except
-`config/tasks.conf`, which is a plain line-per-task list. Key files:
-- `config/tasks.conf` — the tasks to run
+`config/` contains declarative YAML config. Key files:
 - `config/brew.yml` — Homebrew options, taps, and formula/cask packages
 - `config/home.yml` — dotfiles to deploy into `$HOME` and directories to create beforehand
 - `config/script/files.yml` — shell scripts from `resources/script/` to execute
