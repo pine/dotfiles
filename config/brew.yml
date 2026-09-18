@@ -142,8 +142,8 @@ casks:
   - { name: font-sauce-code-pro-nerd-font }
   - { name: font-source-code-pro }
   - { name: font-symbols-only-nerd-font }
+  - { name: gcloud-cli }
   - { name: google-chrome, state: { work: absent, personal: present } }
-  - { name: google-cloud-sdk }
   - { name: google-japanese-ime }
   - { name: intellij-idea }
   - { name: iterm2 }

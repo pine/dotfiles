@@ -9,16 +9,11 @@ test -d ~/project/pine; and set -g CDPATH $CDPATH ~/project/pine
 test -d ~/project; and set -g CDPATH $CDPATH ~/project
 
 begin
-  set -l paths /sbin /usr/sbin /bin /usr/sbin \
+  set -l paths /sbin /usr/sbin /bin \
     /usr/local/sbin /usr/local/bin \
     /opt/homebrew/bin \
-    /usr/local/*/bin  \
+    /usr/local/*/bin \
     ~/Library/Android/sdk/tools/bin ~/Library/Android/sdk/platform-tools \
-    /usr/local/opt/terraform@0.13/bin \
-    /usr/local/Homebrew/bin \
-    /usr/lib/dart/bin \
-    /opt/homebrew/opt/mysql@8.0/bin \
-    /usr/local/opt/mysql@8.0/bin \
     ~/project/flutter/flutter/bin \
     ~/.cargo/bin \
     ~/bin \
