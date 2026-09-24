@@ -3,7 +3,7 @@ files:
   - file: { path: .config/fish/fish_plugins }
   - file: { path: .config/fish/conf.d/google-cloud-sdk.fish }
   - file: { path: .config/nvim/init.lua }
-  - file: { path: .config/mise/conf.d/settings.toml }
+  - file: { path: .config/mise/conf.d/shared.toml }
   - file: { path: .editorconfig }
   - file: { path: .gemrc }
   - file: { path: .gitconfig }
