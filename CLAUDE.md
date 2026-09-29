@@ -159,3 +159,25 @@ When making changes related to `secured`, document them within the `secured` sub
   place: `_env_name()` in `df/context.py`, which feeds `Context.env`.
 - Some Homebrew packages have an `env=` option to install only in the matching environment.
 - Scripts in `resources/script/` receive `ENV_NAME` as an environment variable.
+
+## Conventions
+
+### Version managers
+
+Use **mise** for language and tool version management. Do not introduce
+per-language version managers — `sdkman`, `rbenv`, `nodenv`, `pyenv`, `jenv`,
+`goenv`, `plenv`, `phpbrew`, `tfenv` and friends are all out. The repo has
+already migrated off `anyenv` and its plugins, and the leftovers (their brew
+formulae, `resources/script/` installers, and fish `postconf.d` shims) have
+been removed; adding one back would re-fragment what mise now owns in one
+place.
+
+The moving parts:
+- `mise` is installed as a Homebrew formula (`config/brew.yml`).
+- `resources/home/.config/mise/conf.d/shared.toml` is the shared mise config
+  the home task deploys.
+- `resources/home/.config/fish/config.fish` activates it
+  (`mise activate fish --shims`).
+
+If a tool genuinely cannot be managed by mise, say so explicitly where it is
+configured rather than reaching for that tool's own version manager.
