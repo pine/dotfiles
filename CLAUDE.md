@@ -20,19 +20,8 @@ The installer is idempotent — it can be run multiple times safely.
 
 ## Development
 
-```sh
-# Lint
-uv run ruff check
-```
-
-No path argument: ruff's default excludes already skip `.venv/` and
-`vendor/`, so it lands on the `df/` package plus `pyproject.toml` (whose
-`[tool.ruff]` settings it validates too), and anything added outside `df/`
-later is picked up automatically.
-
-ruff is pinned in the `dev` dependency group, so this uses the version in
-`uv.lock` rather than whatever is installed system-wide. Configuration lives
-under `[tool.ruff]` in `pyproject.toml`.
+Development commands (lint, etc.) live in README.md. Keep them there rather
+than duplicating them here, so there is one place to update.
 
 ## Architecture
 

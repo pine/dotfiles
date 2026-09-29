@@ -32,5 +32,14 @@ $ ./bin/install.sh brew home fish
 
 Available tasks: `brew`, `mas`, `home`, `fish`, `git`, `script`, `gpg`.
 
+## Development
+
+```sh
+$ uv run ruff check
+```
+
+ruff is pinned in the `dev` dependency group; its settings live under
+`[tool.ruff]` in `pyproject.toml`.
+
 ## License
 MIT &copy; Pine Mizune
