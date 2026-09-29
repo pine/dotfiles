@@ -4,8 +4,7 @@
 
 Sets up a macOS (Apple Silicon) development environment: symlinks config files
 into `$HOME`, installs Homebrew and Mac App Store packages, imports GPG keys,
-and runs setup scripts. Written in Python, run via
-[uv](https://docs.astral.sh/uv/).
+and runs setup scripts. Written in Python, run via uv.
 
 ## Requirements
 
