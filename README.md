@@ -2,21 +2,16 @@
 
 > Personal dotfiles
 
-An installer that sets up a development environment: it symlinks config files
+Sets up a macOS (Apple Silicon) development environment: symlinks config files
 into `$HOME`, installs Homebrew and Mac App Store packages, imports GPG keys,
-and runs setup scripts. It is written in Python and run via
-[uv](https://docs.astral.sh/uv/), which `bin/install.sh` downloads into
-`vendor/` on first run, so uv does not have to be installed beforehand.
-
-## Requirements
-
-macOS on Apple Silicon. `bin/install.sh` exits with an error anywhere else.
+and runs setup scripts. Written in Python, run via
+[uv](https://docs.astral.sh/uv/).
 
 ## Getting started
 First, you must clone the repository in your development computer.
 
 ```sh
-$ curl -L https://raw.githubusercontent.com/pine/dotfiles/master/bin/setup.sh | bash
+$ curl -L https://raw.githubusercontent.com/pine/dotfiles/main/bin/setup.sh | bash
 ```
 
 If the repository has been already cloned, please execute following commands.
@@ -25,13 +20,11 @@ If the repository has been already cloned, please execute following commands.
 $ ./bin/install.sh
 ```
 
-The installer is idempotent, so it is safe to run again at any time.
+Running it again is safe.
 
 ## Running only some tasks
 
-Pass task names to narrow down what runs. Arguments select tasks but never
-reorder them — they always run in the order below, because that order encodes
-dependencies between them.
+Task names narrow down what runs, without reordering it:
 
 ```sh
 $ ./bin/install.sh brew home fish
