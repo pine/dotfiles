@@ -9,7 +9,7 @@ and runs setup scripts. Written in Python, run via uv.
 ## Requirements
 
 - [uv](https://docs.astral.sh/uv/) — `bin/install.sh` downloads a pinned version into `vendor/`
-- Python 3.14.6 — provisioned by uv from `.python-version`
+- Python — provisioned by uv from the version in `.python-version`
 
 Both are pinned and fetched automatically, so neither has to be installed
 beforehand.
