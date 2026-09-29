@@ -158,7 +158,7 @@ casks:
   - { name: nightingale, state: absent }
   - { name: onedrive, state: absent }
   - { name: paintbrush }
-  - { name: pycharm, state: { personal: present, work: absent } }
+  - { name: pycharm }
   - { name: qbittorrent, state: { personal: present, work: absent } }
   - { name: rancher, state: absent }
   - { name: rar }
