@@ -11,13 +11,10 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TypeVar
 
 from pydantic import BaseModel
 
 from df.yaml_config import load_yaml
-
-M = TypeVar("M", bound=BaseModel)
 
 
 def _env_name() -> str:
@@ -45,7 +42,7 @@ class Project:
     def resources_dir(self) -> Path:
         return self.root / "resources"
 
-    def config(self, name: str, model: type[M]) -> M | None:
+    def config[M: BaseModel](self, name: str, model: type[M]) -> M | None:
         """Load and validate a YAML config file from this project.
 
         ``model`` is the Pydantic model describing the file's schema (e.g.

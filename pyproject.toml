@@ -2,7 +2,7 @@
 name = "df"
 version = "0.1.0"
 description = "Personal dotfiles installer for macOS (Apple Silicon)"
-requires-python = ">=3.11"
+requires-python = ">=3.14"
 dependencies = [
     "PyYAML>=6.0",
     "pydantic>=2.0",
