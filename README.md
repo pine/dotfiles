@@ -7,6 +7,14 @@ into `$HOME`, installs Homebrew and Mac App Store packages, imports GPG keys,
 and runs setup scripts. Written in Python, run via
 [uv](https://docs.astral.sh/uv/).
 
+## Requirements
+
+- [uv](https://docs.astral.sh/uv/) 0.11.31 — `bin/install.sh` downloads it into `vendor/`
+- Python 3.14.6 — provisioned by uv from `.python-version`
+
+Both are pinned and fetched automatically, so neither has to be installed
+beforehand.
+
 ## Getting started
 First, you must clone the repository in your development computer.
 
