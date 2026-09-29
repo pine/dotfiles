@@ -66,5 +66,6 @@ if ! _uv_installed; then
 fi
 
 # --frozen builds the environment strictly from uv.lock: no re-resolution, and
-# the lockfile is never rewritten as a side effect of installing.
-exec "$UV_BIN" run --frozen --quiet python -m df "$@"
+# the lockfile is never rewritten as a side effect of installing. --no-dev keeps
+# the dev group (ruff) out of it -- installing dotfiles must not pull in tooling.
+exec "$UV_BIN" run --frozen --no-dev --quiet python -m df "$@"

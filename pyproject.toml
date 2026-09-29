@@ -7,3 +7,12 @@ dependencies = [
     "PyYAML>=6.0",
     "pydantic>=2.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16",
+]
+
+[tool.ruff]
+# No line exceeds this today; keeping it here documents the ceiling.
+line-length = 120
