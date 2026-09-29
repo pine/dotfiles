@@ -1,6 +1,6 @@
 [core]
 	autocrlf = false
-	editor = vim
+	editor = nvim
 	fscache = true
 	quotepath = false
 	precomposeunicode = true

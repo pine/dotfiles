@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a personal dotfiles repository (not intended for use by others). It is a shell-based installer that sets up a macOS or Ubuntu development environment — symlinking config files into `$HOME`, installing Homebrew/apt packages, Mac App Store apps, and version managers, and running setup scripts. Scripts target the macOS system Bash (version 3.x).
+This is a personal dotfiles repository (not intended for use by others). It is an installer that sets up a macOS (Apple Silicon) development environment — symlinking config files into `$HOME`, installing Homebrew and Mac App Store packages and version managers, and running setup scripts. It is written in Python and run via uv.
 
 ## Running the installer
 
@@ -20,39 +20,131 @@ The installer is idempotent — it can be run multiple times safely.
 
 ## Architecture
 
-### Execution flow in `bin/install.sh`
+### Execution flow
 
-1. **init scripts** (`init/*.bash`) — loaded in filename-sorted order. Sets `ENV_OS` (darwin/linux), `ENV_ARCH` (amd64/arm64), and `ENV_USE` (personal/corporate).
-2. **functions** (`functions/*.bash`) — loaded next. Provides a config file parser and `env_name`/`env_is_macos` helpers.
-3. **tasks** (`tasks/*.bash`) — all task files are sourced, then tasks from `config/tasks.conf` are executed in order.
+1. `bin/install.sh` is a thin wrapper: it ensures `uv` is installed, then runs
+   the `df` package (`uv run python -m df "$@"`).
+2. `df/cli.py` (the orchestrator) decides which tasks to run (CLI args, else
+   all of them), builds the `Context`, and runs each selected task through its
+   phases.
 
-### Task system
+### Task layer (`df/tasks/`)
 
-Tasks are defined in `config/tasks.conf`. For each task name (e.g. `brew`), the installer calls these functions if they exist:
-- `tasks_<name>_preinstall`
-- `tasks_<name>_install`
-- `tasks_<name>_postinstall`
+Every task is a `Task` subclass in `df/tasks/`. The `PYTHON_TASKS` list in
+`df/tasks/__init__.py` is the single registry: it defines both the set of valid
+task names and the order they run in. `./bin/install.sh` with no arguments runs
+all of them; arguments narrow the set but never reorder it, and an unrecognised
+name is an error (exit 2) rather than a silent no-op.
 
-Task order: `apt → brew → mas → home → fish → anyenv → git → script → pref`
+- `df/tasks/base.py` — `Task` base class with three phases (`before` → `run` →
+  `after`), each in a whole-task form (`before`/`run`/`after`, called once) and
+  a per-project form (`before_project`/`run_project`/`after_project`, called per
+  project with a `Project`). Within a phase the whole-task hook fires first,
+  then the per-project hook for each project. All hooks default to no-ops, so a
+  task overrides only what it needs (the git task implements just `run_project`).
+- `df/tasks/__init__.py` — `PYTHON_TASKS: list[Task]`, the ordered registry.
+  Add a task by appending its instance here.
+- `df/context.py` — `Context` (paths/env) and `Project`. A **`Project`** is one
+  source of config/resources: `main` (this repo), `secure` (secured submodule),
+  `work` (corporate repo). Tasks loop over `ctx.projects` and process each
+  project's config independently (they do not merge configs across sources).
+  `Project.config(name, model)` loads a YAML file and validates it against a
+  Pydantic model, returning the typed model instance (or `None` when the file
+  is missing or empty, both treated as "no config"). `Context` also carries
+  `env` (the resolved `work`/`personal` name, exported to scripts as
+  `ENV_NAME`; computed once by the private `_env_name()` in this module, which
+  reads the live `os.environ` directly).
+- `df/yaml_config.py` — `load_yaml(path)` (PyYAML); returns `None` for a missing
+  or empty file. Wrapped by `Project.config`.
+- `df/secrets/` — the shared secret-fetching helpers behind the
+  `op:`/`infisical:` sources used by both the home and gpg tasks, split by
+  backend: `onepassword.py` (`op_read(ref)`) and `infisical.py`
+  (`infisical_get(name, project_id, env)`). Each returns raw bytes and raises
+  `RuntimeError` on empty output; callers own writing/piping the bytes
+  wherever they need to go. When `infisical secrets get` fails because the user
+  is not logged in, `infisical_get` launches `infisical login` interactively and
+  then retries; failures for any other reason (e.g. a wrong project_id) are
+  surfaced without launching login.
+
+Config schemas are Pydantic models (`extra="forbid"`, so unknown keys are
+rejected as typos) defined alongside the task that reads them.
+
+The tasks: `home` (`df/tasks/home.py`, reads each project's
+`config/home.yml` into the `HomeConfig`/`HomeFile`/`HomeDirectory` models —
+see [Home file deployment](#home-file-deployment) below); `git`
+(`df/tasks/git.py`, reads each project's `config/git.yml` into the
+`GitConfig`/`Repo` models); `script` (`df/tasks/script.py`, reads each
+project's `config/script/files.yml` into the `ScriptConfig`/`ScriptFile`
+models, running `resources/script/<name>.sh` for each entry with `ENV_NAME`
+set to `work`/`personal`); `gpg` (`df/tasks/gpg.py`, reads each project's
+`config/gpg.yml` into the `GpgConfig`/`GpgKey` models — see
+[GPG key import](#gpg-key-import) below); `mas` (`df/tasks/mas.py`, reads each
+project's `config/mas.yml` into the `MasConfig`/`MasPkg` models, running
+`mas list` once in `before` and `mas info`/`mas install` per project for any
+package not yet installed); `brew` (`df/tasks/brew.py`, reads each project's
+`config/brew.yml` into the `BrewConfig`/`BrewOptions`/`BrewPkg` models,
+bootstrapping Homebrew itself and handling taps/`update`/`upgrade` in
+`before`, then processing every project's formulae/casks in `run` — all
+`state: absent` packages first, then all `state: present` packages, so
+uninstalls never race name conflicts with installs); `fish` (`df/tasks/fish.py`,
+no config file — installs/updates the fisher plugin manager and sets fish as
+the default login shell).
+
+macOS system preferences (dark mode, `defaults`) are applied by
+`resources/script/pref.sh` via the `script` task — there is no separate `pref`
+task.
 
 ### Config files
 
-`config/` contains declarative config in `.conf` (line-based) and `.yml` (YAML) formats. Key files:
-- `config/tasks.conf` — ordered list of tasks to run
-- `config/brew/pkgs.conf`, `config/brew/cask-pkgs.conf` — Homebrew formula/cask packages
-- `config/home/files.yml` — dotfiles to deploy into `$HOME`
-- `config/home/directories.yml` — directories to create in `$HOME` before files are deployed
-- `config/anyenv.yml` — version managers and their plugins
+`config/` contains declarative YAML config. Key files:
+- `config/brew.yml` — Homebrew options, taps, and formula/cask packages
+- `config/home.yml` — dotfiles to deploy into `$HOME` and directories to create beforehand
 - `config/script/files.yml` — shell scripts from `resources/script/` to execute
+- `config/gpg.yml` — GPG keys to import from `resources/gpg/`, `op`, or `infisical`
+- `config/mas.yml` — Mac App Store packages to install via `mas`
 
-### Home file deployment (`tasks/home.bash`)
+### Home file deployment (`df/tasks/home.py`)
 
-Files listed in `config/home/files.yml` are deployed from `resources/home/` to `$HOME/`. Each entry supports:
-- Default: creates a symlink `$HOME/<path> → resources/home/<path>`
-- `strategy: copy` — copies the file instead and sets `chmod 600`
-- `copy_from_op: <op-reference>` — fetches content from 1Password via `op read` and writes it directly (takes precedence over `strategy`)
+Each project's `config/home.yml` has a `directories:` list (created in
+`before_project`, before any files are deployed) and a `files:` list
+(deployed in `run_project`). Each `files:` entry is a Map with exactly one of
+`file`/`op`/`infisical` set, naming the source of the content:
+- `file:` — deploys from `resources/home/<path>`. Default `strategy: symlink`
+  creates a symlink `$HOME/<path> → resources/home/<path>`; `strategy: copy`
+  copies the file instead.
+- `op:` — fetches content via `op read <ref>` and writes it directly to
+  `$HOME/<path>`.
+- `infisical:` — fetches content via `infisical secrets get` and writes it
+  directly to `$HOME/<path>`.
 
-The home task merges files from three sources: this repo, the `secured` submodule, and the corporate dotfiles repo (path defined in `bin/install.sh`).
+All three accept an optional `mode:` (chmod, applied after writing); when
+omitted, no chmod is performed. For `file:`, `mode:` only makes sense with
+`strategy: copy` — a symlink's permissions aren't meaningful to chmod, so
+setting `mode:` under the default `strategy: symlink` is a config validation
+error. `op`/`infisical` raise if the command produces empty output, so a
+misconfigured secret reference never overwrites a previously deployed file
+with nothing.
+
+The home task merges files from three sources: this repo, the `secured` submodule, and the corporate dotfiles repo (path defined as `CORPORATE_DIR` in `df/cli.py`).
+
+### GPG key import (`df/tasks/gpg.py`)
+
+`config/gpg.yml` has a `keys:` list; each entry is a Map with exactly one of
+`file`/`op`/`infisical` set, naming the source of the key material (public or
+private, `gpg --import` handles both). Unlike home files, an imported key has
+no destination path or mode — the fetched bytes are piped straight into
+`gpg --import`, which is idempotent:
+- `file:` — imports from `resources/gpg/<path>`.
+- `op:` — fetches key material via `op read <ref>` and imports it.
+- `infisical:` — fetches key material via `infisical secrets get` and imports
+  it.
+
+`op`/`infisical` reuse the fetch helpers in `df/secrets/` shared with the
+home task.
+
+Like the home task, the gpg task processes each project's `config/gpg.yml`
+independently (main and the corporate dotfiles repo each carry their own key
+list; a project with no `config/gpg.yml` is skipped).
 
 ### Secured submodule
 
@@ -62,6 +154,30 @@ When making changes related to `secured`, document them within the `secured` sub
 
 ### Environment detection
 
-- `ENV_USE` is set to `corporate` or `personal` based on the current username.
+- The environment is `work` or `personal` based on the current username
+  (`kazuki-matsushita` → `work`, anything else → `personal`). This lives in one
+  place: `_env_name()` in `df/context.py`, which feeds `Context.env`.
 - Some Homebrew packages have an `env=` option to install only in the matching environment.
 - Scripts in `resources/script/` receive `ENV_NAME` as an environment variable.
+
+## Conventions
+
+### Version managers
+
+Use **mise** for language and tool version management. Do not introduce
+per-language version managers — `sdkman`, `rbenv`, `nodenv`, `pyenv`, `jenv`,
+`goenv`, `plenv`, `phpbrew`, `tfenv` and friends are all out. The repo has
+already migrated off `anyenv` and its plugins, and the leftovers (their brew
+formulae, `resources/script/` installers, and fish `postconf.d` shims) have
+been removed; adding one back would re-fragment what mise now owns in one
+place.
+
+The moving parts:
+- `mise` is installed as a Homebrew formula (`config/brew.yml`).
+- `resources/home/.config/mise/conf.d/shared.toml` is the shared mise config
+  the home task deploys.
+- `resources/home/.config/fish/config.fish` activates it
+  (`mise activate fish --shims`).
+
+If a tool genuinely cannot be managed by mise, say so explicitly where it is
+configured rather than reaching for that tool's own version manager.

@@ -9,16 +9,11 @@ test -d ~/project/pine; and set -g CDPATH $CDPATH ~/project/pine
 test -d ~/project; and set -g CDPATH $CDPATH ~/project
 
 begin
-  set -l paths /sbin /usr/sbin /bin /usr/sbin \
+  set -l paths /sbin /usr/sbin /bin \
     /usr/local/sbin /usr/local/bin \
     /opt/homebrew/bin \
-    /usr/local/*/bin  \
+    /usr/local/*/bin \
     ~/Library/Android/sdk/tools/bin ~/Library/Android/sdk/platform-tools \
-    /usr/local/opt/terraform@0.13/bin \
-    /usr/local/Homebrew/bin \
-    /usr/lib/dart/bin \
-    /opt/homebrew/opt/mysql@8.0/bin \
-    /usr/local/opt/mysql@8.0/bin \
     ~/project/flutter/flutter/bin \
     ~/.cargo/bin \
     ~/bin \
@@ -48,49 +43,17 @@ function history-merge --on-event fish_preexec
 end
 
 
-# anyenv ----------------------------------------------------------------------
+# mise --------------------------------------------------------------------
 
-if test -d ~/.anyenv
-  set -x PATH $HOME/.anyenv/bin $PATH
-end
-
-# rbenv
-if test -d ~/.anyenv/envs/rbenv
-  set -x RBENV_ROOT "$HOME/.anyenv/envs/rbenv"
-  set -x PATH "$RBENV_ROOT/bin" $PATH
-  status --is-interactive; and rbenv init - | source
-end
-
-# plenv
-if test -d ~/.anyenv/envs/plenv
-  set -x PLENV_ROOT "$HOME/.anyenv/envs/plenv"
-  set -x PATH "$PLENV_ROOT/bin" $PATH
-  status --is-interactive; and plenv init - | source
-end
-
-# swiftenv
-if test -d ~/.anyenv/envs/swiftenv
-  set -x SWIFTENV_ROOT "$HOME/.anyenv/envs/swiftenv"
-  set -x PATH "$SWIFTENV_ROOT/bin" $PATH
-  status --is-interactive; and swiftenv init - | source
-end
-
-# scalaenv
-if test -d ~/.anyenv/envs/scalaenv
-  set -x SCALAENV_ROOT "$HOME/.anyenv/envs/scalaenv"
-  set -x PATH "$SCALAENV_ROOT/bin" $PATH
-  status --is-interactive; and scalaenv init - | source
-end
-
-# rustup
-if test -f ~/.cargo/env
-  # source ~/.cargo/env
+if type -q mise
+  mise activate fish --shims | source
 end
 
 # vim -------------------------------------------------------------------------
 
 if type -p nvim > /dev/null 2>&1
   set -Ux EDITOR nvim
+  alias vim nvim
 else if type -p vim > /dev/null 2>&1
   set -Ux EDITOR vim
 else
@@ -113,11 +76,13 @@ set -Ux GPG_TTY $(tty)
 set -Ux POETRY_VIRTUALENVS_IN_PROJECT true
 
 
-# -----------------------------------------------------------------------------
+# node --------------------------------------------------------------------------
 
-for i in ~/.config/fish/postconf.d/* ;
-  source $i
-end
+# suppress corepack's prompt to download a missing package manager version
+set -gx COREPACK_ENABLE_DOWNLOAD_PROMPT 0
+
+
+# -----------------------------------------------------------------------------
 
 if test "$USER" = "kazuki-matsushita"
   if test -f ~/.config/fish/config-work.fish
