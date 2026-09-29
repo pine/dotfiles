@@ -18,12 +18,27 @@ This is a personal dotfiles repository (not intended for use by others). It is a
 
 The installer is idempotent — it can be run multiple times safely.
 
+## Development
+
+```sh
+# Lint
+uv run ruff check df/
+```
+
+ruff is pinned in the `dev` dependency group, so this uses the version in
+`uv.lock` rather than whatever is installed system-wide. Configuration lives
+under `[tool.ruff]` in `pyproject.toml`.
+
 ## Architecture
 
 ### Execution flow
 
 1. `bin/install.sh` is a thin wrapper: it ensures `uv` is installed, then runs
-   the `df` package (`uv run python -m df "$@"`).
+   the `df` package (`uv run --frozen --no-dev python -m df "$@"`). `--frozen`
+   builds the environment strictly from `uv.lock` so an install never
+   re-resolves or rewrites it; `--no-dev` keeps the dev dependency group out,
+   because `uv run` syncs it by default and installing dotfiles must not drag
+   in tooling like ruff.
 2. `df/cli.py` (the orchestrator) decides which tasks to run (CLI args, else
    all of them), builds the `Context`, and runs each selected task through its
    phases.
