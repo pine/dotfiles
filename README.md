@@ -1,6 +1,6 @@
-# dotfiles v3
+# dotfiles
 
-Personal dotfiles, not intended for use by others.
+> Personal dotfiles
 
 An installer that sets up a development environment: it symlinks config files
 into `$HOME`, installs Homebrew and Mac App Store packages, imports GPG keys,
