@@ -84,10 +84,6 @@ set -gx COREPACK_ENABLE_DOWNLOAD_PROMPT 0
 
 # -----------------------------------------------------------------------------
 
-for i in ~/.config/fish/postconf.d/* ;
-  source $i
-end
-
 if test "$USER" = "kazuki-matsushita"
   if test -f ~/.config/fish/config-work.fish
     source ~/.config/fish/config-work.fish
