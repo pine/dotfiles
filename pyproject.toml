@@ -1,7 +1,7 @@
 [project]
 name = "df"
 version = "0.1.0"
-description = "Personal dotfiles installer (Python orchestrator, bash tasks)"
+description = "Personal dotfiles installer for macOS (Apple Silicon)"
 requires-python = ">=3.11"
 dependencies = [
     "PyYAML>=6.0",
