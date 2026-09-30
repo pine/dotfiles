@@ -158,8 +158,9 @@ casks:
   - { name: nightingale, state: absent }
   - { name: onedrive, state: absent }
   - { name: paintbrush }
-  # Not pycharm-ce: discontinued upstream, and Homebrew disables it 2026-12-08.
-  # This cask is the unified PyCharm, free unless activated.
+  # Not pycharm-ce: JetBrains merged Community into a single PyCharm (free
+  # unless activated), so Homebrew deprecated that cask and disables it
+  # 2026-12-08. https://github.com/Homebrew/homebrew-cask/pull/239992
   - { name: pycharm }
   - { name: qbittorrent, state: { personal: present, work: absent } }
   - { name: rancher, state: absent }
