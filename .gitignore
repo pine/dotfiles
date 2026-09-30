@@ -3,6 +3,9 @@
 __pycache__/
 .venv/
 
+# IDE
+.idea/
+
 # vendor
 vendor/
 
