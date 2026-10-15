@@ -132,7 +132,7 @@ casks:
   - { name: daisydisk }
   - { name: discord, state: { personal: present, work: absent } }
   - { name: docker-desktop }
-  - { name: charles }
+  - { name: charles, state: absent }
   - { name: claude-code }
   - { name: corretto@21 }
   - { name: coteditor }
@@ -164,7 +164,7 @@ casks:
   - { name: pycharm }
   - { name: qbittorrent, state: { personal: present, work: absent } }
   - { name: rancher, state: absent }
-  - { name: rar }
+  - { name: rar, state: absent }
   - { name: scroll-reverser, state: absent }
   - { name: skype, state: absent }
   - { name: slack, state: { personal: present, work: absent } }
