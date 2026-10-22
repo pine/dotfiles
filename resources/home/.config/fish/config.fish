@@ -19,7 +19,8 @@ begin
     ~/bin \
     ~/bin/*/bin \
     ~/.rd/bin \
-    ~/.local/bin
+    ~/.local/bin \
+    /opt/homebrew/opt/curl/bin
 
   for p in $paths
     test -d $p; and set -x PATH $p $PATH

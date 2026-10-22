@@ -1,7 +1,8 @@
 files:
+  - file: { path: .config/fish/conf.d/00-mise.fish }
+  - file: { path: .config/fish/conf.d/google-cloud-sdk.fish }
   - file: { path: .config/fish/config.fish }
   - file: { path: .config/fish/fish_plugins }
-  - file: { path: .config/fish/conf.d/google-cloud-sdk.fish }
   - file: { path: .config/nvim/init.lua }
   - file: { path: .config/mise/conf.d/shared.toml }
   - file: { path: .editorconfig }
