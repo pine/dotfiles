@@ -123,7 +123,7 @@ casks:
   # alphabetical order
   - { name: 1password, state: { work: present } }
   - { name: 1password-cli, state: { work: present } }
-  - { name: adobe-acrobat-reader }
+  - { name: adobe-acrobat-reader, state: absent }
   - { name: adoptopenjdk11, state: absent }
   - { name: android-studio }
   - { name: android-file-transfer, state: absent }
