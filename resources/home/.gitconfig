@@ -65,5 +65,3 @@
 
 [diff]
 	indentHeuristic = true
-[http]
-	sslCAInfo = /opt/homebrew/etc/ca-certificates/cert.pem
