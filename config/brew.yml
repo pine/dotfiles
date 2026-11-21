@@ -133,6 +133,7 @@ casks:
   - { name: discord, state: { personal: present, work: absent } }
   - { name: docker-desktop }
   - { name: charles, state: absent }
+  - { name: claude }
   - { name: claude-code }
   - { name: corretto@21 }
   - { name: coteditor }
